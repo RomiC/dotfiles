@@ -1,3 +1,6 @@
+[user]
+	name = Roman Charugin
+	email = i@charugin.ru
 [diff]
 	tool = vimdiff
 [difftool]
@@ -16,9 +19,6 @@
 	st = status
 	sth = stash -u
 	usth = stash pop stash@{0}
-[user]
-	name = Roman Charugin
-	email = i@charugin.ru
 [push]
 	default = current
 [color]

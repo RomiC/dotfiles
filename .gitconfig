@@ -4,10 +4,10 @@
 [diff]
 	tool = vimdiff
 [difftool]
-	prompt = false
+	prompt = true
 [alias]
 	b = branch
-	d = difftool
+	d = difftool HEAD
 	f = fetch
 	ci = commit -a
 	cl = clone

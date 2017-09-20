@@ -1,0 +1,19 @@
+{
+	"user":
+	{
+		"linters":
+		{
+			"eslint":
+			{
+				"@disable": false,
+				"args":
+				[
+				],
+				"excludes":
+				[
+				]
+			}
+		},
+		"tooltip_theme": "Packages/SublimeLinter/tooltip-themes/Inline/Inline.tooltip-theme"
+	}
+}

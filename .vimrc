@@ -1,9 +1,9 @@
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set smarttab
 set wrap
 set ai
-set showmatch 
+set showmatch
 set hlsearch
 set incsearch
 set ignorecase
@@ -17,4 +17,3 @@ set number
 autocmd InsertEnter,InsertLeave * set cul!
 syntax on
 colorscheme afterglow
-set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\«ZXCVBNM<>

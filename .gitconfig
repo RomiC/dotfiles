@@ -6,6 +6,7 @@
 [difftool]
 	prompt = true
 [alias]
+	a = add
 	b = branch
 	d = difftool HEAD
 	f = fetch

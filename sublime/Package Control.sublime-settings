@@ -6,7 +6,8 @@
 	"installed_packages":
 	[
 		"Babel",
-		"Boxy Theme",
+		"GitGutter",
+		"JsPrettier",
 		"EditorConfig",
 		"Package Control",
 		"SublimeLinter",

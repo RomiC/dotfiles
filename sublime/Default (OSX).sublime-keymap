@@ -1,4 +1,12 @@
 [
 	{"keys": ["super+s"], "command": "save_all" },
 	{"keys": ["super+alt+s"], "command": "save" },
+  { "keys": ["alt+j"], "command": "auto_complete" },
+  { "keys": ["alt+j"], "command": "replace_completion_with_auto_complete", "context":
+    [
+      { "key": "last_command", "operator": "equal", "operand": "insert_best_completion" },
+      { "key": "auto_complete_visible", "operator": "equal", "operand": false },
+      { "key": "setting.tab_completion", "operator": "equal", "operand": true }
+    ]
+  }
 ]

@@ -24,3 +24,5 @@
 	default = current
 [color]
 	ui = true
+[difftool "vimdiff"]
+	cmd = vimdiff \"$BASE\" \"$LOCAL\"

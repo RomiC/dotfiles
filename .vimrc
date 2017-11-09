@@ -17,3 +17,5 @@ set number
 autocmd InsertEnter,InsertLeave * set cul!
 syntax on
 colorscheme afterglow
+
+nmap ZA :qa!<CR>

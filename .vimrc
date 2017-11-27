@@ -2,6 +2,10 @@ set tabstop=2
 set shiftwidth=2
 set smarttab
 set wrap
+set linebreak
+set nolist
+set textwidth=0
+set wrapmargin=0
 set ai
 set showmatch
 set hlsearch
@@ -17,5 +21,6 @@ set number
 autocmd InsertEnter,InsertLeave * set cul!
 syntax on
 colorscheme afterglow
+au VimEnter * if &diff | execute 'windo set wrap' | endif
 
 nmap ZA :qa!<CR>

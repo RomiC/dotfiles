@@ -8,11 +8,13 @@
 		"Babel",
 		"EditorConfig",
 		"GitGutter",
+		"Hide Menu",
 		"JsPrettier",
 		"Package Control",
 		"SFTP",
 		"SublimeLinter",
 		"SublimeLinter-contrib-eslint",
-		"Theme - Afterglow"
+		"Theme - Afterglow",
+		"TypeScript"
 	]
 }

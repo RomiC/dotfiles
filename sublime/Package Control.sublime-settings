@@ -5,15 +5,19 @@
 	],
 	"installed_packages":
 	[
+		"Angular2 HTML Syntax",
 		"Babel",
 		"EditorConfig",
 		"GitGutter",
+		"GraphQL",
 		"Hide Menu",
 		"JsPrettier",
 		"Package Control",
+		"Sass",
 		"SFTP",
 		"SublimeLinter",
 		"SublimeLinter-contrib-eslint",
+		"SublimeLinter-contrib-tslint",
 		"Theme - Afterglow",
 		"TypeScript"
 	]

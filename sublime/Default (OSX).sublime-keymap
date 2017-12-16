@@ -8,5 +8,8 @@
       { "key": "auto_complete_visible", "operator": "equal", "operand": false },
       { "key": "setting.tab_completion", "operator": "equal", "operand": true }
     ]
-  }
+  },
+  { "keys": ["super+k", "super+r"], "command": "reveal_in_side_bar" },
+  { "keys": ["super+k", "super+p"], "command": "prompt_select_workspace" },
+  { "keys": ["super+k", "super+w"], "command": "close_all" }
 ]

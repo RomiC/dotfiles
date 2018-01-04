@@ -5,13 +5,13 @@
 	],
 	"installed_packages":
 	[
-		"Angular2 HTML Syntax",
 		"Babel",
 		"EditorConfig",
 		"GitGutter",
 		"GraphQL",
 		"Hide Menu",
 		"JsPrettier",
+		"Ngx HTML",
 		"Package Control",
 		"Sass",
 		"SFTP",

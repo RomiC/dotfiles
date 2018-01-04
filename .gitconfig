@@ -9,6 +9,7 @@
 	a = add
 	b = branch
 	d = difftool HEAD
+	dy = difftool -y HEAD
 	f = fetch
 	ci = commit -a
 	cl = clone
@@ -27,3 +28,5 @@
 	ui = true
 [difftool "vimdiff"]
 	cmd = vimdiff \"$BASE\" \"$LOCAL\"
+[http]
+	sslverify = false

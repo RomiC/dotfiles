@@ -2,7 +2,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/charugin/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -17,6 +17,7 @@ POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 POWERLEVEL9K_COLOR_SCHEME="dark"
 
+SPACESHIP_PACKAGE_SHOW=false
 SPACESHIP_PROMPT_SEPARATE_LINE=false
 SPACESHIP_TIME_SHOW=false
 SPACESHIP_EXEC_TIME_SHOW=false
@@ -63,7 +64,7 @@ SPACESHIP_DIR_TRUNC=2
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew docker git-flow heroku httpie npm nvm sudo yarn)
+plugins=(git docker git-flow heroku httpie npm nvm sudo yarn)
 
 source $ZSH/oh-my-zsh.sh
 

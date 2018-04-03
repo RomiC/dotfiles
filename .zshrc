@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.npm-global/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -17,8 +17,9 @@ POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 POWERLEVEL9K_COLOR_SCHEME="dark"
 
+SPACESHIP_DOCKER_SHOW=false
 SPACESHIP_PACKAGE_SHOW=false
-SPACESHIP_PROMPT_SEPARATE_LINE=false
+SPACESHIP_PROMPT_SEPARATE_LINE=true
 SPACESHIP_TIME_SHOW=false
 SPACESHIP_EXEC_TIME_SHOW=false
 SPACESHIP_DIR_TRUNC=2
@@ -64,7 +65,7 @@ SPACESHIP_DIR_TRUNC=2
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker git-flow heroku httpie npm nvm sudo yarn)
+plugins=(git docker git-flow heroku httpie npm nvm sudo yarn zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 

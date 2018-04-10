@@ -2,7 +2,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/charugin/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -18,6 +18,7 @@ POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 POWERLEVEL9K_COLOR_SCHEME="dark"
 
 SPACESHIP_PROMPT_SEPARATE_LINE=false
+SPACESHIP_PACKAGE_SHOW=false
 SPACESHIP_TIME_SHOW=false
 SPACESHIP_EXEC_TIME_SHOW=false
 SPACESHIP_DIR_TRUNC=2
@@ -95,3 +96,4 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+fpath=($fpath "/home/rcharugin@hiq.local/.zfunctions")

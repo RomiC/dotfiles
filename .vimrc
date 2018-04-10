@@ -12,7 +12,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set ffs=unix,dos,mac
-set clipboard=unnamed
+set clipboard=unnamed,unnamedplus
 set fencs=utf-8,cp1251,koi8-r,ucs-2,cp866
 if has("mouse")
   set mouse=a

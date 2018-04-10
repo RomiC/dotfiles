@@ -19,6 +19,7 @@
 	m = merge
 	ps = push
 	pl = pull
+	rs = reset --hard HEAD
 	st = status
 	sth = stash -u
 	usth = stash pop stash@{0}

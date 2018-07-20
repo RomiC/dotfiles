@@ -1,5 +1,7 @@
+# Go path
+export GOPATH=$HOME/work/go
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.npm-global/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.npm-global/bin:/usr/local/bin:$GOPATH/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -65,7 +67,7 @@ SPACESHIP_DIR_TRUNC=2
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker git-flow heroku httpie npm nvm sudo yarn zsh-autosuggestions)
+plugins=(golang git docker git-flow heroku httpie npm nvm sudo yarn zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 

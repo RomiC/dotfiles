@@ -1,3 +1,4 @@
+" Common settings
 set tabstop=2
 set shiftwidth=2
 set smarttab
@@ -18,55 +19,43 @@ if has("mouse")
   set mouse=a
 endif
 set number
-autocmd InsertEnter,InsertLeave * set cul!
-syntax on
-colorscheme afterglow
+
+" Turn on soft wrappers in diff mode
 au VimEnter * if &diff | execute 'windo set wrap' | endif
+syntax on
+" Enabling tabs
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+" Colorscheme
+try
+	colorscheme afterglow
+catch /^Vim\%((\a\+)\)\=:E185/
+	" using default theme
+endtry
+" Airline theme
+let g:airline_theme='powerlineish'
+
 
 " GVIM options
-:set guioptions-=T
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+set guifont=Fira\ Mono\ for\ Powerline\ Medium\ 11
 
-" Close all
-nmap ZA :qa!<CR>
-" Toggle NerdTree
-map <C-n> :NERDTreeToggle<CR>
+" Keybindings
+nmap ZA :qa!<CR>   " Close all
+map <C-n> :NERDTreeToggle<CR>  " Toggle NerdTree
 
 " Plugins
 call plug#begin('~/.vim/plugged')
 
-" Make sure you use single quotes
-"
-" " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'scrooloose/nerdtree'
-
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
 Plug 'leafgarland/typescript-vim'
-"
-" " Any valid git URL is allowed
-" Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-"
-" " Multiple Plug commands can be written in a single line using | separators
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-"
-" " On-demand loading
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-"
-" " Using a non-master branch
-" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-"
-" " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-" Plug 'fatih/vim-go', { 'tag': '*' }
-"
-" " Plugin options
-" Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-"
-" " Plugin outside ~/.vim/plugged with post-update hook
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"
-" " Unmanaged plugin (manually installed and updated)
-" Plug '~/my-prototype-plugin'
-"
-" " Initialize plugin system
+Plug 'powerman/vim-plugin-ruscmd'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 call plug#end()

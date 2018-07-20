@@ -29,12 +29,12 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " Colorscheme
 try
-	colorscheme afterglow
+	colorscheme darcula
 catch /^Vim\%((\a\+)\)\=:E185/
 	" using default theme
 endtry
 " Airline theme
-let g:airline_theme='powerlineish'
+let g:airline_theme='wombat'
 
 
 " GVIM options
@@ -47,15 +47,18 @@ set guifont=Fira\ Mono\ for\ Powerline\ Medium\ 11
 " Keybindings
 nmap ZA :qa!<CR>   " Close all
 map <C-n> :NERDTreeToggle<CR>  " Toggle NerdTree
+nnoremap <C-S-tab> :bprevious<CR>  " Prev tab
+nnoremap <C-tab>   :bnext<CR>  " Next tab
 
 " Plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'powerman/vim-plugin-ruscmd'
+Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 call plug#end()

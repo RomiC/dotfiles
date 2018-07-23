@@ -26,6 +26,16 @@ syntax on
 " Enabling tabs
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+" Disabling restoring help windows
+set sessionoptions-=help
+" Disabling session save/restore propmting
+let g:session_autoload='yes'
+let g:session_autosave='yes'
+" Make splitting more natural
+set splitbelow
+set splitright
+" Adding node_modules to ignore list
+set wildignore+=*/node_modules/*
 
 " Colorscheme
 try
@@ -45,20 +55,27 @@ set guioptions-=L  "remove left-hand scroll bar
 set guifont=Fira\ Mono\ for\ Powerline\ Medium\ 11
 
 " Keybindings
-nmap ZA :qa!<CR>   " Close all
-map <C-n> :NERDTreeToggle<CR>  " Toggle NerdTree
-nnoremap <C-S-tab> :bprevious<CR>  " Prev tab
-nnoremap <C-tab>   :bnext<CR>  " Next tab
+nnoremap ZA          :qa!<CR>             " Close all
+noremap  <C-n>       :NERDTreeToggle<CR>  " Toggle NerdTree
+nnoremap <C-S-tab>   :tabnext<CR>         " Prev tab
+nnoremap <C-tab>     :tabprevious<CR>     " Next tab
+nnoremap <C-s>			 :wa<CR>							"	Save all tabs
+nnoremap <C-S-s>		 :w<CR>								"	Save current file
+nnoremap tc					 :tabc<CR>						" Close current tab
 
 " Plugins
 call plug#begin('~/.vim/plugged')
 
+Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'powerman/vim-plugin-ruscmd'
 Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 call plug#end()

@@ -16,7 +16,7 @@ set ffs=unix,dos,mac
 set clipboard=unnamed,unnamedplus
 set fencs=utf-8,cp1251,koi8-r,ucs-2,cp866
 if has("mouse")
-  set mouse=a
+	set mouse=a
 endif
 set number
 
@@ -26,6 +26,7 @@ syntax on
 " Enabling tabs
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_powerline_fonts = 1
 " Disabling restoring help windows
 set sessionoptions-=help
 " Disabling session save/restore propmting
@@ -36,6 +37,8 @@ set splitbelow
 set splitright
 " Adding node_modules to ignore list
 set wildignore+=*/node_modules/*
+" Disabling annoing bell
+set visualbell t_vb=
 
 " Colorscheme
 try
@@ -52,7 +55,7 @@ set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
-set guifont=Fira\ Mono\ for\ Powerline\ Medium\ 11
+set guifont=Fira\ Mono\ Medium\ for\ Powerline:h12
 
 " Keybindings
 nnoremap ZA          :qa!<CR>             " Close all
@@ -68,12 +71,15 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'groenewege/vim-less'
 Plug 'leafgarland/typescript-vim'
 Plug 'powerman/vim-plugin-ruscmd'
 Plug 'scrooloose/nerdtree'
+Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'valloric/youcompleteme'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'Xuyuanp/nerdtree-git-plugin'

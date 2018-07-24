@@ -6,3 +6,4 @@ sublime/Package Control.*-ca-bundle
 .vim/.netrwhist
 .vim/plugged
 .vim/sessions
+*.swp

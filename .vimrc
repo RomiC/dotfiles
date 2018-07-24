@@ -39,8 +39,8 @@ set splitright
 " Adding node_modules to ignore list
 set wildignore+=*/node_modules/*
 " Disabling annoing bell
-set noerrorbells
 set visualbell t_vb=
+set noerrorbells
 
 " Colorscheme
 try
@@ -56,16 +56,21 @@ set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
-set guifont=Fira\ Mono\ Medium\ for\ Powerline:h12
+set guifont=Fira\ Mono\ for\ Powerline\ Medium\ 12
 
 " Keybindings
-nnoremap ZA          :qa!<CR>             " Close all
-noremap  <C-n>       :NERDTreeToggle<CR>  " Toggle NerdTree
-nnoremap <C-S-tab>   :tabnext<CR>         " Prev tab
-nnoremap <C-tab>     :tabprevious<CR>     " Next tab
-nnoremap <C-s>			 :wa<CR>							"	Save all tabs
-nnoremap <C-S-s>		 :w<CR>								"	Save current file
-nnoremap tc					 :tabc<CR>						" Close current tab
+nnoremap ZA          :qa!<CR>                           " Close all
+noremap  <C-n>       :NERDTreeToggle<CR>                " Toggle NerdTree
+nnoremap <C-S-tab>   :tabnext<CR>                       " Prev tab
+nnoremap <C-tab>     :tabprevious<CR>                   " Next tab
+nnoremap <C-s>			 :wa<CR>							              " Save all tabs
+nnoremap <C-S-s>		 :w<CR>								              " Save current file
+nnoremap tc					 :tabc<CR>						              " Close current tab
+nnoremap <leader>gt  :YcmCompleter GetType<CR>          " Get type of entity
+nnoremap <leader>gd  :YcmCompleter GetDoc<CR>           " Get documentation
+nnoremap <leader>go  :YcmCompleter GoTo<CR>             " Go to
+nnoremap <leader>gf  :YcmCompleter GoToDefinition<CR>   " Go to entity definition
+nnoremap <leader>gr  :YcmCompleter GoToReferences<CR>   " Go to entity reference
 
 " Plugins
 call plug#begin('~/.vim/plugged')

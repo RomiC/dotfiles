@@ -1,33 +1,34 @@
 [user]
-	name = Roman Charugin
-	email = i@charugin.ru
+  name = Roman Charugin
+  email = rcharugin@degiro.nl
 [diff]
-	tool = vimdiff
+  tool = vimdiff
 [difftool]
-	prompt = true
+  prompt = true
 [alias]
-	a = add
-	b = branch
-	d = difftool HEAD
-	dy = difftool -y HEAD
-	f = fetch
-	ci = commit -a
-	cl = clone
-	co = checkout
-	cp = cherry-pick
-	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-	m = merge
-	ps = push
-	pl = pull
-	rs = reset --hard HEAD
-	st = status
-	sth = stash -u
-	usth = stash pop stash@{0}
+  a = add
+  b = branch
+  d = difftool HEAD
+  dy = difftool -y HEAD
+  f = fetch
+  c = commit
+  ci = commit -a
+  cl = clone
+  co = checkout
+  cp = cherry-pick
+  lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  m = merge
+  ps = push
+  pl = pull
+  rs = reset --hard HEAD
+  st = status
+  sth = stash -u
+  usth = stash pop stash@{0}
 [push]
-	default = current
+  default = current
 [color]
-	ui = true
+  ui = true
 [difftool "vimdiff"]
-	cmd = vimdiff \"$BASE\" \"$LOCAL\"
+  cmd = vimdiff \"$BASE\" \"$LOCAL\"
 [http]
-	sslverify = false
+  sslverify = false

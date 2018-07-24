@@ -1,5 +1,6 @@
 " Common settings
 set tabstop=2
+set expandtab
 set shiftwidth=2
 set smarttab
 set wrap
@@ -38,6 +39,7 @@ set splitright
 " Adding node_modules to ignore list
 set wildignore+=*/node_modules/*
 " Disabling annoing bell
+set noerrorbells
 set visualbell t_vb=
 
 " Colorscheme
@@ -48,7 +50,6 @@ catch /^Vim\%((\a\+)\)\=:E185/
 endtry
 " Airline theme
 let g:airline_theme='wombat'
-
 
 " GVIM options
 set guioptions-=m  "remove menu bar

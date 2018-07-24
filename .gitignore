@@ -3,5 +3,6 @@ sublime/oscrypto-ca-bundle.crt
 sublime/Package Control.cache
 sublime/Package Control.last-run
 sublime/Package Control.*-ca-bundle
+.vim/.netrwhist
 .vim/plugged
 .vim/sessions

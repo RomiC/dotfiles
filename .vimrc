@@ -16,7 +16,7 @@ set ffs=unix,dos,mac
 set clipboard=unnamed,unnamedplus
 set fencs=utf-8,cp1251,koi8-r,ucs-2,cp866
 if has("mouse")
-  set mouse=a
+	set mouse=a
 endif
 set number
 
@@ -71,6 +71,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'groenewege/vim-less'
 Plug 'leafgarland/typescript-vim'
 Plug 'powerman/vim-plugin-ruscmd'
 Plug 'scrooloose/nerdtree'

@@ -5,3 +5,4 @@ sublime/Package Control.last-run
 sublime/Package Control.*-ca-bundle
 .vim/plugged
 .vim/sessions
+*.swp

@@ -62,11 +62,6 @@ nnoremap <silent> <C-tab>     :tabnext<CR>                       " Next tab
 nnoremap <silent> <C-s>			  :wa<CR>							               " Save all tabs
 nnoremap <silent> <C-S-s>		  :w<CR>								             " Save current file
 nnoremap <silent> tc					:tabc<CR>						               " Close current tab
-nnoremap <silent> <leader>gt  :YcmCompleter GetType<CR>          " Get type of entity
-nnoremap <silent> <leader>gd  :YcmCompleter GetDoc<CR>           " Get documentation
-nnoremap <silent> <leader>go  :YcmCompleter GoTo<CR>             " Go to
-nnoremap <silent> <leader>gf  :YcmCompleter GoToDefinition<CR>   " Go to entity definition
-nnoremap <silent> <leader>gr  :YcmCompleter GoToReferences<CR>   " Go to entity reference
 nnoremap <silent> <A-k>       :wincmd k<CR>                      " Go to window above
 nnoremap <silent> <A-j>       :wincmd j<CR>                      " Go to window below
 nnoremap <silent> <A-h>       :wincmd h<CR>                      " Go to window from left
@@ -78,6 +73,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'groenewege/vim-less'
 Plug 'leafgarland/typescript-vim'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
 Plug 'phanviet/vim-monokai-pro'
@@ -88,7 +84,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'valloric/youcompleteme'
 Plug 'w0rp/ale'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'

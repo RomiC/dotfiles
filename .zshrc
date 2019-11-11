@@ -1,7 +1,7 @@
 # Go path
 export GOPATH=$HOME/work/go
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.npm-global/bin:/usr/local/bin:$GOPATH/bin:$PATH
+export PATH=$HOME/bin:$HOME/nvim-osx64/bin:$HOME/.npm-global/bin:/usr/local/bin:$GOPATH/bin:$PATH
 # Settign default editor to vim
 export EDITOR=vim
 # Path to your oh-my-zsh installation.
@@ -68,7 +68,7 @@ SPACESHIP_DIR_TRUNC=2
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(golang git docker git-flow heroku httpie npm nvm sudo yarn zsh-autosuggestions)
+plugins=(brew golang git git-flow heroku httpie npm nvm sudo yarn)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,3 +101,21 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 fpath=($fpath "/home/rcharugin@hiq.local/.zfunctions")
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# added by travis gem
+[ -f /Users/rcharugin/.travis/travis.sh ] && source /Users/rcharugin/.travis/travis.sh
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/Users/rcharugin/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+
+# Drone.io service
+export DRONE_SERVER=https://cloud.drone.io
+export DRONE_TOKEN=1SqlpZPfxkJxtzbbOhcWoBjoKy7QS2QX
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export FD_OPTIONS="--multi"

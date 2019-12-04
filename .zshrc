@@ -68,7 +68,7 @@ SPACESHIP_DIR_TRUNC=2
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew golang git git-flow heroku httpie npm nvm sudo yarn)
+plugins=(golang git git-flow heroku httpie npm nvm sudo yarn)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -119,3 +119,21 @@ export DRONE_TOKEN=1SqlpZPfxkJxtzbbOhcWoBjoKy7QS2QX
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export FD_OPTIONS="--multi"
+
+# Fixing font diplaying issues on Windows
+function powerline_precmd() {
+    PS1="$(powerline-shell --shell zsh $?)"
+}
+
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "$TERM" != "linux" ]; then
+    install_powerline_precmd
+fi

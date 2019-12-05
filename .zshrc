@@ -1,7 +1,23 @@
 # Go path
 export GOPATH=$HOME/work/go
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/nvim-osx64/bin:$HOME/.npm-global/bin:/usr/local/bin:$GOPATH/bin:$PATH
+
+# Additional paths
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+# NeoVIM mac os installation
+if [ -d "$HOME/nvim-osx64/bin" ] ; then
+    PATH="$HOME/nvim-osx64/bin:$PATH"
+fi
+# Path to the globally installed npm-packages
+if [ -d "$HOME/.npm-global/bin" ] ; then
+    PATH="$HOME/.npm-global/bin:$PATH"
+fi
+# Path to GO root project
+if [ -d "$GOPATH/bin" ] ; then
+    PATH="$GOPATH/bin:$PATH"
+fi
+
 # Settign default editor to vim
 export EDITOR=vim
 # Path to your oh-my-zsh installation.
@@ -108,13 +124,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # added by travis gem
 [ -f /Users/rcharugin/.travis/travis.sh ] && source /Users/rcharugin/.travis/travis.sh
-
-# heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/rcharugin/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
-
-# Drone.io service
-export DRONE_SERVER=https://cloud.drone.io
-export DRONE_TOKEN=1SqlpZPfxkJxtzbbOhcWoBjoKy7QS2QX
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

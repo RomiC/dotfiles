@@ -143,6 +143,6 @@ function install_powerline_precmd() {
   precmd_functions+=(powerline_precmd)
 }
 
-if [ "$TERM" != "linux" ]; then
+if [ "$TERM" != "linux" ] && [ "$TERM" != "xterm-256color" ]; then
     install_powerline_precmd
 fi

@@ -1,77 +1,89 @@
 #!/bin/bash
 
-echo "\n=[ Installing Software ]=\n"
+echo '=[ Installing Software ]='
 
-echo "-> brew\n"
+echo '-> brew'
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
 
-echo "-> git\n"
+echo '-> git'
 brew install git
 
-echo "-> zsh\n"
+echo '-> zsh'
 brew install zsh
 
-echo "-> vim\n"
+echo '-> vim'
 brew install vim
 
-echo "-> iTerm2\n"
+echo '-> iTerm2'
 brew cask install iterm2
 
-echo "-> Visual Studio Code\n"
+echo '-> Visual Studio Code'
 brew cask install visual-studio-code
 
-echo "-> Telegram\n"
+echo '-> Telegram'
 brew cask install telegram
 
-echo "-> Skype\n"
+echo '-> Skype'
 brew cask install skype
 
-echo "\n=[ Configuring Git ]=\n"
-echo -n "\n> Enter name: "; read GIT_NAME
-echo -n "\n> Enter email: "; read GIT_EMAIL
+echo '-> nvm'
+brew install nvm
+
+echo '=[ Configuring Git ]='
+echo -n '> Enter name: '; read GIT_NAME
+echo -n '> Enter email: '; read GIT_EMAIL
 ssh-keygen -t RSA -C $GIT_EMAIL -N '' -f $HOME/.ssh/id_rsa
 
-echo "\n=[ Connecting to GitHub ]=\n"
-echo -n "\n> Enter GitHub personal token: "; read -s GITHUB_TOKEN
+echo '=[ Connecting to GitHub ]='
+echo -n '> Enter GitHub personal token: '; read -s GITHUB_TOKEN
 curl -v -H "Authorization: token $GITHUB_TOKEN" --data '{"title":"'$GIT_EMAIL'","key":"'"$(cat $HOME/.ssh/id_rsa.pub)"'"}' https://api.github.com/user/keys
 
-echo "\n=[ Installing dotfiles ]=\n"
-$DOTFILES_DIR = $HOME/work/dotfiles
-mkdir -p $DOTFILES_DIR
+echo '=[ Installing dotfiles ]='
+DOTFILES_DIR=$HOME/work/dotfiles
 git clone git@github.com:RomiC/dotfiles.git $DOTFILES_DIR
 
-echo "\n=[ Configuring git ]=\n"
+echo '=[ Configuring git ]='
 git config --global user.name $GIT_NAME
 git config --global user.email $GIT_EMAIL
 git config --global core.excludesfile $DOTFILES_DIR/.gitignore_global
 ln -sf $DOTFILES_DIR/.gitattributes $HOME/.gitattributes
 
-echo "\n=[ Configuring vim ]=\n"
+echo '=[ Configuring vim ]='
 ln -sf $DOTFILES_DIR/.vim $HOME/.vim
 ln -sf $DOTFILES_DIR/.vimrc $HOME/.vimrc
 
-echo "\n=[ Configuring zsh ]=\n"
+echo '=[ Configuring zsh ]='
 
-echo "-> oh-my-zsh\n"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+echo '-> oh-my-zsh'
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-echo "-> spaceship-prompt\n"
+echo '-> spaceship-prompt'
+ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
 git clone https://github.com/denysdovhan/spaceship-prompt.git --depth=1 "$ZSH_CUSTOM/themes/spaceship-prompt"
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 
 ln -sf $DOTFILES_DIR/.zshrc $HOME/.zshrc
 
-echo "\n=[ Installing fonts ]=\n"
+echo '=[ Installing fonts ]='
 FONTS_DIR="$HOME/Library/Fonts"
 
-echo "-> Fira Code\n"
-curl -sL https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip | tar -C $FONTS_DIR xvf - --include="ttf/*" --strip-components 1
+echo '-> Fira Code'
+curl -sL https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip | tar xvf - --include="ttf/*" -C $FONTS_DIR --strip-components 1
 
-echo "-> JetBrains Mono\n"
-curl -sL https://download.jetbrains.com/fonts/JetBrainsMono-1.0.0.zip | tar -C $FONTS_DIR xvf -
+echo '-> JetBrains Mono'
+curl -sL https://download.jetbrains.com/fonts/JetBrainsMono-1.0.0.zip | tar xvf - -C $FONTS_DIR
 
-echo "-> Powerline fonts\n"
+echo '-> Powerline fonts'
 git clone https://github.com/powerline/fonts.git --depth=1 $TMPDIR/powerline
 cd $TMPDIR/powerline
 ./install.sh
 rm -rf $TMPDIR/powerline
+
+echo '=[ Running ZSH ]='
+if [ "$(basename "$SHELL")" = "zsh" ];
+then
+	source $HOME/.zshrc
+else
+	exec zsh -l
+fi

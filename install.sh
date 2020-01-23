@@ -44,6 +44,7 @@ DOTFILES_DIR=$HOME/work/dotfiles
 git clone git@github.com:RomiC/dotfiles.git $DOTFILES_DIR
 
 echo '=[ Configuring git ]='
+cp $DOTFILES_DIR/.gitconfig $HOME/.gitconfig
 git config --global user.name $GIT_NAME
 git config --global user.email $GIT_EMAIL
 git config --global core.excludesfile $DOTFILES_DIR/.gitignore_global

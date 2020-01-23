@@ -28,14 +28,13 @@ echo "-> Skype\n"
 brew cask install skype
 
 echo "\n=[ Configuring Git ]=\n"
-echo -n "\n> Enter name: " read GIT_NAME
-echo -n "\n> Enter email: " read GIT_EMAIL
+echo -n "\n> Enter name: "; read GIT_NAME
+echo -n "\n> Enter email: "; read GIT_EMAIL
 ssh-keygen -t RSA -C $GIT_EMAIL -N '' -f $HOME/.ssh/id_rsa
 
 echo "\n=[ Connecting to GitHub ]=\n"
-echo -n "\n> Enter GitHub personal token: " read -s GITHUB_TOKEN
+echo -n "\n> Enter GitHub personal token: "; read -s GITHUB_TOKEN
 curl -v -H "Authorization: token $GITHUB_TOKEN" --data '{"title":"'$GIT_EMAIL'","key":"'"$(cat $HOME/.ssh/id_rsa.pub)"'"}' https://api.github.com/user/keys
-
 
 echo "\n=[ Installing dotfiles ]=\n"
 $DOTFILES_DIR = $HOME/work/dotfiles
@@ -53,7 +52,26 @@ ln -sf $DOTFILES_DIR/.vim $HOME/.vim
 ln -sf $DOTFILES_DIR/.vimrc $HOME/.vimrc
 
 echo "\n=[ Configuring zsh ]=\n"
+
+echo "-> oh-my-zsh\n"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo "-> spaceship-prompt\n"
+git clone https://github.com/denysdovhan/spaceship-prompt.git --depth=1 "$ZSH_CUSTOM/themes/spaceship-prompt"
+
 ln -sf $DOTFILES_DIR/.zshrc $HOME/.zshrc
 
 echo "\n=[ Installing fonts ]=\n"
-curl -sL https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip | tar xvf - --include="ttf/*"
+FONTS_DIR="$HOME/Library/Fonts"
+
+echo "-> Fira Code\n"
+curl -sL https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip | tar -C $FONTS_DIR xvf - --include="ttf/*" --strip-components 1
+
+echo "-> JetBrains Mono\n"
+curl -sL https://download.jetbrains.com/fonts/JetBrainsMono-1.0.0.zip | tar -C $FONTS_DIR xvf -
+
+echo "-> Powerline fonts\n"
+git clone https://github.com/powerline/fonts.git --depth=1 $TMPDIR/powerline
+cd $TMPDIR/powerline
+./install.sh
+rm -rf $TMPDIR/powerline

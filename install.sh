@@ -24,6 +24,9 @@ brew cask install visual-studio-code
 echo "-> Telegram\n"
 brew cask install telegram
 
+echo "-> Skype\n"
+brew cask install skype
+
 echo "\n=[ Configuring Git ]=\n"
 echo -n "\n> Enter name: " read GIT_NAME
 echo -n "\n> Enter email: " read GIT_EMAIL

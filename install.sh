@@ -81,6 +81,9 @@ cd $TMPDIR/powerline
 ./install.sh
 rm -rf $TMPDIR/powerline
 
+echo '=[ Configuting MacOS ]='
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
 echo '=[ Running ZSH ]='
 if [ "$(basename "$SHELL")" = "zsh" ];
 then

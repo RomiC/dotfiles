@@ -66,6 +66,9 @@ ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/the
 
 ln -sf $DOTFILES_DIR/.zshrc $HOME/.zshrc
 
+echo '=[ Configuring iTerm2 ]='
+ln -sf $DOTFILES_DIR/com.googlecode.iterm2.plist $HOME/Library/Preferences/com.googlecode.iterm2.plist
+
 echo '=[ Installing fonts ]='
 FONTS_DIR="$HOME/Library/Fonts"
 

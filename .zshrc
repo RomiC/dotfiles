@@ -18,6 +18,9 @@ if [ -d "$GOPATH/bin" ] ; then
     PATH="$GOPATH/bin:$PATH"
 fi
 
+# Default locale
+export LC_ALL=en_US.UTF-8
+
 # Settign default editor to vim
 export EDITOR=vim
 # Path to your oh-my-zsh installation.

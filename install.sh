@@ -27,6 +27,9 @@ brew cask install telegram
 echo '-> Skype'
 brew cask install skype
 
+echo '-> AppCleaner'
+brew cask install app-cleaner
+
 echo '-> nvm'
 brew install nvm
 

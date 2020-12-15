@@ -12,11 +12,20 @@ brew install git
 echo '-> zsh'
 brew install zsh
 
-echo '-> vim'
-brew install vim
+echo '-> tmux'
+brew install tmux
 
-echo '-> iTerm2'
-brew cask install iterm2
+#echo '-> vim'
+#brew install vim
+
+echo '-> neovim'
+brew install neovim
+
+#echo '-> iTerm2'
+#brew cask install iterm2
+
+echo '-> Alacritty'
+brew cask install alacritty
 
 echo '-> Visual Studio Code'
 brew cask install visual-studio-code
@@ -53,9 +62,20 @@ git config --global user.email $GIT_EMAIL
 git config --global core.excludesfile $DOTFILES_DIR/.gitignore_global
 ln -sf $DOTFILES_DIR/.gitattributes $HOME/.gitattributes
 
-echo '=[ Configuring vim ]='
-ln -sf $DOTFILES_DIR/.vim $HOME/.vim
-ln -sf $DOTFILES_DIR/.vimrc $HOME/.vimrc
+mkdir -p $HOME/.config
+
+echo '=[ Configuring neovim ]='
+ln -sf $DOTFILES_DIR/nvim $HOME/.config/nvim
+
+echo '=[ Configuring alacritty ]='
+ln -sf $DOTFILES_DIR/alacritty $HOME/.config/alacritty
+
+echo '=[ Configuring tmux ]='
+ln -sf $DOTFILES_DIR/.tmux.conf $HOME/.tmux.conf
+
+#echo '=[ Configuring vim ]='
+#ln -sf $DOTFILES_DIR/.vim $HOME/.vim
+#ln -sf $DOTFILES_DIR/.vimrc $HOME/.vimrc
 
 echo '=[ Configuring zsh ]='
 

@@ -17,6 +17,9 @@ fi
 if [ -d "$GOPATH/bin" ] ; then
     PATH="$GOPATH/bin:$PATH"
 fi
+# JDK
+export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
+export PATH="/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/bin:$PATH"
 
 # Default locale
 export LC_ALL=en_US.UTF-8
@@ -87,13 +90,11 @@ SPACESHIP_DIR_TRUNC=2
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(golang git git-flow heroku httpie npm nvm sudo yarn)
+plugins=(docker docker-compose fzf git git-flow heroku httpie jsontools npm sudo yarn)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -105,29 +106,47 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-fpath=($fpath "/home/rcharugin@hiq.local/.zfunctions")
+# fnm-init for managing different node versions
+eval "`fnm env --multi`"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+bindkey '\ec' fzy-cd-widget
+bindkey '^T'  fzy-file-widget
+bindkey '^P'  fzy-proc-widget
 
-# added by travis gem
-[ -f /Users/rcharugin/.travis/travis.sh ] && source /Users/rcharugin/.travis/travis.sh
+zstyle :fzy:tmux    enabled      no
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+zstyle :fzy:history show-scores  no
+zstyle :fzy:history lines        '10'
+zstyle :fzy:history prompt       'history >> '
+zstyle :fzy:history command      fzy-history-default-command
 
-export FD_OPTIONS="--multi"
+zstyle :fzy:file    show-scores  no
+zstyle :fzy:file    lines        '10'
+zstyle :fzy:file    prompt       'file >> '
+zstyle :fzy:file    command      fzy-file-default-command
+
+zstyle :fzy:cd      show-scores  no
+zstyle :fzy:cd      lines        ''
+zstyle :fzy:cd      prompt       'cd >> '
+zstyle :fzy:cd      command      fzy-cd-default-command
+
+zstyle :fzy:proc    show-scores  no
+zstyle :fzy:proc    lines        '10'
+zstyle :fzy:proc    prompt       'proc >> '
+zstyle :fzy:proc    command      fzy-proc-default-command
+
+# Aliases
+alias glg='g lg' gci='g ci' gps='g ps' gps!='g ps -u -f' gpl='g pl' gsth='g sth' gusth='g usth'
+alias vim=nvim
+alias doc=docker
+
+export NGINX_PROXY_HOST="docker.for.mac.localhost"
+
+# Github Container Registry token
+export CR_PAT=16cca42b4cfc91b5aaf2f1a8a52e6cea6c51584d
+
+# Fuzzy search default command
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'  # Follow links, exclude hiddens and node_modules

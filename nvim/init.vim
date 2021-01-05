@@ -9,6 +9,7 @@ set expandtab
 set nosmarttab
 
 set noswapfile              " Don't use swap files 
+set autoread                " Automatically refresh file on change
 set relativenumber          " Relative line numbers
 au TermOpen * set norelativenumber  " Hide line number in terminal mode
 
@@ -31,7 +32,7 @@ endfunction
 " Colorscheme
 set background=dark
 colorscheme afterglow
-highlight User1 cterm=reverse ctermfg=150 ctermbg=59 gui=reverse guifg=#afd787  guibg=#4d5057
+highlight User1 cterm=reverse ctermfg=150 ctermbg=59 gui=reverse guifg=#afd787 guibg=#4d5057
 highlight User2 ctermfg=9 ctermbg=59 gui=bold guifg=#ff0000 guibg=#4d5057
 
 " Statusline
@@ -41,11 +42,17 @@ let g:currentmode={
        \ 'V'  : 'V·Line ',
        \ '' : 'V·Block ',
        \ 'i'  : 'I ',
-       \ 'R'  : 'R ',
+       \ 'r'  : 'R ',
        \ 'Rv' : 'V·Replace ',
        \ 'c'  : 'C ',
        \ 't'  : 'T ',
        \}
+
+" Change bg color of the current mode block based on the mode name
+" - Red for insert mode
+au InsertEnter * highlight User1 guifg=#a54242 guibg=#f9e7c4
+au InsertLeave * highlight User1 guifg=#afd787 guibg=#4d5057
+
 set laststatus=2
 set statusline=
 set statusline+=%1*
@@ -59,6 +66,10 @@ set statusline+=%*
 set statusline+=%= " Right side
 set statusline+=\ %l:%c/%L
 set statusline+=\ %y\ 
+
+" Cursor based on current mode
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
 
 " NERDTree settings
 " - Keybindings
@@ -131,7 +142,7 @@ inoremap  <silent>  <C-s>  <Esc>:wa<CR>
 if !exists('g:vscode')
 " - File explorer (NERDTree)
   " - Open/close file explorer
-  nnoremap  <silent>  ge  :NERDTreeToggle<CR>
+  nnoremap  <silent>  ge  :NERDTreeFocus<CR>
 endif
 " - Windows navigation
   " - Focus on window above

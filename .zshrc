@@ -32,7 +32,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
+ZSH_THEME=""
 POWERLEVEL9K_MODE="flat"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status dir vcs)
@@ -48,6 +48,9 @@ SPACESHIP_PROMPT_SEPARATE_LINE=true
 SPACESHIP_TIME_SHOW=false
 SPACESHIP_EXEC_TIME_SHOW=false
 SPACESHIP_DIR_TRUNC=2
+SPACESHIP_PROMPT_DEFAULT_PREFIX="· "
+
+PURE_PROMPT_SYMBOL="➜"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -71,7 +74,7 @@ SPACESHIP_DIR_TRUNC=2
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -81,7 +84,7 @@ SPACESHIP_DIR_TRUNC=2
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="dd.mm.yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -90,9 +93,13 @@ SPACESHIP_DIR_TRUNC=2
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(docker docker-compose fzf git git-flow heroku httpie jsontools npm sudo yarn)
+plugins=(docker docker-compose fzf git git-flow heroku httpie jsontools npm sudo zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
+
+fpath+=$HOME/.zsh/pure
+autoload -U promptinit; promptinit
+prompt pure
 
 # User configuration
 
@@ -139,9 +146,10 @@ zstyle :fzy:proc    prompt       'proc >> '
 zstyle :fzy:proc    command      fzy-proc-default-command
 
 # Aliases
-alias glg='g lg' gci='g ci' gps='g ps' gps!='g ps -u -f' gpl='g pl' gsth='g sth' gusth='g usth'
+alias glg='g lg' gci='g ci' gps='g ps' gps!='g ps -u -f' gpl='g pl' gsth='g sth' gusth='g usth' gcof='gco $(g branch | fzf)'
 alias vim=nvim
 alias doc=docker
+alias lsa='ls -lhA' lsv='ls -lh' lsn='ls -1A'
 
 export NGINX_PROXY_HOST="docker.for.mac.localhost"
 
@@ -150,3 +158,6 @@ export CR_PAT=16cca42b4cfc91b5aaf2f1a8a52e6cea6c51584d
 
 # Fuzzy search default command
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'  # Follow links, exclude hiddens and node_modules
+
+# Colorizing zsh suggestions
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#685e4a'

@@ -17,6 +17,12 @@ fi
 if [ -d "$GOPATH/bin" ] ; then
     PATH="$GOPATH/bin:$PATH"
 fi
+# JDK
+export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
+export PATH="/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/bin:$PATH"
+
+# Default locale
+export LC_ALL=en_US.UTF-8
 
 # Settign default editor to vim
 export EDITOR=vim
@@ -26,7 +32,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
+ZSH_THEME=""
 POWERLEVEL9K_MODE="flat"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status dir vcs)
@@ -42,6 +48,9 @@ SPACESHIP_PROMPT_SEPARATE_LINE=true
 SPACESHIP_TIME_SHOW=false
 SPACESHIP_EXEC_TIME_SHOW=false
 SPACESHIP_DIR_TRUNC=2
+SPACESHIP_PROMPT_DEFAULT_PREFIX="· "
+
+PURE_PROMPT_SYMBOL="➜"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -65,7 +74,7 @@ SPACESHIP_DIR_TRUNC=2
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -75,7 +84,7 @@ SPACESHIP_DIR_TRUNC=2
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="dd.mm.yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -84,13 +93,14 @@ SPACESHIP_DIR_TRUNC=2
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(golang git git-flow heroku httpie npm nvm sudo yarn)
-
+plugins=(docker docker-compose fnm fzf fzf-tab git git-flow heroku httpie jsontools npm sudo tmux zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+fpath+=$HOME/.zsh/pure
+autoload -U promptinit; promptinit
+prompt pure
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# User configuration
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -102,47 +112,54 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-fpath=($fpath "/home/rcharugin@hiq.local/.zfunctions")
+# fnm-init for managing different node versions
+eval "$(fnm env)"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+bindkey '\ec' fzy-cd-widget
+bindkey '^T'  fzy-file-widget
+bindkey '^P'  fzy-proc-widget
 
-# added by travis gem
-[ -f /Users/rcharugin/.travis/travis.sh ] && source /Users/rcharugin/.travis/travis.sh
+zstyle :fzy:tmux    enabled      no
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+zstyle :fzy:history show-scores  no
+zstyle :fzy:history lines        '10'
+zstyle :fzy:history prompt       'history >> '
+zstyle :fzy:history command      fzy-history-default-command
 
-export FD_OPTIONS="--multi"
+zstyle :fzy:file    show-scores  no
+zstyle :fzy:file    lines        '10'
+zstyle :fzy:file    prompt       'file >> '
+zstyle :fzy:file    command      fzy-file-default-command
 
-# Fixing font diplaying issues on Windows
-function powerline_precmd() {
-    PS1="$(powerline-shell --shell zsh $?)"
-}
+zstyle :fzy:cd      show-scores  no
+zstyle :fzy:cd      lines        ''
+zstyle :fzy:cd      prompt       'cd >> '
+zstyle :fzy:cd      command      fzy-cd-default-command
 
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
+zstyle :fzy:proc    show-scores  no
+zstyle :fzy:proc    lines        '10'
+zstyle :fzy:proc    prompt       'proc >> '
+zstyle :fzy:proc    command      fzy-proc-default-command
 
-if [ "$TERM" != "linux" ]; then
-    install_powerline_precmd
-fi
+# Aliases
+alias glg='g lg' gsth='g sth' gusth='g usth'
+alias vim=nvim
+alias doc=docker
+alias lsa='ls -lhA' lsv='ls -lh' lsn='ls -1A'
+
+export NGINX_PROXY_HOST="docker.for.mac.localhost"
+
+# Github Container Registry token
+export CR_PAT=16cca42b4cfc91b5aaf2f1a8a52e6cea6c51584d
+
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'  # Follow links, exclude hiddens and node_modules
+
+# Colorizing zsh suggestions
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#685e4a'
+
+# Run tmux on Startup
+export ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_CONFIG=$HOME/.config/tmux/tmux.conf

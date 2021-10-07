@@ -1,4 +1,5 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
+#
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -49,7 +50,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: buttonless
+  decorations: none
 
   # Startup Mode (changes require restart)
   #
@@ -163,95 +164,125 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # Colors (Afterglow)
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x2c2c2c'
-#     foreground: '0xd6d6d6'
+colors:
+   # Default colors
+   primary:
+     background: '0x2c2c2c'
+     foreground: '0xd6d6d6'
 
-#     dim_foreground:    '0xdbdbdb'
-#     bright_foreground: '0xd9d9d9'
-#     dim_background:    '0x202020' # not sure
-#     bright_background: '0x3a3a3a' # not sure
+     dim_foreground:    '0xdbdbdb'
+     bright_foreground: '0xd9d9d9'
+     dim_background:    '0x202020' # not sure
+     bright_background: '0x3a3a3a' # not sure
 
-#   # Cursor colors
-#   cursor:
-#     text:   '0x2c2c2c'
-#     cursor: '0xd9d9d9'
+   # Cursor colors
+   cursor:
+     text:   '0x2c2c2c'
+     cursor: '0xd9d9d9'
 
-#   # Normal colors
-#   normal:
-#     black:   '0x1c1c1c'
-#     red:     '0xbc5653'
-#     green:   '0x909d63'
-#     yellow:  '0xebc17a'
-#     blue:    '0x7eaac7'
-#     magenta: '0xaa6292'
-#     cyan:    '0x86d3ce'
-#     white:   '0xcacaca'
+   # Normal colors
+   normal:
+     black: '0x1c1c1c'
+     red: '0xdd6343'
+     green: '0x8b9e63'
+     yellow: '0xa26f35'
+     blue: '0x7187a9'
+     magenta: '0xa0839f'
+     cyan: '0x89b1ae'
+     white: '0xcacaca'
 
-#   # Bright colors
-#   bright:
-#     black:   '0x636363'
-#     red:     '0xbc5653'
-#     green:   '0x909d63'
-#     yellow:  '0xebc17a'
-#     blue:    '0x7eaac7'
-#     magenta: '0xaa6292'
-#     cyan:    '0x86d3ce'
-#     white:   '0xf7f7f7'
+   # Bright colors
+   bright:
+     black: '0x797979'
+     red: '0xdd6343'
+     green: '0xd4f199'
+     yellow: '0xd3a75e'
+     blue: '0x7187a9'
+     magenta: '0xa0839f'
+     cyan: '0x86d3ce'
+     white: '0xf7f7f7'
 
-#   # Dim colors
-#   dim:
-#     black:   '0x232323'
-#     red:     '0x74423f'
-#     green:   '0x5e6547'
-#     yellow:  '0x8b7653'
-#     blue:    '0x556b79'
-#     magenta: '0x6e4962'
-#     cyan:    '0x5c8482'
-#     white:   '0x828282'
+   # Dim colors
+   dim:
+     black:   '0x232323'
+     red:     '0x74423f'
+     green:   '0x5e6547'
+     yellow:  '0x8b7653'
+     blue:    '0x556b79'
+     magenta: '0x6e4962'
+     cyan:    '0x5c8482'
+     white:   '0x828282'
 
 # Colors (Remedy)
-colors:
-  # Default colors
-  primary:
-    background: '0x2c2b2a'
-    foreground: '0xf9e7c4'
+#colors:
+#  # Default colors
+#  primary:
+#    background: '0x2c2b2a'
+#    foreground: '0xf9e7c4'
+#
+#    dim_foreground:    '0x685e4a'
+#    bright_foreground: '0x1c1508'
+#
+#    dim_background:    '0x202322' # not sure
+#    bright_background: '0x353433' # not sure
+#
+#  # Cursor colors
+#  cursor:
+#    text:   '0xf9e7c4'
+#    cursor: '0xf9e7c4'
+#
+#  # Normal colors
+#  normal:
+#    black:   '0x282a2e'
+#    blue:    '0x5f819d'
+#    cyan:    '0x5e8d87'
+#    green:   '0x8c9440'
+#    magenta: '0x85678f'
+#    red:     '0xa54242'
+#    white:   '0x707880'
+#    yellow:  '0xde935f'
+#    orange:  '0xcc6953'
+#
+#  # Bright colors
+#  bright:
+#    black:   '0x373b41'
+#    blue:    '0x81a2be'
+#    cyan:    '0x8abeb7'
+#    green:   '0xb5bd68'
+#    magenta: '0xb294bb'
+#    red:     '0xcc6666'
+#    white:   '0xc5c8c6'
+#    yellow:  '0xf0c674'
 
-    dim_foreground:    '0x685e4a'
-    bright_foreground: '0x1c1508'
+# Colors (Iceberg Dark)
+#colors:
+#  # Default colors
+#  primary:
+#    background: '#161821'
+#    foreground: '#d2d4de'
+#
+#  # Normal colors
+#  normal:
+#    black:   '#161821'
+#    red:     '#e27878'
+#    green:   '#b4be82'
+#    yellow:  '#e2a478'
+#    blue:    '#84a0c6'
+#    magenta: '#a093c7'
+#    cyan:    '#89b8c2'
+#    white:   '#c6c8d1'
+#
+#  # Bright colors
+#  bright:
+#    black:   '#6b7089'
+#    red:     '#e98989'
+#    green:   '#c0ca8e'
+#    yellow:  '#e9b189'
+#    blue:    '#91acd1'
+#    magenta: '#ada0d3'
+#    cyan:    '#95c4ce'
+#    white:   '#d2d4de'
 
-    dim_background:    '0x202322' # not sure
-    bright_background: '0x353433' # not sure
-
-  # Cursor colors
-  cursor:
-    text:   '0xf9e7c4'
-    cursor: '0xf9e7c4'
-
-  # Normal colors
-  normal:
-    black:   '0x282a2e'
-    blue:    '0x5f819d'
-    cyan:    '0x5e8d87'
-    green:   '0x8c9440'
-    magenta: '0x85678f'
-    red:     '0xa54242'
-    white:   '0x707880'
-    yellow:  '0xde935f'
-    orange:  '0xcc6953'
-
-  # Bright colors
-  bright:
-    black:   '0x373b41'
-    blue:    '0x81a2be'
-    cyan:    '0x8abeb7'
-    green:   '0xb5bd68'
-    magenta: '0xb294bb'
-    red:     '0xcc6666'
-    white:   '0xc5c8c6'
-    yellow:  '0xf0c674'
 
 # Bell
 #
@@ -298,7 +329,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
+background_opacity: 0.9
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -377,7 +408,7 @@ mouse:
   #triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
-  hide_when_typing: false
+  hide_when_typing: true
 
   #url:
     # URL launcher
@@ -568,7 +599,7 @@ mouse:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-key_bindings:
+#key_bindings:
   #- { key: Paste,                                action: Paste          }
   #- { key: Copy,                                 action: Copy           }
   #- { key: L,         mods: Control,             action: ClearLogNotice }
@@ -660,7 +691,7 @@ key_bindings:
   #- { key: F,      mods: Command|Control,    action: ToggleFullscreen }
   #- { key: F,      mods: Command,            action: SearchForward    }
   #- { key: B,      mods: Command,            action: SearchBackward   }
-  - { key: S,        mods: Command, chars: "\x1b:w\x0d" }
+  #- { key: S,        mods: Command, chars: "\x1b:w\x0d" }
 
 #debug:
   # Display the time it takes to redraw each frame.

@@ -163,6 +163,8 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
 
+killall SystemUIServer
+
 echo '=[ Running ZSH ]='
 if [ "$(basename "$SHELL")" = "zsh" ];
 then

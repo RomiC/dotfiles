@@ -142,11 +142,10 @@ inoremap  <silent>  <C-s>  <Esc>:wa<CR>
 if !exists('g:vscode')
 " - File explorer (NERDTree)
   " - Open/close file explorer
-  nnoremap  <silent>  ge  :NERDTreeFocus<CR>
+  nnoremap  <silent>  ge  :Vifm<CR>
 endif
 " - Windows navigation
   " - Focus on window above
-nnoremap  <silent>  <leader>k   <C-w>k
 tnoremap  <silent>  <C-w>k      <C-\><C-N><C-w>k
 inoremap  <silent>  <C-w>k      <Esc><C-w>k
   " - Focus on window below
@@ -162,13 +161,17 @@ nnoremap  <silent>  <leader>h   <C-w>h
 tnoremap  <silent>  <C-w>h      <C-\><C-N><C-w>h
 inoremap  <silent>  <C-w>h      <Esc><C-w>h
   " - Close current window
-" - Tabs navigation
+" - Tabs
+  " - New tab
+nnoremap  <silent>  <leader>n  :tabnew<CR>
   " - Next tab
 nnoremap  <silent>  <leader>L  :tabn<CR>
   " - Prev tab
 nnoremap  <silent>  <leader>H  :tabp<CR>
   " - Close tab
 nnoremap  <silent>  <leader>w  <C-w>q
+  " - Close tab & delete buffer
+nnoremap  <silent>  <leader>W  :bdelete<CR>
 " - Quickfix
   " - Next item
 nnoremap  <silent>  <leader><leader>j  :cnext<CR>
@@ -186,34 +189,6 @@ nnoremap  <silent>  <C-p>  :Files<CR>
 tnoremap  <silent>  <C-p>  <C-\><C-N>
 nnoremap  <silent>  <leader>p  :Files<CR>
 " - Completion
-  " - Use tab for trigger completion with characters ahead and navigate.
-inoremap  <silent><expr>  <TAB>
-		\ pumvisible() ? "\<C-n>" :
-		\ <SID>check_back_space() ? "\<TAB>" :
-		\ deoplete#manual_complete()
-function! s:check_back_space() abort "{{{
-		let col = col('.') - 1
-		return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-"
-inoremap  <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
-  " - Confirm completion
-" inoremap  <silent><expr>  <cr>  pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-  " - Trigger completion.
-" inoremap  <silent><expr>  <c-space> coc#refresh()
-" - Code navigation
-  " - Go to definition
-" nnoremap  <silent>  gd  <Plug>(coc-definition)
-  " - Go to definition
-" nnoremap  <silent>  gy  <Plug>(coc-type-definition)
-  " - Go to implementation
-" nnoremap  <silent>  gi  <Plug>(coc-implementation)
-  " - Go to reference
-" nnoremap  <silent>  gr  <Plug>(coc-references)
 " - Searching
   " - Search project
 nnoremap  <silent>  <leader>f  :Rg<CR>
@@ -247,7 +222,7 @@ if !exists('g:vscode')
 endif
 " - Miscellaneous
   " - Reload config
-nnoremap  <silent>  <leader>u  :so $MYVIMRC<CR>
+nnoremap  <leader>u  :so $MYVIMRC<CR>
 " - Unmapping
   " - Annoying <F1> help
 nnoremap  <F1>  <nop>
@@ -267,3 +242,8 @@ endif
 if exists('g:vscode')
   source $HOME/.config/nvim/vscode.vim
 endif
+
+lua << EOF 
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.cssls.setup{}
+EOF 

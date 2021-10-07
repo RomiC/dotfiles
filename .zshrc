@@ -93,8 +93,7 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(docker docker-compose fzf git git-flow heroku httpie jsontools npm sudo zsh-autosuggestions)
-
+plugins=(docker docker-compose fnm fzf fzf-tab git git-flow heroku httpie jsontools npm sudo tmux zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
 fpath+=$HOME/.zsh/pure
@@ -117,7 +116,7 @@ prompt pure
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # fnm-init for managing different node versions
-eval "`fnm env --multi`"
+eval "$(fnm env)"
 
 bindkey '\ec' fzy-cd-widget
 bindkey '^T'  fzy-file-widget
@@ -146,7 +145,7 @@ zstyle :fzy:proc    prompt       'proc >> '
 zstyle :fzy:proc    command      fzy-proc-default-command
 
 # Aliases
-alias glg='g lg' gci='g ci' gps='g ps' gps!='g ps -u -f' gpl='g pl' gsth='g sth' gusth='g usth' gcof='gco $(g branch | fzf)'
+alias glg='g lg' gsth='g sth' gusth='g usth'
 alias vim=nvim
 alias doc=docker
 alias lsa='ls -lhA' lsv='ls -lh' lsn='ls -1A'
@@ -156,8 +155,11 @@ export NGINX_PROXY_HOST="docker.for.mac.localhost"
 # Github Container Registry token
 export CR_PAT=16cca42b4cfc91b5aaf2f1a8a52e6cea6c51584d
 
-# Fuzzy search default command
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'  # Follow links, exclude hiddens and node_modules
 
 # Colorizing zsh suggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#685e4a'
+
+# Run tmux on Startup
+export ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_CONFIG=$HOME/.config/tmux/tmux.conf

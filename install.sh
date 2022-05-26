@@ -3,7 +3,11 @@
 echo '=[ Installing Software ]='
 
 echo '-> brew'
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if [ -z "$(whereis brew)" ];
+then
+	echo "Error: brew wasn't installed!"
+fi
 brew update
 
 echo '-> git'
@@ -40,7 +44,7 @@ echo '-> AppCleaner'
 brew cask install app-cleaner
 
 echo '-> nvm'
-brew install nvm
+brew install fnm
 
 echo '=[ Configuring Git ]='
 echo -n '> Enter name: '; read GIT_NAME

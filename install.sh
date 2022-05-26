@@ -7,9 +7,8 @@ echo '=[ Installing Software ]='
 
 echo '-> brew'
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-if [ -z "$(whereis brew)" ];
-then
-	echo "Error: brew wasn't installed!"
+if [[ "$(which brew)" == *"not found"* ]]; then 
+	echo "ERROR: brew is missing"
 	exit 1
 fi
 brew update
@@ -17,8 +16,10 @@ brew update
 echo '-> git'
 brew install git
 
-echo '-> zsh'
-brew install zsh
+if [[ -z "$(cat /etc/shells | grep zcsh)" ]]; then
+	echo '-> zsh'
+	brew install zsh
+fi
 
 echo '-> tmux'
 brew install tmux
@@ -47,7 +48,7 @@ brew install --cask skype
 echo '-> AppCleaner'
 brew install --cask app-cleaner
 
-echo '-> nvm'
+echo '-> fnm'
 brew install fnm
 
 echo '-> Raycast'
@@ -55,6 +56,12 @@ brew install --cask raycast
 
 echo '-> Bartender'
 brew install --cask bartender
+
+echo '-> Mattermost'
+brew install --cask mattermost
+
+echo '-> Figma'
+brew install --cask figma
 
 echo '=[ Configuring Git ]='
 echo -n '> Enter name: '; read GIT_NAME
@@ -96,10 +103,13 @@ echo '=[ Configuring zsh ]='
 echo '-> oh-my-zsh'
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-echo '-> spaceship-prompt'
-ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
-git clone https://github.com/denysdovhan/spaceship-prompt.git --depth=1 "$ZSH_CUSTOM/themes/spaceship-prompt"
-ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+#echo '-> spaceship-prompt'
+#ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
+#git clone https://github.com/denysdovhan/spaceship-prompt.git --depth=1 "$ZSH_CUSTOM/themes/spaceship-prompt"
+#ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+
+echo '-> pure shell'
+brew install pure
 
 ln -sf $DOTFILES_DIR/.zshrc $HOME/.zshrc
 

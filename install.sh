@@ -7,6 +7,7 @@ echo '-> brew'
 if [ -z "$(whereis brew)" ];
 then
 	echo "Error: brew wasn't installed!"
+	exit 1
 fi
 brew update
 

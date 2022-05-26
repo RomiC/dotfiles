@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Ask for the administrator password upfront
+sudo -v
+
 echo '=[ Installing Software ]='
 
 echo '-> brew'
@@ -114,8 +117,6 @@ rm -rf $TMPDIR/powerline
 
 echo '=[ Configuting MacOS ]='
 # More options could be found here: https://github.com/mathiasbynens/dotfiles/blob/master/.macos
-# Ask for the administrator password upfront
-sudo -v
 
 # Removes delay between key pressing
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false

@@ -33,22 +33,28 @@ brew install neovim
 #brew cask install iterm2
 
 echo '-> Alacritty'
-brew cask install alacritty
+brew install --cask alacritty
 
 echo '-> Visual Studio Code'
-brew cask install visual-studio-code
+brew install --cask visual-studio-code
 
 echo '-> Telegram'
-brew cask install telegram
+brew install --cask telegram
 
 echo '-> Skype'
-brew cask install skype
+brew install --cask skype
 
 echo '-> AppCleaner'
-brew cask install app-cleaner
+brew install --cask app-cleaner
 
 echo '-> nvm'
 brew install fnm
+
+echo '-> Raycast'
+brew install --cask raycast
+
+echo '-> Bartender'
+brew install --cask bartender
 
 echo '=[ Configuring Git ]='
 echo -n '> Enter name: '; read GIT_NAME

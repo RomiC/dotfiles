@@ -169,9 +169,9 @@ nnoremap  <silent>  <leader>L  :tabn<CR>
   " - Prev tab
 nnoremap  <silent>  <leader>H  :tabp<CR>
   " - Close tab
-nnoremap  <silent>  <leader>w  <C-w>q
+nnoremap  <silent>  <leader>W  <C-w>q
   " - Close tab & delete buffer
-nnoremap  <silent>  <leader>W  :bdelete<CR>
+nnoremap  <silent>  <leader>w  :bdelete<CR>
 " - Quickfix
   " - Next item
 nnoremap  <silent>  <leader><leader>j  :cnext<CR>

@@ -30,6 +30,12 @@ brew install tmux
 echo '-> neovim'
 brew install neovim
 
+echo '-> jq'
+brew install jq
+
+echo '-> fd'
+brew install jq
+
 #echo '-> iTerm2'
 #brew cask install iterm2
 
@@ -63,6 +69,15 @@ brew install --cask mattermost
 echo '-> Figma'
 brew install --cask figma
 
+echo '-> Zoom'
+brew install --cask zoom
+
+echo '-> Spotify'
+brew install --cask spotify
+
+echo '-> Yandex-Disk'
+brew install --cask yandex-disk
+
 echo '=[ Configuring Git ]='
 echo -n '> Enter name: '; read GIT_NAME
 echo -n '> Enter email: '; read GIT_EMAIL
@@ -93,6 +108,7 @@ ln -sf $DOTFILES_DIR/alacritty $HOME/.config/alacritty
 
 echo '=[ Configuring tmux ]='
 ln -sf $DOTFILES_DIR/tmux $HOME/.config/tmux
+git clone https://github.com/tmux-plugins/tpm  $HOME/.config/tmux/plugins/tpm
 
 #echo '=[ Configuring vim ]='
 #ln -sf $DOTFILES_DIR/.vim $HOME/.vim
@@ -110,6 +126,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 echo '-> pure shell'
 brew install pure
+
+# fzf-tab plugin
+git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+
+# zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 ln -sf $DOTFILES_DIR/.zshrc $HOME/.zshrc
 

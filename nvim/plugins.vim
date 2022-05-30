@@ -38,6 +38,7 @@ Plug 'dense-analysis/ale'
 
 " - Editing
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'tpope/vim-surround'
 
 " 
 call plug#end()

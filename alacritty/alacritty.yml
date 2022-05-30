@@ -6,7 +6,7 @@
 # set by alacritty itself.
 #env:
   # TERM variable
-  #
+      #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
@@ -63,6 +63,8 @@ window:
   #   - SimpleFullscreen
   startup_mode: SimpleFullscreen
 
+  opacity: 0.9
+
   # Window title
   #title: Alacritty
 
@@ -100,10 +102,10 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: JetBrainsMono Nerd Font
+    family: MonoLisa
 
     # The `style` can be specified to pick a specific face.
-    style: Medium
+    style: Regular
 
   # Bold font face
   bold:
@@ -139,13 +141,13 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 14.0
+  size: 13.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-  #offset:
+  offset:
   #  x: 0
-  #  y: 0
+    y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
@@ -329,7 +331,6 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.9
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

@@ -7,3 +7,4 @@ sublime/Package Control.*-ca-bundle
 .vim/plugged
 .vim/sessions
 *.swp
+tmux/plugins

@@ -71,6 +71,9 @@ set statusline+=\ %y\
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
+" Disable Netrw Banner (annoying semi-file-manager on start)
+let g:netrw_banner = 0
+
 " NERDTree settings
 " - Keybindings
 let NERDTreeMapActivateNode='l'
@@ -104,7 +107,7 @@ autocmd InsertLeave * call SetUsLayout()
 
 " GUI settings
 " - Font
-set guifont=FiraCode\ Nerd\ Font\ Mono:h14
+set guifont=MonoLisa:h13
 
 " Setup russing keylayout
 " set keymap=russian-jcukenmac
@@ -129,65 +132,13 @@ let g:ale_pattern_options = {
 let g:ale_pattern_options_enabled = 1
 
 " Keybindings
-if !exists('g:vscode')
-  let mapleader = " "
-endif
-  " - Close all
-nnoremap  <silent>  ZA  :qa!<CR>
-nnoremap  <silent>  <leader>q  :qa!<CR>
-  " - Save all 
-nnoremap  <silent>  ZS  :wa<CR>
-nnoremap  <silent>  <leader>s  :wa<CR>
-inoremap  <silent>  <C-s>  <Esc>:wa<CR>
+source $HOME/.config/nvim/keybindings.vim
+
 if !exists('g:vscode')
 " - File explorer (NERDTree)
   " - Open/close file explorer
   nnoremap  <silent>  ge  :Vifm<CR>
 endif
-" - Windows navigation
-  " - Focus on window above
-tnoremap  <silent>  <C-w>k      <C-\><C-N><C-w>k
-inoremap  <silent>  <C-w>k      <Esc><C-w>k
-  " - Focus on window below
-nnoremap  <silent>  <leader>j   <C-w>j
-tnoremap  <silent>  <C-w>j      <C-\><C-N><C-w>j
-inoremap  <silent>  <C-w>j      <Esc><C-w>j
-  " - Focus on window to the right
-nnoremap  <silent>  <leader>l   <C-w>l
-tnoremap  <silent>  <C-w>l      <C-\><C-N><C-w>l
-inoremap  <silent>  <C-w>l      <Esc><C-w>l
-  " - Focus on window to the left
-nnoremap  <silent>  <leader>h   <C-w>h
-tnoremap  <silent>  <C-w>h      <C-\><C-N><C-w>h
-inoremap  <silent>  <C-w>h      <Esc><C-w>h
-  " - Close current window
-" - Tabs
-  " - New tab
-nnoremap  <silent>  <leader>n  :tabnew<CR>
-  " - Next tab
-nnoremap  <silent>  <leader>L  :tabn<CR>
-  " - Prev tab
-nnoremap  <silent>  <leader>H  :tabp<CR>
-  " - Close tab
-nnoremap  <silent>  <leader>w  <C-w>q
-  " - Close tab & delete buffer
-nnoremap  <silent>  <leader>W  :bdelete<CR>
-" - Quickfix
-  " - Next item
-nnoremap  <silent>  <leader><leader>j  :cnext<CR>
-  " - Prev item
-nnoremap  <silent>  <leader><leader>j  :cnext<CR>
-" - Buffers
-  " - Open buffer
-nnoremap  <silent>  <C-b>  :Buffers<CR>
-tnoremap  <silent>  <C-b>  <C-\><C-N>:Buffers<CR>
-nnoremap  <silent>  <leader>b  :Buffers<CR>
-" - Windows
-nnoremap  <silent>  <leader>r  :Windows<CR>
-" - File open
-nnoremap  <silent>  <C-p>  :Files<CR>
-tnoremap  <silent>  <C-p>  <C-\><C-N>
-nnoremap  <silent>  <leader>p  :Files<CR>
 " - Completion
 " - Searching
   " - Search project
@@ -220,6 +171,9 @@ if !exists('g:vscode')
   " - Open terminal in a new pane below
   nnoremap  <silent>  gS  :25split term://zsh<CR>
 endif
+" - Buffers
+"   - Recent
+nnoremap  <leader>p  :Buffers<CR>
 " - Miscellaneous
   " - Reload config
 nnoremap  <leader>u  :so $MYVIMRC<CR>
@@ -243,7 +197,7 @@ if exists('g:vscode')
   source $HOME/.config/nvim/vscode.vim
 endif
 
-lua << EOF 
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.cssls.setup{}
-EOF 
+"lua << EOF 
+"require'lspconfig'.tsserver.setup{}
+"require'lspconfig'.cssls.setup{}
+"EOF 

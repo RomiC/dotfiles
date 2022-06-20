@@ -21,6 +21,9 @@ fi
 export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
 export PATH="/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/bin:$PATH"
 
+# Sencha
+export PATH="$HOME/bin/Sencha/Cmd:$PATH"
+
 # Default locale
 export LC_ALL=en_US.UTF-8
 
@@ -33,22 +36,22 @@ export ZSH=$HOME/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME=""
-POWERLEVEL9K_MODE="flat"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
-POWERLEVEL9K_COLOR_SCHEME="dark"
+#POWERLEVEL9K_MODE="flat"
+#POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status dir vcs)
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
+#POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+#POWERLEVEL9K_STATUS_VERBOSE=false
+#POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
+#POWERLEVEL9K_COLOR_SCHEME="dark"
 
-SPACESHIP_DOCKER_SHOW=false
-SPACESHIP_PACKAGE_SHOW=false
-SPACESHIP_PROMPT_SEPARATE_LINE=true
-SPACESHIP_TIME_SHOW=false
-SPACESHIP_EXEC_TIME_SHOW=false
-SPACESHIP_DIR_TRUNC=2
-SPACESHIP_PROMPT_DEFAULT_PREFIX="· "
+#SPACESHIP_DOCKER_SHOW=false
+#SPACESHIP_PACKAGE_SHOW=false
+#SPACESHIP_PROMPT_SEPARATE_LINE=true
+#SPACESHIP_TIME_SHOW=false
+#SPACESHIP_EXEC_TIME_SHOW=false
+#SPACESHIP_DIR_TRUNC=2
+#SPACESHIP_PROMPT_DEFAULT_PREFIX="· "
 
 PURE_PROMPT_SYMBOL="➜"
 # Uncomment the following line to use case-sensitive completion.
@@ -93,7 +96,23 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(docker docker-compose fnm fzf fzf-tab git git-flow heroku httpie jsontools npm sudo tmux zsh-autosuggestions)
+plugins=(
+  docker
+  docker-compose
+  fnm
+  fzf
+  fzf-tab
+  git
+  git-flow
+  heroku
+  httpie
+  jsontools
+  npm
+  sudo
+  tmux
+  vi-mode
+  zsh-autosuggestions
+)
 source $ZSH/oh-my-zsh.sh
 
 fpath+=$HOME/.zsh/pure
@@ -116,11 +135,11 @@ prompt pure
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # fnm-init for managing different node versions
-eval "$(fnm env)"
+eval "$(fnm env --use-on-cd --log-level=quiet)"
 
-bindkey '\ec' fzy-cd-widget
-bindkey '^T'  fzy-file-widget
-bindkey '^P'  fzy-proc-widget
+# bindkey '\ec' fzy-cd-widget
+# bindkey '^T'  fzy-file-widget
+# bindkey '^P'  fzy-proc-widget
 
 zstyle :fzy:tmux    enabled      no
 
@@ -161,5 +180,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'  # Fol
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#685e4a'
 
 # Run tmux on Startup
-export ZSH_TMUX_AUTOSTART=true
-export ZSH_TMUX_CONFIG=$HOME/.config/tmux/tmux.conf
+if [ -z $ZSH_TMUX_AUTOSTART ] ; then
+  export ZSH_TMUX_AUTOSTART=true
+fi
+

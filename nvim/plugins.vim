@@ -7,6 +7,7 @@ Plug 'danilo-augusto/vim-afterglow'
 
 " File browser + plugins
 Plug 'vifm/vifm.vim'
+
 "Plug 'scrooloose/nerdtree'
 "Plug 'ryanoasis/vim-devicons'
 "Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -14,13 +15,14 @@ Plug 'vifm/vifm.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-
 " Nunjucks support
 Plug 'lepture/vim-jinja'
 
 " Code plugins
+" - Treesitter (code highlight)
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " - LSP server
-Plug 'neovim/nvim-lspconfig'
+" Plug 'neovim/nvim-lspconfig'
 " - Completion
 "Plug 'nvim-lua/completion-nvim'
 "Plug 'prabirshrestha/asyncomplete.vim'
@@ -28,7 +30,7 @@ Plug 'neovim/nvim-lspconfig'
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "lug 'lighttiger2505/deoplete-vim-lsp'
 " - Linting
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}

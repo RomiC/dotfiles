@@ -71,7 +71,7 @@ echo '=[ Configuring alacritty ]='
 ln -sf $DOTFILES_DIR/alacritty $HOME/.config/alacritty
 
 echo '=[ Configuring tmux ]='
-ln -sf $DOTFILES_DIR/.tmux.conf $HOME/.tmux.conf
+ln -sf $DOTFILES_DIR/tmux/.tmux.conf $HOME/.tmux.conf
 
 #echo '=[ Configuring vim ]='
 #ln -sf $DOTFILES_DIR/.vim $HOME/.vim

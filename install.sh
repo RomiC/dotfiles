@@ -44,7 +44,6 @@ brew install --cask alacritty
 
 echo '-> Visual Studio Code'
 brew install --cask visual-studio-code
-
 echo '-> Telegram'
 brew install --cask telegram
 
@@ -96,6 +95,7 @@ cp $DOTFILES_DIR/.gitconfig $HOME/.gitconfig
 git config --global user.name $GIT_NAME
 git config --global user.email $GIT_EMAIL
 git config --global core.excludesfile $DOTFILES_DIR/.gitignore_global
+git config --global core.editor "nvim"
 ln -sf $DOTFILES_DIR/.gitattributes $HOME/.gitattributes
 
 mkdir -p $HOME/.config
@@ -158,6 +158,8 @@ echo '=[ Configuting MacOS ]='
 
 # Removes delay between key pressing
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+# and for VSCode as well
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
@@ -206,6 +208,10 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
+
+# Change screenshot target folder
+mkdir $HOME/Screenshots
+defaults write com.apple.screencapture location $HOME/Screenshots
 
 killall SystemUIServer
 

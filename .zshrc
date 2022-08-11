@@ -18,8 +18,7 @@ if [ -d "$GOPATH/bin" ] ; then
     PATH="$GOPATH/bin:$PATH"
 fi
 # JDK
-export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
-export PATH="/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/bin:$PATH"
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
 # Default locale
 export LC_ALL=en_US.UTF-8
@@ -114,10 +113,20 @@ zstyle :fzy:proc    prompt       'proc >> '
 zstyle :fzy:proc    command      fzy-proc-default-command
 
 # Aliases
+# - Git
 alias glg='g lg' gsth='g sth' gusth='g usth'
-alias vim=nvim
+# - NeoVIM instead of vim
+alias vim=nvim v=nvim
+# - Vifm
+alias vf=vifm
+# - Docker
 alias doc=docker
+# - List files
 alias lsa='ls -lhA' lsv='ls -lh' lsn='ls -1A'
+# - FNM (Node manager)
+alias fnmu='fnm use' fnml='fnm list' fnmlr='fnm list-remote'
+# - Node
+alias nv='node -v'
 
 export NGINX_PROXY_HOST="docker.for.mac.localhost"
 

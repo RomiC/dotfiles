@@ -62,6 +62,9 @@ brew install --cask raycast
 echo '-> Bartender'
 brew install --cask bartender
 
+echo '-> Fluor'
+brew install --cask fluor
+
 echo '-> Mattermost'
 brew install --cask mattermost
 
@@ -108,7 +111,9 @@ ln -sf $DOTFILES_DIR/alacritty $HOME/.config/alacritty
 
 echo '=[ Configuring tmux ]='
 ln -sf $DOTFILES_DIR/tmux $HOME/.config/tmux
-git clone https://github.com/tmux-plugins/tpm  $HOME/.config/tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tmux-continuum $HOME/.config/tmux/plugins/tmux-continuum
+git clone https://github.com/tmux-plugins/tmux-resurrect $HOME/.config/tmux/plugins/tmux-resurrect
+git clone https://github.com/nhdaly/tmux-better-mouse-mode $HOME/.config/tmux/plugins/tmux-better-mouse-mode
 
 #echo '=[ Configuring vim ]='
 #ln -sf $DOTFILES_DIR/.vim $HOME/.vim

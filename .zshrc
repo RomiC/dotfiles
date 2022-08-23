@@ -124,7 +124,7 @@ alias doc=docker
 # - List files
 alias lsa='ls -lhA' lsv='ls -lh' lsn='ls -1A'
 # - FNM (Node manager)
-alias fnmu='fnm use' fnml='fnm list' fnmlr='fnm list-remote'
+alias nu='fnm use' nls='fnm list' nlsr='fnm list-remote'
 # - Node
 alias nv='node -v'
 

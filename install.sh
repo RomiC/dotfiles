@@ -114,6 +114,7 @@ ln -sf $DOTFILES_DIR/tmux $HOME/.config/tmux
 git clone https://github.com/tmux-plugins/tmux-continuum $HOME/.config/tmux/plugins/tmux-continuum
 git clone https://github.com/tmux-plugins/tmux-resurrect $HOME/.config/tmux/plugins/tmux-resurrect
 git clone https://github.com/nhdaly/tmux-better-mouse-mode $HOME/.config/tmux/plugins/tmux-better-mouse-mode
+git clone https://github.com/tmux-plugins/tmux-open $HOME/.config/tmux/plugins/tmux-open
 
 #echo '=[ Configuring vim ]='
 #ln -sf $DOTFILES_DIR/.vim $HOME/.vim

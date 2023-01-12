@@ -600,7 +600,7 @@ mouse:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
+key_bindings:
   #- { key: Paste,                                action: Paste          }
   #- { key: Copy,                                 action: Copy           }
   #- { key: L,         mods: Control,             action: ClearLogNotice }
@@ -675,6 +675,33 @@ mouse:
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
+  - { key: F, mods: Alt, chars: "\x1bf" }
+  - { key: B, mods: Alt, chars: "\x1bb" }
+
+  # tmux
+  # - Panes
+  #   - Split verticaly
+  - { key: RBracket, mods: Control, chars: "\x00\x5d" }
+  #   - Split horizontally
+  - { key: Minus, mods: Control, chars: "\x00\x2d" }
+  #   - Close
+  - { key: W, mods: Control, chars: "\x00\x77" }
+  #   - Focus on the right pane
+  - { key: L, mods: Control, chars: "\x00\x6c" }
+  #   - Focus on the left pane
+  - { key: H, mods: Control, chars: "\x00\x68" }
+  #   - Focus on the top pane
+  - { key: K, mods: Control, chars: "\x00\x6b" }
+  #   - Focus on the bottom pane
+  - { key: J, mods: Control, chars: "\x00\x6a" }
+  # - Window
+  #   - New
+  - { key: N, mods: Control, chars: "\x00\x6e" }
+  #   - Next
+  - { key: L, mods: Control|Shift, chars: "\x00\x4c" }
+  #   - Prev
+  - { key: H, mods: Control|Shift, chars: "\x00\x48" }
+
   #- { key: K,      mods: Command, mode: ~Vi, chars: "\x0c"            }
   #- { key: Key0,   mods: Command,            action: ResetFontSize    }
   #- { key: Equals, mods: Command,            action: IncreaseFontSize }

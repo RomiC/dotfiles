@@ -86,6 +86,9 @@ eval "$(fnm env)"
 # rbenv setting up
 eval "$(rbenv init - zsh)"
 
+# vim mode
+# bindkey -v
+
 bindkey '\ec' fzy-cd-widget
 bindkey '^T'  fzy-file-widget
 bindkey '^P'  fzy-proc-widget
@@ -127,6 +130,8 @@ alias lsa='ls -lhA' lsv='ls -lh' lsn='ls -1A'
 alias nu='fnm use' nls='fnm list' nlsr='fnm list-remote'
 # - Node
 alias nv='node -v'
+# - Haste
+alias acronis-haste="HASTE_SERVER=https://hastebin.adc.corp.acronis.com haste"
 
 export NGINX_PROXY_HOST="docker.for.mac.localhost"
 

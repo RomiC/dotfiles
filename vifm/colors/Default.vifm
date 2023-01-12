@@ -1,4 +1,5 @@
-" You can edit this file by hand.
+"set -g @resurrect-capture-pane-contents 'on' # allow tmux-ressurect to capture pane contents
+set -g @continuum-restore 'on' # enable tmux-continuum functionality You can edit this file by hand.
 " The " character at the beginning of a line comments out the line.
 " Blank lines are ignored.
 

@@ -102,7 +102,8 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: MonoLisa
+    #family: MonoLisa
+    family: MonoLisa Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -681,22 +682,22 @@ key_bindings:
   # tmux
   # - Panes
   #   - Split verticaly
-  - { key: RBracket, mods: Control, chars: "\x00\x5d" }
+  - { key: RBracket, mods: Command, chars: "\x00\x5d" }
   #   - Split horizontally
-  - { key: Minus, mods: Control, chars: "\x00\x2d" }
+  - { key: Minus, mods: Command, chars: "\x00\x2d" }
   #   - Close
-  - { key: W, mods: Control, chars: "\x00\x77" }
+  - { key: W, mods: Command, chars: "\x00\x77" }
   #   - Focus on the right pane
   - { key: L, mods: Control, chars: "\x00\x6c" }
   #   - Focus on the left pane
   - { key: H, mods: Control, chars: "\x00\x68" }
   #   - Focus on the top pane
-  - { key: K, mods: Control, chars: "\x00\x6b" }
+  #- { key: K, mods: Control, chars: "\x00\x6b" }
   #   - Focus on the bottom pane
-  - { key: J, mods: Control, chars: "\x00\x6a" }
+  #- { key: J, mods: Control, chars: "\x00\x6a" }
   # - Window
   #   - New
-  - { key: N, mods: Control, chars: "\x00\x6e" }
+  - { key: N, mods: Command, chars: "\x00\x6e" }
   #   - Next
   - { key: L, mods: Control|Shift, chars: "\x00\x4c" }
   #   - Prev

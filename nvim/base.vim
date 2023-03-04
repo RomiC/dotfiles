@@ -24,6 +24,8 @@ endif
 " Colorscheme
 set background=dark
 colorscheme afterglow
+let g:afterglow_inherit_background=1
+highlight Normal guibg=NONE ctermbg=NONE
 highlight User1 cterm=reverse ctermfg=150 ctermbg=59 gui=reverse guifg=#afd787 guibg=#4d5057
 highlight User2 ctermfg=9 ctermbg=59 gui=bold guifg=#ff0000 guibg=#4d5057
 
@@ -89,3 +91,9 @@ autocmd BufEnter term://* startinsert
 
 " Disabling default file manager
 let loaded_netrwPlugin = 1
+
+" Highlight yanked
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=700})
+augroup END

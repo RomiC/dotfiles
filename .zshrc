@@ -88,11 +88,6 @@ eval "$(rbenv init - zsh)"
 
 # vim mode
 # bindkey -v
-
-bindkey '\ec' fzy-cd-widget
-bindkey '^T'  fzy-file-widget
-bindkey '^P'  fzy-proc-widget
-
 zstyle :fzy:tmux    enabled      no
 
 zstyle :fzy:history show-scores  no
@@ -115,9 +110,15 @@ zstyle :fzy:proc    lines        '10'
 zstyle :fzy:proc    prompt       'proc >> '
 zstyle :fzy:proc    command      fzy-proc-default-command
 
+# fzf-tab completion plugin config
+zstyle ':fzf-tab:*' fzf-bindings 'space:toggle' \
+  'ctrl-a:toggle-all' \
+  'ctrl-j:down' \
+  'ctrl-k:up'
+
 # Aliases
 # - Git
-alias glg='g lg' gsth='g sth' gusth='g usth'
+alias glg='g lg' gsth='g sth' gusth='g usth' grhm='g reset --mixed'
 # - NeoVIM instead of vim
 alias vim=nvim v=nvim
 # - Vifm
@@ -131,7 +132,7 @@ alias nu='fnm use' nls='fnm list' nlsr='fnm list-remote'
 # - Node
 alias nv='node -v'
 # - Haste
-alias acronis-haste="HASTE_SERVER=https://hastebin.adc.corp.acronis.com haste"
+alias acronis-haste="HASTE_SERVER=https://hastebin.acronis.work haste"
 
 export NGINX_PROXY_HOST="docker.for.mac.localhost"
 

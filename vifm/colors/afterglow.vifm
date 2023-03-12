@@ -19,16 +19,16 @@ highlight Win cterm=none ctermfg=253 ctermbg=default
 ""highlight OtherWin guifg=#5a647e guibg=-1 gui=bold
 " no conversion defined for AuxWin
 
-highlight TopLine	cterm=inverse ctermfg=238 ctermbg=253
-highlight TopLineSel ctermfg=default ctermbg=default cterm=inverse
+highlight TabLine cterm=none ctermfg=default ctermbg=239
+highlight TabLineSel cterm=none ctermfg=default ctermbg=235
+""highlight TabLine guifg=#4d5057 guibg=#d6d6d6 gui=reverse
+""highlight TabLineSel ctermfg=7 ctermbg=15 cterm=bold
+
+highlight TopLine	cterm=none ctermfg=243 ctermbg=default
+highlight TopLineSel cterm=none ctermfg=253 ctermbg=default
 ""highlight TopLine guifg=#4d5057 guibg=#d6d6d6 gui=reverse
 ""highlight TopLineSel guifg=#4d5057 guibg=#e5b567 gui=reverse
 " no conversion defined for OddLine
-
-highlight TabLine cterm=inverse ctermfg=238 ctermbg=253
-highlight TabLineSel ctermfg=7 ctermbg=15 cterm=bold
-""highlight TabLine guifg=#4d5057 guibg=#d6d6d6 gui=reverse
-""highlight TabLineSel ctermfg=7 ctermbg=15 cterm=bold
 
 highlight JobLine cterm=bold,inverse ctermfg=238 ctermbg=179
 highlight StatusLine cterm=bold,inverse ctermfg=238 ctermbg=179
@@ -50,7 +50,7 @@ highlight Selected cterm=none ctermfg=default ctermbg=60
 highlight CmpMismatch cterm=none ctermfg=179 ctermbg=225
 ""highlight CmpMismatch guifg=#e5b567 guibg=225 gui=none
 
-highlight SuggestBox cterm=none ctermfg=253 ctermbg=14
+highlight SuggestBox cterm=none ctermfg=253 ctermbg=default
 ""highlight SuggestBox guifg=#d6d6d6 guibg=14 gui=none
 highlight WildMenu cterm=none ctermfg=179 ctermbg=232
 ""highlight WildMenu guifg=#d6d6d6 guibg=#5a647e gui=none

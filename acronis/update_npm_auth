@@ -5,4 +5,4 @@ echo "Password: " && read -s artifactory_password # type your domain password
 ARTIFACTORY_RO_TOKEN=$(curl -q -s https://artifactory.corp.acronis.com/artifactory/api/security/token -d "username=$ARTIFACTORY_RO_USER" -d "scope=member-of-groups:readers" -u "$ARTIFACTORY_RO_USER:$artifactory_password" | jq -r '.access_token')
 export ARTIFACTORY_RO_USER
 export ARTIFACTORY_RO_TOKEN
-printf "registry = https://artifactory.corp.acronis.com/api/npm/global-npm-prod-virtual\n_authToken = $ARTIFACTORY_RO_TOKEN\nalways-auth = true\nemail = $ARTIFACTORY_RO_USER@acronis.com\n" > $HOME/.acronis_npmrc
+printf "registry=https://artifactory.corp.acronis.com/artifactory/api/npm/global-npm-prod-virtual/\n_authToken=$ARTIFACTORY_RO_TOKEN\nalways-auth=true\nemail=$ARTIFACTORY_RO_USER@acronis.com\n" > $HOME/.acronis_npmrc

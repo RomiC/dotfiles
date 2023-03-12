@@ -8,3 +8,4 @@ sublime/Package Control.*-ca-bundle
 .vim/sessions
 *.swp
 tmux/plugins
+vifm/vifminfo.json

@@ -9,3 +9,10 @@ filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
 filetype *.zip unzip %f
 filetype *.tar.gz tar -xvf %f
 fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
+
+" Audio
+filetype *.mp3
+       \ {Previw}
+       \ /usr/bin/qlmanage -p %c >> /dev/null 2>&1,
+       \ {Open}
+       \ open %c

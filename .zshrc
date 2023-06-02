@@ -84,7 +84,7 @@ prompt pure
 eval "$(fnm env)"
 
 # rbenv setting up
-eval "$(rbenv init - zsh)"
+#eval "$(rbenv init - zsh)"
 
 # vim mode
 # bindkey -v

@@ -5,7 +5,6 @@
 ### MacOS
 
 ```sh
-curl -s https://raw.githubusercontent.com/RomiC/dotfiles/master/install.sh | bash -s
-```
+/bin/bash -c "$(curl -s https://raw.githubusercontent.com/RomiC/dotfiles/master/install.sh)"
 
 ### Windows (PowerShell)

@@ -170,6 +170,9 @@ curl -sL https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip |
 echo '-> JetBrains Mono'
 curl -sL https://download.jetbrains.com/fonts/JetBrainsMono-1.0.0.zip | tar xvf - -C $FONTS_DIR
 
+echo '-> MonaLisa Nerd'
+curl -sL --output $HOME/Library/Fonts/MonoLisa\ Regular\ Nerd\ Font\ Complete.otf https://edef4.pcloud.com/cBZK3rrsQZIgUJsWZZZevtto7Z2ZZfK4ZkZKy5SZM7ZMZfVZlVZs0Ze7Zn0ZsXZkVZLkZWkZOVZ8XZvVZTFTuZPYWEwyzLFcyEIIzELFaYOjPN4YcV/MonoLisa%20Regular%20Nerd%20Font%20Complete.otf
+
 echo '-> Powerline fonts'
 git clone https://github.com/powerline/fonts.git --depth=1 $TMPDIR/powerline
 cd $TMPDIR/powerline

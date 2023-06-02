@@ -11,12 +11,19 @@ if [[ "$(which brew)" == *"not found"* ]]; then
 	echo "ERROR: brew is missing"
 	exit 1
 fi
+
+sudo chown -R $(whoami) /usr/local/var/homebrew
+
 brew update
+if [[ $? -ne 0 ]]; then
+	echo 'ERROR: brew update failed!'
+	exit 1
+fi
 
 echo '-> git'
 brew install git
 
-if [[ -z "$(cat /etc/shells | grep zcsh)" ]]; then
+if [[ -z "$(cat /etc/shells | grep zsh)" ]]; then
 	echo '-> zsh'
 	brew install zsh
 fi
@@ -44,6 +51,7 @@ brew install --cask alacritty
 
 echo '-> Visual Studio Code'
 brew install --cask visual-studio-code
+
 echo '-> Telegram'
 brew install --cask telegram
 
@@ -77,8 +85,12 @@ brew install --cask zoom
 echo '-> Spotify'
 brew install --cask spotify
 
-echo '-> Yandex-Disk'
-brew install --cask yandex-disk
+#echo '-> Yandex-Disk'
+#brew install --cask yandex-disk
+
+echo '-> pCloud'
+brew tap lyraphase/pcloud
+brew install --cask pcloud-drive
 
 echo '=[ Configuring Git ]='
 echo -n '> Enter name: '; read GIT_NAME

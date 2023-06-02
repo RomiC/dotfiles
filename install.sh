@@ -16,8 +16,13 @@ sudo chown -R $(whoami) /usr/local/var/homebrew
 
 brew update
 if [[ $? -ne 0 ]]; then
-	echo 'ERROR: brew update failed!'
-	exit 1
+	git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow && \
+  		git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask fetch --unshallow
+
+	if [[ $? -ne 0 ]]; then
+		echo 'ERROR: brew update failed!'
+		exit 1
+	fi
 fi
 
 echo '-> git'

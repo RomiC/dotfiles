@@ -46,7 +46,7 @@ echo '-> jq'
 brew install jq
 
 echo '-> fd'
-brew install jq
+brew install fd
 
 #echo '-> iTerm2'
 #brew cask install iterm2
@@ -165,13 +165,19 @@ echo '=[ Installing fonts ]='
 FONTS_DIR="$HOME/Library/Fonts"
 
 echo '-> Fira Code'
-curl -sL https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip | tar xvf - --include="ttf/*" -C $FONTS_DIR --strip-components 1
+if [[ -z "$(system_profiler SPFontsDataType | grep -e 'FiraCode-.*\.ttf')" ]]; then
+	curl -sL https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip | tar xvf - --include="ttf/*" -C $FONTS_DIR --strip-components 1
+fi
 
 echo '-> JetBrains Mono'
-curl -sL https://download.jetbrains.com/fonts/JetBrainsMono-1.0.0.zip | tar xvf - -C $FONTS_DIR
+if [[ -z "$(system_profiler SPFontsDataType | grep -e 'JetBrainsMono-.*\.ttf')" ]]; then
+	curl -sL https://download.jetbrains.com/fonts/JetBrainsMono-1.0.0.zip | tar xvf - -C $FONTS_DIR
+fi
 
 echo '-> MonaLisa Nerd'
-curl -sL --output $HOME/Library/Fonts/MonoLisa\ Regular\ Nerd\ Font\ Complete.otf https://edef4.pcloud.com/cBZK3rrsQZIgUJsWZZZevtto7Z2ZZfK4ZkZKy5SZM7ZMZfVZlVZs0Ze7Zn0ZsXZkVZLkZWkZOVZ8XZvVZTFTuZPYWEwyzLFcyEIIzELFaYOjPN4YcV/MonoLisa%20Regular%20Nerd%20Font%20Complete.otf
+if [[ -z "$(system_profiler SPFontsDataType | grep 'MonoLisa Regular Nerd Font Complete.otf')" ]]; then
+	curl -sL --output $FONTS_DIR/MonoLisa\ Regular\ Nerd\ Font\ Complete.otf https://edef4.pcloud.com/cBZK3rrsQZIgUJsWZZZevtto7Z2ZZfK4ZkZKy5SZM7ZMZfVZlVZs0Ze7Zn0ZsXZkVZLkZWkZOVZ8XZvVZTFTuZPYWEwyzLFcyEIIzELFaYOjPN4YcV/MonoLisa%20Regular%20Nerd%20Font%20Complete.otf
+fi
 
 echo '-> Powerline fonts'
 git clone https://github.com/powerline/fonts.git --depth=1 $TMPDIR/powerline
@@ -215,6 +221,9 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+# Enable 3-fingers dragging
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerSwipeGesture -int 1
 
 # Set language and text formats
 defaults write NSGlobalDomain AppleLocale "en_Gb@currency=EUR"

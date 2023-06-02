@@ -17,6 +17,10 @@ fi
 if [ -d "$GOPATH/bin" ] ; then
     PATH="$GOPATH/bin:$PATH"
 fi
+# Path to VSCode cli
+if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ] ; then
+    PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+fi
 # JDK
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
@@ -61,7 +65,6 @@ HIST_STAMPS="dd.mm.yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  brew
   docker
   docker-compose
   fnm

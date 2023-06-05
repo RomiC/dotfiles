@@ -69,6 +69,9 @@ brew install --cask app-cleaner
 echo '-> fnm'
 brew install fnm
 
+echo '-> fzf'
+brew install fzf
+
 echo '-> Raycast'
 brew install --cask raycast
 
@@ -97,12 +100,16 @@ echo '-> pCloud'
 brew tap lyraphase/pcloud
 brew install --cask pcloud-drive
 
+echo '-> Arc Brower'
+brew install --cask arc
+
 echo '=[ Configuring Git ]='
 echo -n '> Enter name: '; read GIT_NAME
 echo -n '> Enter email: '; read GIT_EMAIL
 ssh-keygen -t RSA -C $GIT_EMAIL -N '' -f $HOME/.ssh/id_rsa
 
 echo '=[ Connecting to GitHub ]='
+echo "> Generate a new classic token (https://github.com/settings/tokens) with the following permits:\n- admin:public_key\n  - write:public_key\n  - read:public_key"
 echo -n '> Enter GitHub personal token: '; read -s GITHUB_TOKEN
 curl -v -H "Authorization: token $GITHUB_TOKEN" --data '{"title":"'$GIT_EMAIL'","key":"'"$(cat $HOME/.ssh/id_rsa.pub)"'"}' https://api.github.com/user/keys
 
@@ -176,7 +183,7 @@ fi
 
 echo '-> MonaLisa Nerd'
 if [[ -z "$(system_profiler SPFontsDataType | grep 'MonoLisa Regular Nerd Font Complete.otf')" ]]; then
-	curl -sL --output $FONTS_DIR/MonoLisa\ Regular\ Nerd\ Font\ Complete.otf https://edef4.pcloud.com/cBZK3rrsQZIgUJsWZZZevtto7Z2ZZfK4ZkZKy5SZM7ZMZfVZlVZs0Ze7Zn0ZsXZkVZLkZWkZOVZ8XZvVZTFTuZPYWEwyzLFcyEIIzELFaYOjPN4YcV/MonoLisa%20Regular%20Nerd%20Font%20Complete.otf
+	/usr/bin/open -a Safari https://e.pcloud.link/publink/show\?code\=XZTFTuZL6DbliJyiyJomrpa8GdNbLbENskV
 fi
 
 echo '-> Powerline fonts'
@@ -186,6 +193,7 @@ cd $TMPDIR/powerline
 rm -rf $TMPDIR/powerline
 
 echo '=[ Configuting MacOS ]='
+sudo -v
 # More options could be found here: https://github.com/mathiasbynens/dotfiles/blob/master/.macos
 
 # Removes delay between key pressing
@@ -223,6 +231,7 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 # Enable 3-fingers dragging
+defaults write NSGlobalDomain com.apple.trackpad.threeFingerSwipeGesture -int 1
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerSwipeGesture -int 1
 
 # Set language and text formats

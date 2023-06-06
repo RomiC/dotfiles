@@ -1,3 +1,0 @@
-#!/bin/sh
-
-ln -sf $HOME/.acronis_npmrc $(pwd)/.npmrc

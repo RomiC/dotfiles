@@ -36,9 +36,6 @@ fi
 echo '-> tmux'
 brew install tmux
 
-#echo '-> vim'
-#brew install vim
-
 echo '-> neovim'
 brew install neovim
 
@@ -47,9 +44,6 @@ brew install jq
 
 echo '-> fd'
 brew install fd
-
-#echo '-> iTerm2'
-#brew cask install iterm2
 
 echo '-> Alacritty'
 brew install --cask alacritty
@@ -93,15 +87,15 @@ brew install --cask zoom
 echo '-> Spotify'
 brew install --cask spotify
 
-#echo '-> Yandex-Disk'
-#brew install --cask yandex-disk
-
-echo '-> pCloud'
-brew tap lyraphase/pcloud
-brew install --cask pcloud-drive
+# echo '-> pCloud'
+# brew tap lyraphase/pcloud
+# brew install --cask pcloud-drive
 
 echo '-> Arc Brower'
 brew install --cask arc
+
+echo '-> Docker'
+brew install --cask docker
 
 echo '=[ Configuring Git ]='
 echo -n '> Enter name: '; read GIT_NAME
@@ -129,6 +123,9 @@ mkdir -p $HOME/.config
 
 echo '=[ Configuring neovim ]='
 ln -sf $DOTFILES_DIR/nvim $HOME/.config/nvim
+curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+nvim -c ":PlugInstall" -c ":qa"
 
 echo '=[ Configuring alacritty ]='
 ln -sf $DOTFILES_DIR/alacritty $HOME/.config/alacritty
@@ -140,19 +137,10 @@ git clone https://github.com/tmux-plugins/tmux-resurrect $HOME/.config/tmux/plug
 git clone https://github.com/nhdaly/tmux-better-mouse-mode $HOME/.config/tmux/plugins/tmux-better-mouse-mode
 git clone https://github.com/tmux-plugins/tmux-open $HOME/.config/tmux/plugins/tmux-open
 
-#echo '=[ Configuring vim ]='
-#ln -sf $DOTFILES_DIR/.vim $HOME/.vim
-#ln -sf $DOTFILES_DIR/.vimrc $HOME/.vimrc
-
 echo '=[ Configuring zsh ]='
 
 echo '-> oh-my-zsh'
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
-#echo '-> spaceship-prompt'
-#ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
-#git clone https://github.com/denysdovhan/spaceship-prompt.git --depth=1 "$ZSH_CUSTOM/themes/spaceship-prompt"
-#ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 
 echo '-> pure shell'
 brew install pure
@@ -164,9 +152,6 @@ git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/p
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 ln -sf $DOTFILES_DIR/.zshrc $HOME/.zshrc
-
-#echo '=[ Configuring iTerm2 ]='
-#ln -sf $DOTFILES_DIR/com.googlecode.iterm2.plist $HOME/Library/Preferences/com.googlecode.iterm2.plist
 
 echo '=[ Installing fonts ]='
 FONTS_DIR="$HOME/Library/Fonts"

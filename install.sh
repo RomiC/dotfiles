@@ -97,6 +97,13 @@ brew install --cask arc
 echo '-> Docker'
 brew install --cask docker
 
+echo '-> im-select'  # necessary for VSCode
+if [[ -e /usr/local/bin/im-select ]]; then
+    rm -f /usr/local/bin/im-select
+fi
+curl -Ls -o /usr/local/bin/im-select https://github.com/daipeihust/im-select/raw/master/macOS/out/intel/im-select
+chmod +x /usr/local/bin/im-select
+
 echo '=[ Configuring Git ]='
 echo -n '> Enter name: '; read GIT_NAME
 echo -n '> Enter email: '; read GIT_EMAIL

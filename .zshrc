@@ -121,7 +121,7 @@ zstyle ':fzf-tab:*' fzf-bindings 'space:toggle' \
 
 # Aliases
 # - Git
-alias glg='g lg' gsth='g sth' gusth='g usth' grhm='g reset --mixed'
+alias glg='g lg' gsth='g sth' gusth='g usth' grhm='g reset --mixed' gbro='git branch --merged origin/master | grep -v master | xargs git branch -d'
 # - NeoVIM instead of vim
 alias vim=nvim v=nvim
 # - Vifm

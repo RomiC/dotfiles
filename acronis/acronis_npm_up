@@ -7,6 +7,6 @@ export ARTIFACTORY_RO_USER
 export ARTIFACTORY_RO_TOKEN
 npm config --location=project set \
   registry=https://artifactory.corp.acronis.com/artifactory/api/npm/global-npm-prod-virtual/ \
-  _authToken=$ARTIFACTORY_RO_TOKEN \
+  //artifactory.corp.acronis.com/artifactory/api/npm/global-npm-prod-virtual/:_authToken=$ARTIFACTORY_RO_TOKEN \
   always-auth=true
   email=$ARTIFACTORY_RO_USER@acronis.com

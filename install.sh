@@ -104,6 +104,9 @@ fi
 curl -Ls -o /usr/local/bin/im-select https://github.com/daipeihust/im-select/raw/master/macOS/out/intel/im-select
 chmod +x /usr/local/bin/im-select
 
+echo '-> 1password-cli'
+brew install --cask 1password/tap/1password-cli
+
 echo '=[ Configuring Git ]='
 echo -n '> Enter name: '; read GIT_NAME
 echo -n '> Enter email: '; read GIT_EMAIL
@@ -159,6 +162,9 @@ git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/p
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 ln -sf $DOTFILES_DIR/.zshrc $HOME/.zshrc
+
+echo '=[ Configuring 1password-cli ]='
+op signin
 
 echo '=[ Installing fonts ]='
 FONTS_DIR="$HOME/Library/Fonts"

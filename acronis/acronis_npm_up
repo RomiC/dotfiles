@@ -3,10 +3,7 @@
 ARTIFACTORY_RO_USER=roman.charugin # type your domain username
 echo "Password: " && read -s artifactory_password # type your domain password
 ARTIFACTORY_RO_TOKEN=$(curl -q -s https://artifactory.corp.acronis.com/artifactory/api/security/token -d "username=$ARTIFACTORY_RO_USER" -d "scope=member-of-groups:readers" -u "$ARTIFACTORY_RO_USER:$artifactory_password" | jq -r '.access_token')
-export ARTIFACTORY_RO_USER
-export ARTIFACTORY_RO_TOKEN
-npm config --location=project set \
-  registry=https://artifactory.corp.acronis.com/artifactory/api/npm/global-npm-prod-virtual/ \
-  //artifactory.corp.acronis.com/artifactory/api/npm/global-npm-prod-virtual/:_authToken=$ARTIFACTORY_RO_TOKEN \
-  always-auth=true
-  email=$ARTIFACTORY_RO_USER@acronis.com
+echo "registry=https://artifactory.corp.acronis.com/artifactory/api/npm/global-npm-prod-virtual/
+//artifactory.corp.acronis.com/artifactory/api/npm/global-npm-prod-virtual/:_authToken=$ARTIFACTORY_RO_TOKEN
+always-auth=true
+mail=$ARTIFACTORY_RO_USER@acronis.com" > $(pwd)/.npmrc

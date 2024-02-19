@@ -152,3 +152,10 @@ export ZSH_TMUX_AUTOSTART=true
 export ZSH_TMUX_AUTOQUIT=true
 export ZSH_TMUX_DEFAULT_SESSION_NAME="charugin"
 export ZSH_TMUX_CONFIG=$HOME/.config/tmux/tmux.conf
+
+# bun completions
+[ -s "/Users/charugin/.bun/_bun" ] && source "/Users/charugin/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

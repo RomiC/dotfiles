@@ -5,6 +5,18 @@ sudo -v
 
 echo '=[ Installing Software ]='
 
+echo '-> xcode-select'
+xcode-select --install
+sleep 1
+osascript <<EOD
+  tell application "System Events"
+    tell process "Install Command Line Developer Tools"
+      keystroke return
+      click button "Agree" of window "License Agreement"
+    end tell
+  end tell
+EOD
+
 echo '-> brew'
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 if [[ "$(which brew)" == *"not found"* ]]; then 
@@ -44,6 +56,9 @@ brew install jq
 
 echo '-> fd'
 brew install fd
+
+echo '-> ffmpeg'
+brew install ffmpeg
 
 echo '-> Alacritty'
 brew install --cask alacritty

@@ -164,8 +164,12 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 ln -sf $DOTFILES_DIR/.zshrc $HOME/.zshrc
 
-echo '=[ Configuring 1password-cli ]='
+echo '=[ Configuring 1Password cli ]='
 op signin
+
+echo '=[ Configuring 1Password ssh-agent ]='
+mkdir -p $HOME/.config/1Password/ssh
+ln -sf $DOTFILES_DIR/1Password/ssh/agent.toml $HOME/.config/1Password/ssh/agent.toml
 
 echo '=[ Installing fonts ]='
 FONTS_DIR="$HOME/Library/Fonts"

@@ -84,7 +84,7 @@ autoload -U promptinit; promptinit
 prompt pure
 
 # fnm-init for managing different node versions
-eval "$(fnm env)"
+eval "$(fnm env --use-on-cd)"
 
 # rbenv setting up
 #eval "$(rbenv init - zsh)"

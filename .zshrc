@@ -121,7 +121,11 @@ zstyle ':fzf-tab:*' fzf-bindings 'space:toggle' \
 
 # Aliases
 # - Git
-alias glg='g lg' gsth='g sth' gusth='g usth' grhm='g reset --mixed' gbro='git branch --merged origin/master | grep -v master | xargs git branch -d'
+alias glg='git lg' \
+  gsth='git stash -u' \
+  gusth='git stash pop stash@{0}' \
+  grhm='git reset --mixed' \
+  gbro='git branch --merged origin/master | grep -v master | xargs git branch -d'
 # - NeoVIM instead of vim
 alias vim=nvim v=nvim
 # - Vifm
@@ -135,7 +139,7 @@ alias nu='fnm use' nls='fnm list' nlsr='fnm list-remote'
 # - Node
 alias nv='node -v'
 # - Haste
-alias acronis-haste="HASTE_SERVER=https://hastebin.acronis.work haste"
+alias acronis-haste="curl -s -b /Users/roman.charugin/.acronis-cookie-jar --request POST https://hastebin.acronis.work/documents --header \"content-type: text/plain\" --data-binary @- | jq -r '\"https://hastebin.acronis.work/raw/\\(.key)\"'"
 
 export NGINX_PROXY_HOST="docker.for.mac.localhost"
 

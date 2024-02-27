@@ -39,7 +39,7 @@ dim_foreground = "0xdbdbdb"
 foreground = "0xd6d6d6"
 
 [font]
-size = 13.0
+size = 14.0
 
 [font.bold]
 style = "Bold"
@@ -113,9 +113,9 @@ hide_when_typing = true
 [window]
 decorations = "full"
 dynamic_title = false
-opacity = 0.9
+opacity = 0.95
 startup_mode = "Windowed"
 
 [window.padding]
-x = 4
-y = 4
+x = 0
+y = 0

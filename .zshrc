@@ -163,3 +163,6 @@ export ZSH_TMUX_CONFIG=$HOME/.config/tmux/tmux.conf
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# 1Password CLI completion
+eval "$(op completion zsh)"; compdef _op op

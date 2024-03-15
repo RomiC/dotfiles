@@ -58,6 +58,16 @@ style = "Regular"
 y = 0
 
 [[keyboard.bindings]]
+chars = "\u001Bj"
+key = "J"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bk"
+key = "K"
+mods = "Alt"
+
+[[keyboard.bindings]]
 chars = "\u001Bf"
 key = "F"
 mods = "Alt"

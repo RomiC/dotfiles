@@ -1,28 +1,7 @@
-# Go path
-export GOPATH=$HOME/work/go
-
 # Additional paths
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
-# NeoVIM mac os installation
-if [ -d "$HOME/nvim-osx64/bin" ] ; then
-    PATH="$HOME/nvim-osx64/bin:$PATH"
-fi
-# Path to the globally installed npm-packages
-if [ -d "$HOME/.npm-global/bin" ] ; then
-    PATH="$HOME/.npm-global/bin:$PATH"
-fi
-# Path to GO root project
-if [ -d "$GOPATH/bin" ] ; then
-    PATH="$GOPATH/bin:$PATH"
-fi
-# Path to VSCode cli
-if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ] ; then
-    PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
-fi
-# JDK
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
 # Default locale
 export LC_ALL=en_US.UTF-8
@@ -33,27 +12,6 @@ export EDITOR=vim
 export ZSH=$HOME/.oh-my-zsh
 
 PURE_PROMPT_SYMBOL="➜"
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -85,9 +43,6 @@ prompt pure
 
 # fnm-init for managing different node versions
 eval "$(fnm env --use-on-cd)"
-
-# rbenv setting up
-#eval "$(rbenv init - zsh)"
 
 # vim mode
 # bindkey -v

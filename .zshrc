@@ -138,8 +138,6 @@ alias lsa='ls -lhA' lsv='ls -lh' lsn='ls -1A'
 alias nu='fnm use' nls='fnm list' nlsr='fnm list-remote'
 # - Node
 alias nv='node -v'
-# - Haste
-alias acronis-haste="curl -s -b /Users/roman.charugin/.acronis-cookie-jar --request POST https://hastebin.acronis.work/documents --header \"content-type: text/plain\" --data-binary @- | jq -r '\"https://hastebin.acronis.work/raw/\\(.key)\"'"
 
 export NGINX_PROXY_HOST="docker.for.mac.localhost"
 

@@ -122,6 +122,9 @@ chmod +x /usr/local/bin/im-select
 echo '-> 1password-cli'
 brew install --cask 1password/tap/1password-cli
 
+echo '-> bitwarden-cli'
+brew install bitwarden-cli
+
 echo '=[ Configuring Git ]='
 echo -n '> Enter name: '; read GIT_NAME
 echo -n '> Enter email: '; read GIT_EMAIL

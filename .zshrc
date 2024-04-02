@@ -117,5 +117,11 @@ export ZSH_TMUX_CONFIG=$HOME/.config/tmux/tmux.conf
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# 1Password CLI completion
+# 1Password CLI
+# - Signin
+eval $(op signin)
+# - Completion
 eval "$(op completion zsh)"; compdef _op op
+
+# Bitwarden
+eval "$(bw completion --shell zsh); compdef _bw bw;"

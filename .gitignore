@@ -9,3 +9,5 @@ sublime/Package Control.*-ca-bundle
 *.swp
 tmux/plugins
 vifm/vifminfo.json
+zed/conversations
+zed/.*

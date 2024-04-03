@@ -189,6 +189,9 @@ echo '=[ Configuring 1Password ssh-agent ]='
 mkdir -p $HOME/.config/1Password/ssh
 ln -sf $DOTFILES_DIR/1Password/ssh/agent.toml $HOME/.config/1Password/ssh/agent.toml
 
+echo '=[Configuring Zed ]='
+ln -sf $DOTFILES_DIR/zed $HOME/.config/zed
+
 echo '=[ Installing fonts ]='
 FONTS_DIR="$HOME/Library/Fonts"
 

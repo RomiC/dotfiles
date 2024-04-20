@@ -44,35 +44,20 @@ prompt pure
 # fnm-init for managing different node versions
 eval "$(fnm env --use-on-cd)"
 
-# vim mode
-# bindkey -v
-zstyle :fzy:tmux    enabled      no
-
-zstyle :fzy:history show-scores  no
-zstyle :fzy:history lines        '10'
-zstyle :fzy:history prompt       'history >> '
-zstyle :fzy:history command      fzy-history-default-command
-
-zstyle :fzy:file    show-scores  no
-zstyle :fzy:file    lines        '10'
-zstyle :fzy:file    prompt       'file >> '
-zstyle :fzy:file    command      fzy-file-default-command
-
-zstyle :fzy:cd      show-scores  no
-zstyle :fzy:cd      lines        ''
-zstyle :fzy:cd      prompt       'cd >> '
-zstyle :fzy:cd      command      fzy-cd-default-command
-
-zstyle :fzy:proc    show-scores  no
-zstyle :fzy:proc    lines        '10'
-zstyle :fzy:proc    prompt       'proc >> '
-zstyle :fzy:proc    command      fzy-proc-default-command
+# fzf theme inspired by vim-afterglow
+export FZF_DEFAULT_OPTIONS="--cycle --color 'fg:#E6E1CF,fg+:#ddeeff,bg:#1A1A1A,bg+:#393939,pointer:#FF8400,header:#717879'"
 
 # fzf-tab completion plugin config
 zstyle ':fzf-tab:*' fzf-bindings 'space:toggle' \
   'ctrl-a:toggle-all' \
   'ctrl-j:down' \
   'ctrl-k:up'
+zstyle ':fzf-tab:*' fzf-command fzf
+zstyle ':fzf-tab:complete:git-switch:*' fzf-command git-switch-fzf
+
+git-switch-fzf () {
+  git branch --color=always --sort=-committerdate | grep -v HEAD | fzf --ansi --no-multi --height=30% --preview-window right:50% --preview 'git lg --color=always -n 30 $(sed "s/.* //" <<< {})' | sed 's/.* //'
+}
 
 # Aliases
 # - Git
@@ -117,10 +102,7 @@ export ZSH_TMUX_CONFIG=$HOME/.config/tmux/tmux.conf
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# 1Password CLI
-# - Signin
-eval $(op signin)
-# - Completion
+# 1Password CLI Completion
 eval "$(op completion zsh)"; compdef _op op
 
 # Bitwarden

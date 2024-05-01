@@ -1,3 +1,3 @@
 #!/bin/bash
-curl -s -b $(op item get --vault Acronis 'Acronis Passport Cookie' --fields notesPlain 2>/dev/null) --request POST https://hastebin.acronis.work/documents --header "content-type: text/plain" --data-binary @- | jq -r '"https://hastebin.acronis.work/raw/\(.key)"' | tee >(pbcopy)
+curl -s -b $(bw-acronis get notes 742d8b59-90ea-401f-9e6e-b14500dbcac8) --request POST https://hastebin.acronis.work/documents --header "content-type: text/plain" --data-binary @- | jq -r '"https://hastebin.acronis.work/raw/\(.key)"' | tee >(pbcopy)
 

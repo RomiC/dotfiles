@@ -37,6 +37,9 @@ if [[ $? -ne 0 ]]; then
 	fi
 fi
 
+echo '-> 1Password'
+brew install --cask 1password
+
 echo '-> git'
 brew install git
 
@@ -54,9 +57,6 @@ brew install neovim
 echo '-> jq'
 brew install jq
 
-echo '-> fd'
-brew install fd
-
 echo '-> ffmpeg'
 brew install ffmpeg
 
@@ -72,9 +72,6 @@ brew install --cask telegram
 echo '-> Skype'
 brew install --cask skype
 
-echo '-> AppCleaner'
-brew install --cask app-cleaner
-
 echo '-> fnm'
 brew install fnm
 
@@ -86,12 +83,6 @@ brew install --cask raycast
 
 echo '-> Bartender'
 brew install --cask bartender
-
-echo '-> Fluor'
-brew install --cask fluor
-
-echo '-> Mattermost'
-brew install --cask mattermost
 
 echo '-> Figma'
 brew install --cask figma
@@ -125,23 +116,15 @@ brew install --cask 1password/tap/1password-cli
 echo '-> bitwarden-cli'
 brew install bitwarden-cli
 
-echo '=[ Configuring Git ]='
-echo -n '> Enter name: '; read GIT_NAME
-echo -n '> Enter email: '; read GIT_EMAIL
-ssh-keygen -t RSA -C $GIT_EMAIL -N '' -f $HOME/.ssh/id_rsa
-
-echo '=[ Connecting to GitHub ]='
-echo "> Generate a new classic token (https://github.com/settings/tokens) with the following permits:\n- admin:public_key\n  - write:public_key\n  - read:public_key"
-echo -n '> Enter GitHub personal token: '; read -s GITHUB_TOKEN
-curl -v -H "Authorization: token $GITHUB_TOKEN" --data '{"title":"'$GIT_EMAIL'","key":"'"$(cat $HOME/.ssh/id_rsa.pub)"'"}' https://api.github.com/user/keys
-
 echo '=[ Installing dotfiles ]='
 DOTFILES_DIR=$HOME/work/dotfiles
-git clone git@github.com:RomiC/dotfiles.git $DOTFILES_DIR
+git clone https://github.com/RomiC/dotfiles.git $DOTFILES_DIR
 
 echo '=[ Configuring git ]='
 cp $DOTFILES_DIR/.gitconfig $HOME/.gitconfig
+echo -n '> Enter name: '; read GIT_NAME
 git config --global user.name $GIT_NAME
+echo -n '> Enter email: '; read GIT_EMAIL
 git config --global user.email $GIT_EMAIL
 git config --global core.excludesfile $DOTFILES_DIR/.gitignore_global
 git config --global core.editor "nvim"
@@ -202,12 +185,15 @@ fi
 
 echo '-> JetBrains Mono'
 if [[ -z "$(system_profiler SPFontsDataType | grep -e 'JetBrainsMono-.*\.ttf')" ]]; then
-	curl -sL https://download.jetbrains.com/fonts/JetBrainsMono-1.0.0.zip | tar xvf - -C $FONTS_DIR
+	curl -sL https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip | tar xvf - --include="fonts/ttf/*" -C $FONTS_DIR --strip-components 2
 fi
 
 echo '-> MonaLisa Nerd'
-if [[ -z "$(system_profiler SPFontsDataType | grep 'MonoLisa Regular Nerd Font Complete.otf')" ]]; then
-	/usr/bin/open -a Safari https://e.pcloud.link/publink/show\?code\=XZTFTuZL6DbliJyiyJomrpa8GdNbLbENskV
+if [[ -z "$(system_profiler SPFontsDataType | grep -e 'MonoLisaNerdFont-.*\.ttf')" ]]; then
+  curl -s https://e.pcloud.link/publink/show\?code\=XZlUYMZ0R2pfnIKu3fJF5sw05oDMYpDMSQy |\
+    grep downloadlink |\
+    sed -e 's/^.*\(https[^"]*\).*/\1/' -e 's/\\\//\//g' |\
+    xargs -I @ curl --output  $FONTS_DIR/MonoLisaNerdFont-Regular.ttf @
 fi
 
 echo '-> Powerline fonts'

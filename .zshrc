@@ -61,6 +61,10 @@ git-switch-fzf () {
 
 # Aliases
 # - Git
+function gswup() {
+  git switch $1
+  git pull
+}
 alias glg='git lg' \
   gsth='git stash -u' \
   gusth='git stash pop stash@{0}' \

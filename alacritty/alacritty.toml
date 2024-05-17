@@ -123,11 +123,11 @@ hide_when_typing = true
 [window]
 decorations = "Full"
 dynamic_title = false
-opacity = 0.85
-blur = true
+opacity = 0.95
+blur = false
 startup_mode = "Maximized"
 option_as_alt="both"
 
 [window.padding]
 x = 4
-y = 2
+y = 0

@@ -1,67 +1,109 @@
-# Additional paths
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [[ -f "/opt/homebrew/bin/brew" ]] then
+  # If you're using macOS, you'll want this enabled
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-# Default locale
-export LC_ALL=en_US.UTF-8
+# ZInit plugin manager installation
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
-# Settign default editor to vim
-export EDITOR=vim
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+if [[ ! -d $ZINIT_HOME ]] then;
+  mkdir -p "$(dirname $ZINIT_HOME)"
+fi
 
+if [[ ! -d $ZINIT_HOME/.git ]] then;
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Installing plugins
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+zinit light unixorn/fzf-zsh-plugin
+# - fzf-zsh-plugin
+#if [[ ! -d $ZINIT[PLUGINS_DIR]/fzf-zsh-plugin ]] then;
+#  git clone --depth 1 git@github.com:unixorn/fzf-zsh-plugin.git $ZINIT[PLUGINS_DIR]/fzf-zsh-plugin
+#fi
+#source $ZINIT[PLUGINS_DIR]/fzf-zsh-plugin/fzf-zsh-plugin.plugin.zsh
+# - Pure-theme
+zinit ice pick"async.zsh" src"pure.zsh" # with zsh-async library that's bundled with it.
+zinit light sindresorhus/pure
+
+# Add in snippets
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::tmux
+
+# Configuration
+# - Completion
+#  - Loading completion
+autoload -Uz compinit && compinit
+#  - Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+
+# - ZSH-Autosuggestion
+bindkey '^e' autosuggest-accept
+
+# - History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+
+# - Pure prompt
 PURE_PROMPT_SYMBOL="➜"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="dd.mm.yyyy"
+# - fzf-zsh plugin
+export FZF_PATH=/opt/homebrew/opt/fzf
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  docker
-  docker-compose
-  fnm
-  fzf
-  fzf-tab
-  git
-  npm
-  sudo
-  tmux
-  vscode
-  zsh-autosuggestions
-)
-source $ZSH/oh-my-zsh.sh
-
-fpath+=("$(brew --prefix)/share/zsh/site-functions")
-autoload -U promptinit; promptinit
-prompt pure
-
-# fnm-init for managing different node versions
-eval "$(fnm env --use-on-cd)"
-
-# fzf theme inspired by vim-afterglow
-export FZF_DEFAULT_OPTIONS="--cycle --color 'fg:#E6E1CF,fg+:#ddeeff,bg:#1A1A1A,bg+:#393939,pointer:#FF8400,header:#717879'"
-
-# fzf-tab completion plugin config
+# - fzf-tab completion
+#  - fzf theme inspired by vim-afterglow
+export FZF_DEFAULT_OPTS="--cycle --color 'fg:#E6E1CF,fg+:#ddeeff,bg:#1A1A1A,bg+:#393939,pointer:#FF8400,header:#717879'"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'  # Follow links, exclude hiddens and node_modules
+#  - fzf-tab completion plugin config
 zstyle ':fzf-tab:*' fzf-bindings 'space:toggle' \
   'ctrl-a:toggle-all' \
   'ctrl-j:down' \
   'ctrl-k:up'
 zstyle ':fzf-tab:*' fzf-command fzf
 zstyle ':fzf-tab:complete:git-switch:*' fzf-command git-switch-fzf
+zstyle ':fzf-tab:complete:gswup:*' fzf-command git-switch-fzf
 
 git-switch-fzf () {
   git branch --color=always --sort=-committerdate | grep -v HEAD | fzf --ansi --no-multi --height=30% --preview-window right:50% --preview 'git lg --color=always -n 30 $(sed "s/.* //" <<< {})' | sed 's/.* //'
 }
 
+# - FNM (node manager)
+eval "$(fnm env --use-on-cd)"
+
+# - Docker
+export NGINX_PROXY_HOST="docker.for.mac.localhost"
+
+# - ZSH Tmux plugin
+export ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_AUTOQUIT=true
+export ZSH_TMUX_DEFAULT_SESSION_NAME="charugin"
+export ZSH_TMUX_CONFIG=$HOME/.config/tmux/tmux.conf
+
 # Aliases
 # - Git
 function gswup() {
+  if [ -z $1 ]; then
+    echo "fatal: missing branch"
+    return 1
+  fi
   git switch $1
   git pull
 }
@@ -82,32 +124,6 @@ alias lsa='ls -lhA' lsv='ls -lh' lsn='ls -1A'
 alias nu='fnm use' nls='fnm list' nlsr='fnm list-remote'
 # - Node
 alias nv='node -v'
+# - Clear console
+alias c='clear'
 
-export NGINX_PROXY_HOST="docker.for.mac.localhost"
-
-# VSCode plugin settings
-export VSCODE=code
-
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'  # Follow links, exclude hiddens and node_modules
-
-# Colorizing zsh suggestions
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#685e4a'
-
-# Run tmux on Startup
-export ZSH_TMUX_AUTOSTART=true
-export ZSH_TMUX_AUTOQUIT=true
-export ZSH_TMUX_DEFAULT_SESSION_NAME="charugin"
-export ZSH_TMUX_CONFIG=$HOME/.config/tmux/tmux.conf
-
-# bun completions
-[ -s "/Users/charugin/.bun/_bun" ] && source "/Users/charugin/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# 1Password CLI Completion
-# eval "$(op completion zsh)"; compdef _op op
-
-# Bitwarden
-# eval "$(bw completion --shell zsh); compdef _bw bw;"

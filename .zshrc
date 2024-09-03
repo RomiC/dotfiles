@@ -16,6 +16,10 @@ fi
 
 source "${ZINIT_HOME}/zinit.zsh"
 
+
+# Set FZF path in a first place to prevent annoying errors in console
+export FZF_PATH=/opt/homebrew/opt/fzf
+
 # Installing plugins
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
@@ -31,11 +35,13 @@ zinit ice pick"async.zsh" src"pure.zsh" # with zsh-async library that's bundled 
 zinit light sindresorhus/pure
 
 # Add in snippets
+zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
-zinit snippet OMZP::sudo
 zinit snippet OMZP::tmux
 
 # Configuration
+# - Navigation
+bindkey '^e' end-of-line
 # - Completion
 #  - Loading completion
 autoload -Uz compinit && compinit
@@ -45,7 +51,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 
 # - ZSH-Autosuggestion
-bindkey '^e' autosuggest-accept
+bindkey '^[[Z' autosuggest-accept
 
 # - History
 HISTSIZE=5000
@@ -64,9 +70,6 @@ bindkey '^n' history-search-forward
 
 # - Pure prompt
 PURE_PROMPT_SYMBOL="➜"
-
-# - fzf-zsh plugin
-export FZF_PATH=/opt/homebrew/opt/fzf
 
 # - fzf-tab completion
 #  - fzf theme inspired by vim-afterglow
@@ -119,7 +122,7 @@ alias vf=vifm
 # - Docker
 alias doc=docker
 # - List files
-alias lsa='ls -lhA' lsv='ls -lh' lsn='ls -1A'
+alias lsa='ls -lhA' ll='ls -lh' lsn='ls -1A'
 # - FNM (Node manager)
 alias nu='fnm use' nls='fnm list' nlsr='fnm list-remote'
 # - Node

@@ -60,8 +60,11 @@ brew install jq
 echo '-> ffmpeg'
 brew install ffmpeg
 
-echo '-> Alacritty'
-brew install --cask alacritty
+# echo '-> Alacritty'
+# brew install --cask alacritty
+
+echo '-> Kitty'
+brew install --cask kitty
 
 echo '-> Visual Studio Code'
 brew install --cask visual-studio-code
@@ -139,8 +142,11 @@ curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --c
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim -c ":PlugInstall" -c ":qa"
 
-echo '=[ Configuring alacritty ]='
-ln -sf $DOTFILES_DIR/alacritty $HOME/.config/alacritty
+# echo '=[ Configuring alacritty ]='
+# ln -sf $DOTFILES_DIR/alacritty $HOME/.config/alacritty
+
+echo '=[ Configuring kitty ]='
+ln -sf $DOTFILES_DIR/kitty $HOME/.config/kitty
 
 echo '=[ Configuring tmux ]='
 ln -sf $DOTFILES_DIR/tmux $HOME/.config/tmux

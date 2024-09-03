@@ -1,0 +1,129 @@
+{
+  "delayBeforeShowingOnHover" : 0.2,
+  "thresholdForScreenIsLarge" : 2500,
+  "onlyShowOnNotch" : false,
+  "useSystemLanguage" : true,
+  "showMenuBarIcon" : false,
+  "showAllWhenScreenIsLarge" : false,
+  "swipeOrScrollMenuBar" : true,
+  "menuBarColoringSpaceSettings" : {
+    "menuBarStyling" : {
+      "RoundBottomOfScreen" : false,
+      "RoundTopOfMenuBar" : false,
+      "HideNotch" : false,
+      "BorderColor" : [
+        0,
+        0,
+        0,
+        1
+      ],
+      "RoundedCorners" : 0,
+      "RoundedMenuBar" : false,
+      "BackgroundColors" : [
+        {
+          "location" : 0,
+          "color" : {
+            "blue" : 0,
+            "alpha" : 0,
+            "red" : 0,
+            "green" : 0
+          }
+        }
+      ],
+      "SeperatePills" : false,
+      "HiddenInactiveMenuBar" : false,
+      "Shadow" : false,
+      "BorderThickness" : 0,
+      "RoundBelowMenuBar" : false
+    },
+    "spaceNumber" : 0,
+    "displayID" : "",
+    "isNotched" : false,
+    "displayNumber" : "",
+    "screenName" : "",
+    "spaceID" : ""
+  },
+  "startAtLogin" : true,
+  "clickOnEmptyBarSpace" : true,
+  "hoverOverEmptyMenuBarSpace" : false,
+  "showBartenderBar" : false,
+  "hideAllForInactiveBars" : true,
+  "triggerSettings" : {
+    "E576BD1D-5282-4939-A880-8CC96662B32D" : {
+      "description" : "New trigger",
+      "type" : [
+        "image"
+      ],
+      "name" : "Cisco",
+      "triggerSpecificDict" : "{\"windowKeyName\":\"com.cisco.anyconnect.gui-Item-0\",\"visibleName\":\"Cisco AnyConnect Secure Mobility Client\",\"comparisonType\":\"doesntMatch\",\"showFor\":30}",
+      "isBuiltIn" : false,
+      "triggeredConditions" : [
+
+      ],
+      "isActive" : true,
+      "icon" : {
+        "isTemplate" : false
+      },
+      "isSpecial" : false,
+      "hasTriggered" : false,
+      "uniqueID" : "E576BD1D-5282-4939-A880-8CC96662B32D"
+    },
+    "TimeMachine1" : {
+      "triggeredConditions" : [
+
+      ],
+      "icon" : {
+        "isTemplate" : false
+      },
+      "isBuiltIn" : false,
+      "isActive" : false,
+      "description" : "",
+      "type" : [
+        "Script"
+      ],
+      "isSpecial" : false,
+      "uniqueID" : "TimeMachine1",
+      "hasTriggered" : false,
+      "name" : "Show Time Machine when time machine is backing up.",
+      "triggerSpecificDict" : "{\"Script\":\"tmutil status | awk -F'=' '\\\/Running\\\/ {print $2*1}'\"}"
+    },
+    "CFB939BA-F93C-413E-BEA1-88A97BA01EAA" : {
+      "triggerSpecificDict" : "{\"Battery-percentage\":30.327845982142858,\"Battery-When\":\"lessThan\"}",
+      "uniqueID" : "CFB939BA-F93C-413E-BEA1-88A97BA01EAA",
+      "icon" : {
+        "isTemplate" : false
+      },
+      "description" : "",
+      "name" : "Show Battery when battery condition met",
+      "isSpecial" : false,
+      "isBuiltIn" : false,
+      "isActive" : true,
+      "hasTriggered" : false,
+      "triggeredConditions" : [
+
+      ],
+      "type" : [
+        "Battery"
+      ]
+    },
+    "84019E11-A80E-4EC1-913C-95C33B3B8B1C" : {
+      "isActive" : true,
+      "hasTriggered" : false,
+      "triggerSpecificDict" : "{\"ShowOn\":\"AllDisconnected\"}",
+      "icon" : {
+        "isTemplate" : true
+      },
+      "triggeredConditions" : [
+
+      ],
+      "isSpecial" : false,
+      "isBuiltIn" : false,
+      "description" : "",
+      "type" : [
+        "WiFi"
+      ],
+      "name" : "Show Wi-Fi when not connected",
+      "uniqueID" : "84019E11-A80E-4EC1-913C-95C33B3B8B1C"
+    }
+  }
+}

@@ -1,15 +1,10 @@
 #!/bin/bash
 
-BITWARDEN_PATH=$(which bw)
-BITWARDEN_EMAIL="roman.charugin@acronis.com"
-BITWARDEN_PASSWORD_KEYCHAIN_NAME="Bitwarden Password"
-BITWARDEN_SESSION_KEYCHAIN_NAME="Bitwarden Session"
+BW_PATH=$(which bw)
+BW_EMAIL="roman.charugin@acronis.com"
+BW_PASSWORD_KEYCHAIN_NAME="Bitwarden Password"
 
-BITWARDEN_SESSION=$(security find-generic-password -a "$BITWARDEN_EMAIL" -s "$BITWARDEN_SESSION_KEYCHAIN_NAME" -w)
+export BW_PASSWORD=$(security find-generic-password -a "$BW_EMAIL" -s "$BW_PASSWORD_KEYCHAIN_NAME" -w)
+export BW_SESSION=$($BW_PATH unlock --raw --passwordenv BW_PASSWORD 2>/dev/null)
 
-($BITWARDEN_PATH --session=$BITWARDEN_SESSION unlock --check > /dev/null 2>&1) || (
-  BITWARDEN_SESSION=$($BITWARDEN_PATH unlock --raw $(security find-generic-password -a "$BITWARDEN_EMAIL" -s "$BITWARDEN_PASSWORD_KEYCHAIN_NAME" -w)) &&
-  security add-generic-password -a "$BITWARDEN_EMAIL" -s "$BITWARDEN_SESSION_KEYCHAIN_NAME" -U -w "$BITWARDEN_SESSION"
-)
-
-$BITWARDEN_PATH --session=$BITWARDEN_SESSION $@
+$BW_PATH $@ 2>/dev/null

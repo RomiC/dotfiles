@@ -1,10 +1,85 @@
-#!/bin/bash
+#!/bin/zsh
 
 BW_PATH=$(which bw)
 BW_EMAIL="roman.charugin@acronis.com"
 BW_PASSWORD_KEYCHAIN_NAME="Bitwarden Password"
+BW_SESSION_KEYCHAIN_NAME="Bitwarden Session"
 
-export BW_PASSWORD=$(security find-generic-password -a "$BW_EMAIL" -s "$BW_PASSWORD_KEYCHAIN_NAME" -w)
-export BW_SESSION=$($BW_PATH unlock --raw --passwordenv BW_PASSWORD 2>/dev/null)
+error() {
+  echo "Error: $1" >&2
+  exit 1
+}
 
-$BW_PATH $@ 2>/dev/null
+unlock() {
+  local BW_PASSWORD=$(security find-generic-password -a "$BW_EMAIL" -s "$BW_PASSWORD_KEYCHAIN_NAME" -w)
+
+  if [[ -z $BW_PASSWORD ]]; then
+      error "Bitwarden password is required!"
+  fi
+
+  BW_SESSION=$($BW_PATH unlock --raw 2>/dev/null)
+
+  if [[ -n $BW_SESSION ]]; then
+    security add-generic-password -a "$BW_EMAIL" -s "$BW_SESSION_KEYCHAIN_NAME" -w "$BW_SESSION" 2>/dev/null
+  fi
+}
+
+obtain_password() {
+  local PASSWORD=$(security find-generic-password -a "$BW_EMAIL" -s "$BW_PASSWORD_KEYCHAIN_NAME" -w)
+
+  if [[ -z $PASSWORD ]]; then
+    echo -n "Enter your Bitwarden Password: "
+    read -s PASSWORD
+
+    if [[ -n $PASSWORD ]]; then
+      security add-generic-password -a "$BW_EMAIL" -s "$BW_PASSWORD_KEYCHAIN_NAME" -w "$PASSWORD" 2>/dev/null
+    else
+      error "Bitwarden password is required!"
+    fi
+  fi
+
+  echo "$PASSWORD"
+}
+
+if [[ -z $BW_PATH ]]; then
+  echo "Bitwarden CLI is not installed. Please install it first."
+  exit 1
+fi
+
+if [[ ! $BW_PATH login --check >/dev/null 2>&1 ]]; then
+  BW_PASSWORD=$(obtain_password)
+
+  $BW_PATH login $BW_EMAIL $BW_PASSWORD 
+fi
+
+$BW_PATH login --check
+
+exit 0
+
+BW_SESSION=$(security find-generic-password -a "$BW_EMAIL" -s "$BW_SESSION_KEYCHAIN_NAME" -w 2>/dev/null)
+
+if [[ -z $BW_SESSION || ! $BW_PATH unlock --check --session $BW_SESSION >/dev/null 2>&1 ]]; then
+  BW_PASSWORD=$(security find-generic-password -a "$BW_EMAIL" -s "$BW_PASSWORD_KEYCHAIN_NAME" -w)
+
+  if [[ -z $BW_PASSWORD ]]; then
+    echo -n "Enter your Bitwarden password: "
+    read -s BW_PASSWORD
+
+    if [[ -n $BW_PASSWORD ]]; then
+      security add-generic-password -a "$BW_EMAIL" -s "$BW_PASSWORD_KEYCHAIN_NAME" -w "$BW_PASSWORD" 2>/dev/null
+    else
+      error "Bitwarden password is required!"
+    fi
+  fi
+
+  BW_SESSION=$($BW_PATH unlock --raw 2>/dev/null)
+
+  if [[ -n $BW_SESSION ]]; then
+    security add-generic-password -a "$BW_EMAIL" -s "$BW_SESSION_KEYCHAIN_NAME" -w "$BW_SESSION" 2>/dev/null
+  fi
+fi
+
+# export BW_PASSWORD=$(security find-generic-password -a "$BW_EMAIL" -s "$BW_PASSWORD_KEYCHAIN_NAME" -w)
+# export BW_SESSION=$($BW_PATH unlock --raw --passwordenv BW_PASSWORD 2>/dev/null)
+
+# $BW_PATH $@ 2>/dev/null

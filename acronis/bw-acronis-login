@@ -1,0 +1,60 @@
+#!/bin/zsh
+
+NODE_PATH=/usr/local/bin/node
+BW_PATH="/opt/homebrew/bin/bw"
+BW_EMAIL="roman.charugin@acronis.com"
+BW_PASSWORD_KEYCHAIN_NAME="Bitwarden Password"
+BW_SESSION_KEYCHAIN_NAME="Bitwarden Session"
+
+log() {
+  echo "[$(date +'%Y-%m-%d %H:%M:%S')] $1"
+}
+
+error() {
+  echo "Error: $1" >&2
+  exit 1
+}
+
+unlock() {
+  log "Unlocking Bitwarden"
+  local BW_PASSWORD=$(security find-generic-password -a "$BW_EMAIL" -s "$BW_PASSWORD_KEYCHAIN_NAME" -w)
+
+  if [[ -z $BW_PASSWORD ]]; then
+    error "Bitwarden password is required!"
+  fi
+
+  BW_SESSION="$($NODE_PATH $BW_PATH unlock --raw $BW_PASSWORD 2>/dev/null)"
+  log "New Bitwarden session: $BW_SESSION"
+
+  if [[ -n $BW_SESSION ]]; then
+    security add-generic-password -a "$BW_EMAIL" -s "$BW_SESSION_KEYCHAIN_NAME" -U -w "$BW_SESSION"
+  fi
+}
+
+if ! $NODE_PATH $BW_PATH login --check >/dev/null 2>&1; then
+  log "Check failed"
+  BW_PASSWORD=$(security find-generic-password -a "$BW_EMAIL" -s "$BW_PASSWORD_KEYCHAIN_NAME" -w)
+
+  if [[ -z $BW_PASSWORD ]]; then
+    error "Bitwarden password is required!"
+  fi
+
+  $NODE_PATH $BW_PATH login $BW_EMAIL $BW_PASSWORD
+fi
+
+if [[ $(date -j -f "%Y-%m-%d" "$($NODE_PATH $BW_PATH sync --last 2>/dev/null | cut -d'T' -f1)" +%s) -lt $(date -v-1d +%s) ]]; then
+  log "Syncing Bitwarden"
+  $NODE_PATH $BW_PATH sync
+fi
+
+BW_SESSION=$(security find-generic-password -a "$BW_EMAIL" -s "$BW_SESSION_KEYCHAIN_NAME" -w 2>/dev/null)
+
+if [[ -z $BW_SESSION ]]; then
+  log "Bitwarden session is empty"
+  unlock
+fi
+
+if ! BW_SESSION=$BW_SESSION $NODE_PATH $BW_PATH unlock --check >/dev/null 2>&1; then
+  log "Bitwarden session is invalid"
+  unlock
+fi

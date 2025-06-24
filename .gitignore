@@ -11,3 +11,5 @@ tmux/plugins
 vifm/vifminfo.json
 zed/conversations
 zed/.*
+zed/embeddings/*
+zed/prompts/*

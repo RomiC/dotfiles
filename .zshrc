@@ -44,7 +44,7 @@ zinit snippet OMZP::tmux
 bindkey '^e' end-of-line
 # - Completion
 #  - Loading completion
-autoload -Uz compinit && compinit
+autoload -Uz compinit
 #  - Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -65,6 +65,8 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
+setopt autocd # Go to directory w/o explicit cd command
+
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
@@ -84,6 +86,9 @@ zstyle ':fzf-tab:*' fzf-command fzf
 zstyle ':fzf-tab:complete:git-switch:*' fzf-command git-switch-fzf
 zstyle ':fzf-tab:complete:gswup:*' fzf-command git-switch-fzf
 
+# Initialize completions
+compinit
+
 git-switch-fzf () {
   git branch --color=always --sort=-committerdate | grep -v HEAD | fzf --ansi --no-multi --height=30% --preview-window right:50% --preview 'git lg --color=always -n 30 $(sed "s/.* //" <<< {})' | sed 's/.* //'
 }
@@ -99,6 +104,12 @@ export ZSH_TMUX_AUTOSTART=true
 export ZSH_TMUX_AUTOQUIT=true
 export ZSH_TMUX_DEFAULT_SESSION_NAME="charugin"
 export ZSH_TMUX_CONFIG=$HOME/.config/tmux/tmux.conf
+
+# - NodeJS path
+export NODE_PATH=$(npm root -g)
+
+# - Bitwarden CLI Session
+export BW_SESSION="$(security find-generic-password -a 'roman.charugin@acronis.com' -s 'Bitwarden Session' -w 2>/dev/null)"
 
 # Aliases
 # - Git

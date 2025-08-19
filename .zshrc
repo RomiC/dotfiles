@@ -49,6 +49,7 @@ autoload -Uz compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
+zstyle ':completion:*' fzf-search-display true
 
 # - ZSH-Autosuggestion
 bindkey '^[[Z' autosuggest-accept
@@ -84,6 +85,8 @@ zstyle ':fzf-tab:*' fzf-bindings 'space:toggle' \
   'ctrl-k:up'
 zstyle ':fzf-tab:*' fzf-command fzf
 zstyle ':fzf-tab:complete:git-switch:*' fzf-command git-switch-fzf
+zstyle ':fzf-tab:complete:git:switch:*' fzf-command git-switch-fzf
+zstyle ':fzf-tab:complete:gsw:*' fzf-command git-switch-fzf
 zstyle ':fzf-tab:complete:gswup:*' fzf-command git-switch-fzf
 
 # Initialize completions
@@ -145,3 +148,10 @@ alias c='clear'
 if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then
   tmux attach || exec tmux new-session && exit;
 fi
+
+# bun completions
+[ -s "/Users/roman.charugin/.bun/_bun" ] && source "/Users/roman.charugin/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -196,7 +196,7 @@ fi
 
 echo '-> MonoLisa'
 if [[ -z "$(system_profiler SPFontsDataType | grep -e 'MonoLisa-.*\.ttf')" ]]; then
-  curl -s https://e.pcloud.link/publink/show\?code\=XZe8WMZjC8D8gfFyL71XnLwzSrOC5K6T4W7 |\
+  curl -s https://e.pcloud.link/publink/show\?code\=XZv1cEZHxnYUJXHRT07USkhayKeFVS3P77V |\
     grep downloadlink |\
     sed -e 's/^.*\(https[^"]*\).*/\1/' -e 's/\\\//\//g' |\
     xargs -I @ curl -sL @ |\
@@ -205,7 +205,7 @@ fi
 
 echo '-> MonoLisa Nerd'
 if [[ -z "$(system_profiler SPFontsDataType | grep -e 'MonoLisaNerdFont-.*\.ttf')" ]]; then
-  curl -s https://e.pcloud.link/publink/show\?code\=XZ4uWMZ1rtDsYJ8RPSGr5DIcoexVBppi8ny |\
+  curl -s https://e.pcloud.link/publink/show\?code\=XZpecEZFMRW1JNKmcYghq2Gvxi02Roi31p7 |\
     grep downloadlink |\
     sed -e 's/^.*\(https[^"]*\).*/\1/' -e 's/\\\//\//g' |\
     xargs -I @ curl -sL @ |\

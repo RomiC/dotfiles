@@ -60,20 +60,14 @@ brew install jq
 echo '-> ffmpeg'
 brew install ffmpeg
 
-# echo '-> Alacritty'
-# brew install --cask alacritty
-
-echo '-> Kitty'
-brew install --cask kitty
+echo '-> Ghostty'
+brew install --cask ghostty
 
 echo '-> Visual Studio Code'
 brew install --cask visual-studio-code
 
 echo '-> Telegram'
 brew install --cask telegram
-
-echo '-> Skype'
-brew install --cask skype
 
 echo '-> fnm'
 brew install fnm
@@ -95,10 +89,6 @@ brew install --cask zoom
 
 echo '-> Spotify'
 brew install --cask spotify
-
-# echo '-> pCloud'
-# brew tap lyraphase/pcloud
-# brew install --cask pcloud-drive
 
 echo '-> Arc Brower'
 brew install --cask arc
@@ -136,17 +126,14 @@ ln -sf $DOTFILES_DIR/.gitattributes $HOME/.gitattributes
 
 mkdir -p $HOME/.config
 
+echo '=[ Configuring Ghostty ]='
+ln -sf $DOTFILES_DIR/ghostty $HOME/.config/ghostty
+
 echo '=[ Configuring neovim ]='
 ln -sf $DOTFILES_DIR/nvim $HOME/.config/nvim
 curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim -c ":PlugInstall" -c ":qa"
-
-# echo '=[ Configuring alacritty ]='
-# ln -sf $DOTFILES_DIR/alacritty $HOME/.config/alacritty
-
-echo '=[ Configuring kitty ]='
-ln -sf $DOTFILES_DIR/kitty $HOME/.config/kitty
 
 echo '=[ Configuring tmux ]='
 ln -sf $DOTFILES_DIR/tmux $HOME/.config/tmux
@@ -172,14 +159,11 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 ln -sf $DOTFILES_DIR/.zshrc $HOME/.zshrc
 
 echo '=[ Configuring 1Password cli ]='
-op signin
+eval $(op signin)
 
 echo '=[ Configuring 1Password ssh-agent ]='
 mkdir -p $HOME/.config/1Password/ssh
 ln -sf $DOTFILES_DIR/1Password/ssh/agent.toml $HOME/.config/1Password/ssh/agent.toml
-
-echo '=[ Configuring Zed ]='
-ln -sf $DOTFILES_DIR/zed $HOME/.config/zed
 
 echo '=[ Installing fonts ]='
 FONTS_DIR="$HOME/Library/Fonts"
@@ -284,11 +268,3 @@ mkdir $HOME/Screenshots
 defaults write com.apple.screencapture location $HOME/Screenshots
 
 killall SystemUIServer
-
-echo '=[ Running ZSH ]='
-if [ "$(basename "$SHELL")" = "zsh" ];
-then
-	source $HOME/.zshrc
-else
-	exec zsh -l
-fi

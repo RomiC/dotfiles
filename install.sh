@@ -200,7 +200,7 @@ if [[ -z "$(system_profiler SPFontsDataType | grep -e 'MonoLisa-.*\.ttf')" ]]; t
     grep downloadlink |\
     sed -e 's/^.*\(https[^"]*\).*/\1/' -e 's/\\\//\//g' |\
     xargs -I @ curl -sL @ |\
-    tar xvf - --include="ttf/*" -C $FONTS_DIR --strip-components 1
+    tar xvf - -C $FONTS_DIR
 fi
 
 echo '-> MonoLisa Nerd'

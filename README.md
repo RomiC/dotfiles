@@ -6,7 +6,7 @@
 
 #### Install 1Password
 
-Open 1Password (download page](https://1password.com/downloads/mac) and download the client.
+Open 1Password [download page](https://1password.com/downloads/mac) and download the client.
 
 #### Run Installation script
 

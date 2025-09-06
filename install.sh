@@ -37,9 +37,6 @@ if [[ $? -ne 0 ]]; then
 	fi
 fi
 
-echo '-> 1Password'
-brew install --cask 1password
-
 echo '-> git'
 brew install git
 

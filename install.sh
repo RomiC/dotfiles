@@ -24,8 +24,6 @@ if [[ "$(which brew)" == *"not found"* ]]; then
 	exit 1
 fi
 
-sudo chown -R $(whoami) /usr/local/var/homebrew
-
 brew update
 if [[ $? -ne 0 ]]; then
 	git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow && \

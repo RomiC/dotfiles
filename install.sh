@@ -160,6 +160,9 @@ echo '=[ Configuring 1Password ssh-agent ]='
 mkdir -p $HOME/.config/1Password/ssh
 ln -sf $DOTFILES_DIR/1Password/ssh/agent.toml $HOME/.config/1Password/ssh/agent.toml
 
+echo '=[ Cleaning up brew ]='
+brew cleanup
+
 echo '=[ Installing fonts ]='
 FONTS_DIR="$HOME/Library/Fonts"
 

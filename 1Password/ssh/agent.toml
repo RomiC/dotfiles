@@ -31,3 +31,7 @@
 [[ssh-keys]]
 item = "Personal SSH Key"
 vault = "Personal"
+
+[[ssh-keys]]
+item = "Bitbucket"
+vault = "Acronis"

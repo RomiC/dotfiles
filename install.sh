@@ -3,93 +3,41 @@
 # Ask for the administrator password upfront
 sudo -v
 
-echo '=[ Installing Software ]='
+echo '=[ Xcode Command Line Tools ]='
+# Ensure with have Xcode command line tools installed
+if [[ -z $(xcode-select --print-path) ]]; then
+  echo "-> Installing  (expect a GUI popup)"
+  xcode-select --install &>/dev/null
+  echo "-> Press any key after installation has completed"
+  read -rsn1
+  if [[ -z $(xcode-select --print-path) ]]; then
+    echo "ERROR: Unable to find Xcode Command Line Tools"
+    exit 1
+  fi
+else
+	echo '-> Xcode Command Line Tools are already installed'
+fi
 
-echo '-> xcode-select'
-xcode-select --install
-sleep 1
-osascript <<EOD
-  tell application "System Events"
-    tell process "Install Command Line Developer Tools"
-      keystroke return
-      click button "Agree" of window "License Agreement"
-    end tell
-  end tell
-EOD
+echo '=[ Installing dotfiles ]='
+DOTFILES_DIR=$HOME/work/dotfiles
+git clone https://github.com/RomiC/dotfiles.git $DOTFILES_DIR
+
+echo '=[ Installing Software ]='
 
 echo '-> brew'
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-if [[ "$(which brew)" == *"not found"* ]]; then 
+BREW_BIN=$(which brew)
+if [[ "$BREW_BIN" == *"not found"* ]]; then
 	echo "ERROR: brew is missing"
 	exit 1
 fi
 
-brew update
-if [[ $? -ne 0 ]]; then
-	git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow && \
-  		git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask fetch --unshallow
+$BREW_BIN update
 
-	if [[ $? -ne 0 ]]; then
-		echo 'ERROR: brew update failed!'
-		exit 1
-	fi
-fi
-
-echo '-> git'
-brew install git
-
-if [[ -z "$(cat /etc/shells | grep zsh)" ]]; then
-	echo '-> zsh'
-	brew install zsh
-fi
-
-echo '-> tmux'
-brew install tmux
-
-echo '-> neovim'
-brew install neovim
-
-echo '-> jq'
-brew install jq
-
-echo '-> ffmpeg'
-brew install ffmpeg
-
-echo '-> Ghostty'
-brew install --cask ghostty
-
-echo '-> Visual Studio Code'
-brew install --cask visual-studio-code
-
-echo '-> Telegram'
-brew install --cask telegram
-
-echo '-> fnm'
-brew install fnm
-
-echo '-> fzf'
-brew install fzf
-
-echo '-> Raycast'
-brew install --cask raycast
-
-echo '-> Bartender'
-brew install --cask bartender
-
-echo '-> Figma'
-brew install --cask figma
-
-echo '-> Zoom'
-brew install --cask zoom
-
-echo '-> Spotify'
-brew install --cask spotify
-
-echo '-> Arc Brower'
-brew install --cask arc
-
-echo '-> Docker'
-brew install --cask docker
+echo '-> brew bundle'
+ln -sf $DOTFILES_DIR/.Brewfile $HOME/.Brewfile
+$BREW_BIN bundle
+$BREW_BIN cleanup
 
 echo '-> im-select'  # necessary for VSCode
 if [[ -e /usr/local/bin/im-select ]]; then
@@ -98,17 +46,12 @@ fi
 curl -Ls -o /usr/local/bin/im-select https://github.com/daipeihust/im-select/raw/master/macOS/out/intel/im-select
 chmod +x /usr/local/bin/im-select
 
-echo '-> 1password-cli'
-brew install --cask 1password/tap/1password-cli
 
-echo '-> bitwarden-cli'
-brew install bitwarden-cli
+echo '=[ Configuring ]='
 
-echo '=[ Installing dotfiles ]='
-DOTFILES_DIR=$HOME/work/dotfiles
-git clone https://github.com/RomiC/dotfiles.git $DOTFILES_DIR
+mkdir -p $HOME/.config
 
-echo '=[ Configuring git ]='
+echo '-> git'
 cp $DOTFILES_DIR/.gitconfig $HOME/.gitconfig
 echo -n '> Enter name: '; read GIT_NAME
 git config --global user.name $GIT_NAME
@@ -119,31 +62,26 @@ git config --global core.editor "nvim"
 git config --global init.defaultBranch main
 ln -sf $DOTFILES_DIR/.gitattributes $HOME/.gitattributes
 
-mkdir -p $HOME/.config
-
-echo '=[ Configuring Ghostty ]='
+echo '-> Ghostty'
 ln -sf $DOTFILES_DIR/ghostty $HOME/.config/ghostty
 
-echo '=[ Configuring neovim ]='
+echo '-> neovim'
 ln -sf $DOTFILES_DIR/nvim $HOME/.config/nvim
 curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim -c ":PlugInstall" -c ":qa"
 
-echo '=[ Configuring tmux ]='
+echo '-> tmux'
 ln -sf $DOTFILES_DIR/tmux $HOME/.config/tmux
 git clone https://github.com/tmux-plugins/tmux-continuum $HOME/.config/tmux/plugins/tmux-continuum
 git clone https://github.com/tmux-plugins/tmux-resurrect $HOME/.config/tmux/plugins/tmux-resurrect
 git clone https://github.com/nhdaly/tmux-better-mouse-mode $HOME/.config/tmux/plugins/tmux-better-mouse-mode
 git clone https://github.com/tmux-plugins/tmux-open $HOME/.config/tmux/plugins/tmux-open
 
-echo '=[ Configuring zsh ]='
+echo '-> zsh'
 
 echo '-> oh-my-zsh'
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
-echo '-> pure shell'
-brew install pure
 
 # fzf-tab plugin
 git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
@@ -153,15 +91,10 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 ln -sf $DOTFILES_DIR/.zshrc $HOME/.zshrc
 
-echo '=[ Configuring 1Password cli ]='
+echo '-> 1Password CLI'
 eval $(op signin)
-
-echo '=[ Configuring 1Password ssh-agent ]='
 mkdir -p $HOME/.config/1Password/ssh
 ln -sf $DOTFILES_DIR/1Password/ssh/agent.toml $HOME/.config/1Password/ssh/agent.toml
-
-echo '=[ Cleaning up brew ]='
-brew cleanup
 
 echo '=[ Installing fonts ]='
 FONTS_DIR="$HOME/Library/Fonts"
@@ -239,8 +172,9 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 # Enable 3-fingers dragging
-defaults write NSGlobalDomain com.apple.trackpad.threeFingerSwipeGesture -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerSwipeGesture -int 1
+defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool true
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerHorizSwipeGesture -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 1
 
 # Set language and text formats
 defaults write NSGlobalDomain AppleLocale "en_Gb@currency=EUR"
@@ -264,5 +198,68 @@ defaults write com.apple.screencapture disable-shadow -bool true
 # Change screenshot target folder
 mkdir $HOME/Screenshots
 defaults write com.apple.screencapture location $HOME/Screenshots
+
+# Show the ~/Library folder
+chflags nohidden ~/Library
+
+# Automatically hide the Dock
+if [ "$(defaults read com.apple.dock autohide 2>/dev/null)" != 1 ]; then
+  defaults write com.apple.dock autohide -bool true
+  killall Dock
+fi
+
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+
+# Expand print panel by default
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+
+# Don’t automatically rearrange Spaces based on most recent use
+defaults write com.apple.dock mru-spaces -bool false
+
+# Set home as the default location for new Finder windows
+defaults write com.apple.finder NewWindowTarget -string "PfHm"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
+
+# Finder: show hidden files by default
+defaults write com.apple.Finder AppleShowAllFiles -bool true
+
+# Finder: set window title to full POSIX file path of current folder
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+# Finder: show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Finder: show path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Finder: show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# When performing a search, search the current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Avoid creating .DS_Store files on network or USB volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# Automatically open a new Finder window when a volume is mounted
+defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
+defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
+defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
+
+# Use list view in all Finder windows by default
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+# Don't show drives on Desktop
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
+
+# Use plain text mode for new TextEdit documents
+defaults write com.apple.TextEdit RichText -int 0
 
 killall SystemUIServer

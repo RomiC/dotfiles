@@ -1,0 +1,17 @@
+serverAddr = "217.154.23.8"
+serverPort = 7001
+auth.method = "token"
+auth.token = "KPRz!hRo3x"
+
+[[proxies]]
+name = "dev-charugin"
+type = "https"
+customDomains = ["dev.charugin.me"]
+
+[proxies.plugin]
+type = "https2http"
+localAddr = "127.0.0.1:8118"
+crtPath = "/Users/roman.charugin/.config/certs/dev.charugin.me/fullchain.pem"
+keyPath = "/Users/roman.charugin/.config/certs/dev.charugin.me/privkey.pem"
+hostHeaderRewrite = "127.0.0.1"
+requestHeaders.set.x-from-where = "frp"

@@ -1,6 +1,7 @@
 brew "bitwarden-cli"
 brew "ffmpeg"
 brew "fnm"
+brew "frpc"
 brew "fzf"
 brew "git"
 brew "jq"

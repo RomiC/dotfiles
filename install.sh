@@ -96,6 +96,9 @@ eval $(op signin)
 mkdir -p $HOME/.config/1Password/ssh
 ln -sf $DOTFILES_DIR/1Password/ssh/agent.toml $HOME/.config/1Password/ssh/agent.toml
 
+echo '-> frpc'
+ln -sf $DOTFILES_DIR/frpc $HOME/.config/frpc
+
 echo '=[ Installing fonts ]='
 FONTS_DIR="$HOME/Library/Fonts"
 

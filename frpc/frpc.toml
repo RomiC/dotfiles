@@ -1,7 +1,7 @@
 serverAddr = "217.154.23.8"
 serverPort = 7001
 auth.method = "token"
-auth.token = "KPRz!hRo3x"
+auth.token = "{{ .Envs.FRPC_TOKEN }}"
 
 [[proxies]]
 name = "dev-charugin"

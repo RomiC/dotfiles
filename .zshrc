@@ -128,7 +128,13 @@ alias glg='git lg' \
   gsth='git stash -u' \
   gusth='git stash pop stash@{0}' \
   grhm='git reset --mixed' \
-  gbro='git branch --merged origin/master | grep -v master | xargs git branch -d'
+  gbro='git branch --merged origin/master | grep -v master | xargs git branch -d' \
+  glgb='glg master..$(git rev-parse --abbrev-ref HEAD)' \
+  glgh='glgb' \
+  gdw='gd --word-diff' \
+  gdsw='gds --word-diff' \
+  gai='ga --interactive'
+
 # - NeoVIM instead of vim
 alias vim=nvim v=nvim
 # - Vifm
@@ -143,6 +149,9 @@ alias nu='fnm use' nls='fnm list' nlsr='fnm list-remote'
 alias nv='node -v'
 # - Clear console
 alias c='clear'
+# - Current gateway
+alias gw='traceroute -m 3 google.com 2>/dev/null | tail -n 1 | cut -d " " -f 4'
+alias gateway='gw'
 
 # Running tmux on kitty startup
 if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then

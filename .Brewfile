@@ -1,5 +1,6 @@
 tap "oven-sh/bun"
 brew "bitwarden-cli"
+brew "fd"
 brew "ffmpeg"
 brew "fnm"
 brew "frpc"

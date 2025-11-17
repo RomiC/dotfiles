@@ -6,10 +6,17 @@ theme=Afterglow
 title=" "
 window-decoration=auto
 window-padding-balance=true
+maximize=true
 
 macos-titlebar-style=transparent
+macos-icon=custom-style
+macos-icon-frame=aluminum
+macos-icon-ghost-color=#E97C3E
+macos-icon-screen-color=#232323
 
 initial-command=/opt/homebrew/bin/tmux new-session -A -s charugin
 
 auto-update=download
 auto-update-channel=stable
+
+confirm-close-surface=false

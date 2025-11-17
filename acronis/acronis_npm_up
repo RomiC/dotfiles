@@ -2,9 +2,10 @@
 
 ARTIFACTORY_RO_USER=roman.charugin # type your domain username
 echo "Token: " && read -s ARTIFACTORY_RO_TOKEN # type your domain password
-npm config --location=project set registry=https://artifactory.corp.acronis.com/artifactory/api/npm/global-npm-prod-virtual/ \
+npm config --location=project set registry=https://artifactory.corp.acronis.com:443/artifactory/api/npm/global-npm-prod-virtual/ \
 email=$ARTIFACTORY_RO_USER@acronis.com \
-  //artifactory.corp.acronis.com/artifactory/api/npm/global-npm-prod-virtual/:_authToken=$ARTIFACTORY_RO_TOKEN \
-  //artifactory.corp.acronis.com/artifactory/api/npm/global-npm-prod-local-mirror/:_authToken=$ARTIFACTORY_RO_TOKEN \
-  //artifactory.corp.acronis.com/artifactory/api/npm/global-npm-dev-remote/:_authToken=$ARTIFACTORY_RO_TOKEN \
-  //artifactory.corp.acronis.com/artifactory/api/npm/global-npm-dev-remote-cache/:_authToken=$ARTIFACTORY_RO_TOKEN
+always-auth=true \
+  //artifactory.corp.acronis.com:443/artifactory/api/npm/global-npm-prod-virtual/:_authToken=$ARTIFACTORY_RO_TOKEN \
+  //artifactory.corp.acronis.com:443/artifactory/api/npm/global-npm-prod-local-mirror/:_authToken=$ARTIFACTORY_RO_TOKEN \
+  //artifactory.corp.acronis.com:443/artifactory/api/npm/global-npm-dev-remote/:_authToken=$ARTIFACTORY_RO_TOKEN \
+  //artifactory.corp.acronis.com:443/artifactory/api/npm/global-npm-dev-remote-cache/:_authToken=$ARTIFACTORY_RO_TOKEN

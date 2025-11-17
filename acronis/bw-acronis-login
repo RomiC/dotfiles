@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-NODE_PATH=/usr/local/bin/node
+NODE_PATH=$(which node)
 BW_PATH="/opt/homebrew/bin/bw"
 BW_EMAIL="roman.charugin@acronis.com"
 BW_PASSWORD_KEYCHAIN_NAME="Bitwarden Password"

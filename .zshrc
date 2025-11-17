@@ -92,6 +92,9 @@ zstyle ':fzf-tab:complete:gswup:*' fzf-command git-switch-fzf
 # Initialize completions
 compinit
 
+# 1Password CLI completion
+#eval "$(op completion zsh)"; compdef _op op
+
 git-switch-fzf () {
   git branch --color=always --sort=-committerdate | grep -v HEAD | fzf --ansi --no-multi --height=30% --preview-window right:50% --preview 'git lg --color=always -n 30 $(sed "s/.* //" <<< {})' | sed 's/.* //'
 }
@@ -164,3 +167,6 @@ fi
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# go
+export PATH="/usr/local/go/bin:$PATH"

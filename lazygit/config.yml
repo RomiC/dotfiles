@@ -1,0 +1,24 @@
+# LazyGit configuration
+# Docs: https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+
+gui:
+  border: hidden
+  showRandomTip: false
+  showCommandLog: false
+  commandLogSize: 0
+  nerdFontsVersion: "3"
+  theme:
+    activeBorderColor:
+      - "#e4b567"
+      - bold
+    inactiveBorderColor:
+      - "#4e5057"
+    searchingActiveBorderColor:
+      - "#f0c674"
+      - bold
+    optionsTextColor:
+      - "#f0c674"
+    selectedLineBgColor:
+      - "#202322"
+    defaultFgColor:
+      - "#606367"

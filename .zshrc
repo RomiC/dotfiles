@@ -1,6 +1,20 @@
+# Auto update brew every 2 days
+export HOMEBREW_AUTO_UPDATE_SECS="172800"
+
+# Keep non-interactive shells clean (important for editor env capture)
+[[ $- != *i* ]] && return
+
 if [[ -f "/opt/homebrew/bin/brew" ]] then
   # If you're using macOS, you'll want this enabled
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  # Cache brew shellenv to avoid running brew on every shell startup (faster).
+  BREW_SHELLENV_CACHE="$HOME/.cache/brew-shellenv.zsh"
+  if [[ -f "$BREW_SHELLENV_CACHE" ]] then
+    source "$BREW_SHELLENV_CACHE"
+  else
+    mkdir -p "${BREW_SHELLENV_CACHE:h}"
+    /opt/homebrew/bin/brew shellenv > "$BREW_SHELLENV_CACHE"
+    source "$BREW_SHELLENV_CACHE"
+  fi
 fi
 
 # ZInit plugin manager installation
@@ -23,26 +37,26 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Set FZF path in a first place to prevent annoying errors in console
 export FZF_PATH=/opt/homebrew/opt/fzf
 
-# Installing plugins
+# Installing plugins (turbo mode)
+zinit ice wait"1" lucid
 zinit light zsh-users/zsh-completions
+zinit ice wait"1" lucid
 zinit light unixorn/fzf-zsh-plugin
+zinit ice wait"1" lucid
 zinit light zsh-users/zsh-autosuggestions
+zinit ice wait"1" lucid atload"autoload -Uz compinit; compinit; setup_git_completions"
 zinit light Aloxaf/fzf-tab
 
 # Add Docker completions to fpath before compinit
 fpath=(/Users/roman.charugin/.docker/completions $fpath)
 
-# Initialize completions (must be AFTER fzf-tab plugin load)
-autoload -Uz compinit
-compinit
-# - Pure-theme
+# - Pure-theme (load immediately to avoid default prompt flash)
 zinit ice pick"async.zsh" src"pure.zsh" # with zsh-async library that's bundled with it.
 zinit light sindresorhus/pure
 
 # Add in snippets
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
-zinit snippet OMZP::tmux
 
 # Configuration
 # - Navigation
@@ -52,6 +66,7 @@ bindkey -r '^@'
 # - Completion
 #  - Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' fzf-search-display true
 
@@ -87,13 +102,13 @@ zstyle ':completion:*' menu select
 zstyle ':fzf-tab:*' fzf-command fzf
 zstyle ':fzf-tab:*' continuous-trigger '/'
 zstyle ':fzf-tab:*' fzf-min-height 15
-zstyle ':fzf-tab:*' fzf-flags --height=50% --preview-window=right:50% --no-sort
+zstyle ':fzf-tab:*' fzf-flags --height=50% --preview-window=right:50%
 zstyle ':fzf-tab:*' fzf-bindings 'space:toggle' 'ctrl-a:toggle-all' 'ctrl-j:down' 'ctrl-k:up'
 # Disable default-command to prevent fzf-tab from re-sorting
-zstyle ':fzf-tab:complete:git-switch:*' fzf-flags --height=50% --preview-window=right:50% --no-sort
-zstyle ':fzf-tab:complete:git-checkout:*' fzf-flags --height=50% --preview-window=right:50% --no-sort
-zstyle ':fzf-tab:complete:gsw:*' fzf-flags --height=50% --preview-window=right:50% --no-sort
-zstyle ':fzf-tab:complete:gco:*' fzf-flags --height=50% --preview-window=right:50% --no-sort
+zstyle ':fzf-tab:complete:git-switch:*' fzf-flags --height=50% --preview-window=right:50%
+zstyle ':fzf-tab:complete:git-checkout:*' fzf-flags --height=50% --preview-window=right:50%
+zstyle ':fzf-tab:complete:gsw:*' fzf-flags --height=50% --preview-window=right:50%
+zstyle ':fzf-tab:complete:gco:*' fzf-flags --height=50% --preview-window=right:50%
 # Set specific previews for git commands
 zstyle ':fzf-tab:complete:git:*' fzf-preview '
   # Use realpath for files/dirs, word for branches
@@ -139,7 +154,12 @@ _gswup() {
 }
 
 # Register git completions LAST to override plugin completions
-compdef _gswup gswup
+setup_git_completions() {
+  compdef _gswup gswup
+  for git_alias in gsw gco gswup; do
+    compdef _gswup $git_alias
+  done
+}
 
 # Custom git completion for switch/checkout with proper branch sorting
 _git_simple() {
@@ -164,10 +184,6 @@ _git_simple() {
 _git-checkout() { _git_simple }
 _git-switch() { _git_simple }
 
-# Register completions for git aliases (gsw, gco, gswup)
-for git_alias in gsw gco gswup; do
-  compdef _gswup $git_alias
-done
 
 # - FNM (node manager)
 eval "$(fnm env --use-on-cd)"
@@ -175,17 +191,24 @@ eval "$(fnm env --use-on-cd)"
 # - Docker
 export NGINX_PROXY_HOST="docker.for.mac.localhost"
 
-# - ZSH Tmux plugin
-export ZSH_TMUX_AUTOSTART=true
-export ZSH_TMUX_AUTOQUIT=true
-export ZSH_TMUX_DEFAULT_SESSION_NAME="charugin"
-export ZSH_TMUX_CONFIG=$HOME/.config/tmux/tmux.conf
+# - Bitwarden CLI Session (cached to avoid slow security call every shell start)
+BW_SESSION_CACHE="$HOME/.cache/bw_session"
+BW_SESSION_TTL=$((60 * 60 * 24 * 2)) # 2 days
 
-# - NodeJS path
-export NODE_PATH=$(npm root -g)
+bw_session_update() {
+  export BW_SESSION="$(security find-generic-password -a 'roman.charugin@acronis.com' -s 'Bitwarden Session' -w 2>/dev/null)"
+  [[ -n "$BW_SESSION" ]] && print -r -- "$BW_SESSION" >| "$BW_SESSION_CACHE"
+}
 
-# - Bitwarden CLI Session
-export BW_SESSION="$(security find-generic-password -a 'roman.charugin@acronis.com' -s 'Bitwarden Session' -w 2>/dev/null)"
+if [[ -f "$BW_SESSION_CACHE" ]]; then
+  export BW_SESSION="$(<"$BW_SESSION_CACHE")"
+  bw_cache_mtime=$(stat -f %m "$BW_SESSION_CACHE" 2>/dev/null)
+  if [[ -n "$bw_cache_mtime" ]] && (( $(date +%s) - bw_cache_mtime > BW_SESSION_TTL )); then
+    bw_session_update
+  fi
+else
+  bw_session_update
+fi
 
 # Aliases
 # - Git
@@ -225,11 +248,10 @@ alias c='clear'
 # - Current gateway
 alias gw='traceroute -m 3 google.com 2>/dev/null | tail -n 1 | cut -d " " -f 4'
 alias gateway='gw'
-
-# Running tmux on kitty startup
-if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then
-  tmux attach || exec tmux new-session && exit;
-fi
+# - Copy current folder to clipboard
+alias cwd='pwd | pbcopy'
+# - Lazygit
+alias lg='lazygit'
 
 # bun completions
 [ -s "/Users/roman.charugin/.bun/_bun" ] && source "/Users/roman.charugin/.bun/_bun"

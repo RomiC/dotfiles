@@ -1,18 +1,21 @@
-background-opacity=0.85
+background-opacity=0.90
 background-blur=true
 font-family=MonoLisa Nerd Font
-font-size=12.5
+font-size=13
 theme=Afterglow
 title=" "
-window-decoration=auto
+window-decoration=none
 window-padding-balance=true
 maximize=true
 
-macos-titlebar-style=transparent
+macos-window-buttons=hidden
+macos-titlebar-style=hidden
 macos-icon=custom-style
 macos-icon-frame=aluminum
 macos-icon-ghost-color=#E97C3E
 macos-icon-screen-color=#232323
+macos-option-as-alt=true
+macos-secure-input-indication=true
 
 initial-command=/opt/homebrew/bin/tmux new-session -A -s charugin
 

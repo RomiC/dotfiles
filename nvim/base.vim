@@ -48,18 +48,18 @@ au InsertEnter * highlight User1 guifg=#a54242 guibg=#f9e7c4
 au InsertLeave * highlight User1 guifg=#afd787 guibg=#4d5057
 
 set laststatus=2
-set statusline=
-set statusline+=%1*
-set statusline+=\ %{toupper(g:currentmode[mode()])}
-set statusline+=%*
-set statusline+=\ %w
-set statusline+=\ %f
-set statusline+=%2*
-set statusline+=\%{&modified?'\ *':''}
-set statusline+=%*
-set statusline+=%= " Right side
-set statusline+=\ %l:%c/%L
-set statusline+=\ %y\ 
+
+function! s:ApplyStatusline() abort
+  let l:stl = '%1* %{toupper(g:currentmode[mode()])}%* %w %f%2*%{&modified?'' *'':''}%*%=%l:%c/%L %y '
+  let &g:statusline = l:stl
+  let &l:statusline = l:stl
+endfunction
+
+call s:ApplyStatusline()
+augroup user_statusline
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * call s:ApplyStatusline()
+augroup END
 
 " Cursor based on current mode
 let &t_SI = "\e[6 q"

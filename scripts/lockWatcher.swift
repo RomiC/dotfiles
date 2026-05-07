@@ -9,6 +9,7 @@ class ScreenLockObserver {
         // listen for screen unlock
         let _ = dnc.addObserver(forName: NSNotification.Name("com.apple.screenIsUnlocked"), object: nil, queue: .main) { _ in
             NSLog("Screen Unlocked")
+            Thread.sleep(forTimeInterval: 2.0)
             self.runBashScript(path: "/Users/roman.charugin/work/raycast-extensions/scripts/wifi-toggle.sh")
         }
 

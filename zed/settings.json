@@ -1,0 +1,216 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "use_smartcase_search": true,
+  "load_direnv": "disabled",
+  "git": {
+    "inline_blame": {
+      "padding": 10,
+      "delay_ms": 300,
+      "enabled": false,
+    },
+  },
+  "edit_predictions": {
+    "provider": "copilot",
+  },
+  "active_pane_modifiers": {
+    "border_size": 1.0,
+    "inactive_opacity": 0.7,
+  },
+  "bottom_dock_layout": "contained",
+  "tab_bar": {
+    "show_pinned_tabs_in_separate_row": false,
+    "show_tab_bar_buttons": false,
+  },
+  "tabs": {
+    "show_close_button": "hover",
+    "file_icons": true,
+    "git_status": true,
+  },
+  "diagnostics": {
+    "button": true,
+  },
+  "title_bar": {
+    "show_user_picture": false,
+    "show_user_menu": false,
+    "show_sign_in": false,
+    "show_onboarding_banner": false,
+    "show_branch_status_icon": true,
+  },
+  "debugger": {
+    "button": false,
+  },
+  "search": {
+    "button": false,
+  },
+  "outline_panel": {
+    "dock": "right",
+    "button": false,
+  },
+  "collaboration_panel": {
+    "dock": "right",
+    "button": false,
+  },
+  "git_panel": {
+    "show_count_badge": true,
+    "file_icons": true,
+    "tree_view": true,
+    "sort_by_path": true,
+    "status_style": "icon",
+    "dock": "left",
+    "button": false,
+  },
+  "agent_buffer_font_size": 13.0,
+  "auto_indent": "preserve_indent",
+  "vim": {
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true,
+    "use_system_clipboard": "always",
+  },
+  "toolbar": {
+    "code_actions": false,
+    "quick_actions": false,
+    "breadcrumbs": false,
+  },
+  "scrollbar": {
+    "axes": {
+      "horizontal": false,
+    },
+  },
+  "which_key": {
+    "enabled": true,
+  },
+  "show_wrap_guides": false,
+  "ui_font_family": ".SystemUIFont",
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "agent_ui_font_size": 17.0,
+  "terminal": {
+    "dock": "right",
+    "env": {
+      "FIG_NEW_SESSION": "1",
+      "ZSH_TMUX_AUTOSTART": "false",
+      "ZED_TMUX_CONF": "/Users/roman.charugin/.config/tmux/tmux.zed.conf",
+    },
+    "shell": {
+      "with_arguments": {
+        "program": "/bin/zsh",
+        "args": [
+          "-c",
+          "tmux -L zed -f $ZED_TMUX_CONF attach -t $(basename $PWD) || tmux -L zed -f $ZED_TMUX_CONF new -s $(basename $PWD) -n pi -c $PWD '$(which pi) --continue 2>/dev/null || $(which pi)' ';' new-window -n terminal -c $PWD ';' select-window -t pi",
+        ],
+      },
+    },
+    "font_size": 13.0,
+    "font_family": "MonoLisa Nerd Font",
+    "line_height": {
+      "custom": 1.4,
+    },
+    "option_as_meta": true,
+    "copy_on_select": true,
+    "max_scroll_history_lines": 10000,
+    "button": false,
+  },
+  "project_panel": {
+    "hide_root": false,
+    "indent_guides": {
+      "show": "always",
+    },
+    "git_status_indicator": false,
+    "diagnostic_badges": false,
+    "scrollbar": {
+      "horizontal_scroll": false,
+    },
+    "bold_folder_labels": true,
+    "indent_size": 18.0,
+    "entry_spacing": "standard",
+    "default_width": 300.0,
+    "dock": "left",
+    "auto_reveal_entries": false,
+    "button": false,
+  },
+  "base_keymap": "VSCode",
+  "agent": {
+    "profiles": {
+      "acronis": {
+        "name": "Acronis",
+        "tools": {},
+        "enable_all_context_servers": false,
+        "context_servers": {},
+      },
+    },
+    "tool_permissions": {
+      "tools": {
+        "fetch": {
+          "always_allow": [
+            {
+              "pattern": "^https?://api\\.github\\.com",
+            },
+          ],
+        },
+      },
+    },
+    "dock": "right",
+    "default_model": {
+      "effort": "high",
+      "enable_thinking": true,
+      "provider": "copilot_chat",
+      "model": "gpt-5.3-codex",
+    },
+    "enabled": true,
+    "button": false,
+    "model_parameters": [],
+  },
+  "preview_tabs": {
+    "enable_preview_from_file_finder": true,
+    "enabled": true,
+  },
+  "status_bar": {
+    "active_language_button": true,
+    "experimental.show": true,
+  },
+  "multi_cursor_modifier": "cmd_or_ctrl",
+  "relative_line_numbers": "enabled",
+  "sticky_scroll": {
+    "enabled": false,
+  },
+  "gutter": {
+    "line_numbers": true,
+  },
+  "minimap": {
+    "show": "never",
+  },
+  "hover_popover_delay": 1000,
+  "cursor_blink": false,
+  "buffer_font_family": "MonoLisa Nerd Font",
+  "file_types": {
+    "snapshot": ["*.snap", "*.snap"],
+    "scss": ["*.scss", "*.scss"],
+  },
+  "show_whitespaces": "none",
+  "show_edit_predictions": true,
+  "soft_wrap": "editor_width",
+  "tab_size": 2,
+  "format_on_save": "on",
+  "colorize_brackets": true,
+  "preferred_line_length": 120,
+  "inlay_hints": {
+    "enabled": false,
+    "toggle_on_modifiers_press": {
+      "control": true,
+      "alt": true,
+    },
+  },
+  "vim_mode": true,
+  "icon_theme": "Zed (Default)",
+  "ui_font_size": 17.0,
+  "buffer_font_size": 13.0,
+  "theme": "Afterglow Remastered",
+}

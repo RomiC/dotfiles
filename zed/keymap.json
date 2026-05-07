@@ -1,0 +1,197 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-s": "workspace::SaveAll",
+      "cmd-alt-s": "workspace::Save",
+      "cmd-shift-s": "workspace::SaveWithoutFormat",
+
+      "alt-p": ["projects::OpenRecent", { "create_new_window": false }],
+      "alt-shift-p": ["projects::OpenRecent", { "create_new_window": false }],
+
+      "ctrl-o": "pane::GoBack",
+      "ctrl-i": "pane::GoForward",
+
+      "cmd-shift-1": "workspace::ToggleZoom",
+      "shift-cmd-0": ["zed::ResetBufferFontSize", { "persist": false }],
+
+      "cmd-shift-h": "workspace::ToggleLeftDock",
+      "cmd-shift-j": "workspace::ToggleBottomDock",
+      "cmd-escape": "workspace::CloseActiveDock",
+
+      "cmd-g e": "project_panel::ToggleFocus",
+      "cmd-g c": "git_panel::ToggleFocus",
+      "cmd-g f": "pane::DeploySearch",
+      "cmd-g r": ["pane::DeploySearch", { "replace_enabled": true }],
+      "cmd-g p": "diagnostics::Deploy",
+      "cmd-g x": "zed::Extensions",
+      "cmd-g a": "agent::ToggleFocus",
+
+      "cmd-shift-l": "terminal_panel::Toggle",
+      "cmd-g s": "workspace::NewTerminal",
+
+      "cmd-r": "task::Spawn",
+      "cmd-shift-r": ["task::Rerun", { "reevaluate_context": false }],
+
+      "shift-cmd-w": ["pane::CloseAllItems", { "close_pinned": false }],
+      "alt-cmd-w": ["pane::CloseOtherItems", { "close_pinned": false }],
+    },
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-h": "pane::ActivatePreviousItem",
+      "ctrl-l": "pane::ActivateNextItem",
+
+      "cmd-]": "pane::SplitRight",
+      "cmd--": "pane::SplitDown",
+
+      "cmd-shift-k cmd-shift-right": "workspace::SwapPaneRight",
+      "cmd-shift-k cmd-shift-left": "workspace::SwapPaneLeft",
+    },
+  },
+  {
+    "context": "Editor && mode == full",
+    "bindings": {
+      "alt-q": "editor::ToggleCodeActions",
+      "cmd-k r": "pane::RevealInProjectPanel",
+      "cmd-enter": "pane::TogglePinTab",
+      "cmd-shift-h": "workspace::ToggleLeftDock",
+      "cmd-shift-j": null,
+      "cmd-shift-l": "terminal_panel::Toggle",
+    },
+  },
+  {
+    "context": "Editor && vim_mode != insert",
+    "bindings": {
+      "cmd-k cmd-c": "workspace::CopyRelativePath",
+      "ctrl-z": "workspace::ToggleZoom",
+    },
+  },
+  {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "bindings": {
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrevious",
+    },
+  },
+  {
+    "context": "Editor && showing_signature_help && !showing_completions",
+    "bindings": {
+      "ctrl-j": "editor::SignatureHelpNext",
+      "ctrl-k": "editor::SignatureHelpPrevious",
+    },
+  },
+  {
+    "context": "BufferSearchBar",
+    "bindings": {
+      "ctrl-j": "search::SelectNextMatch",
+      "ctrl-k": "search::SelectPreviousMatch",
+    },
+  },
+  {
+    "context": "menu",
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious",
+      "ctrl-shift-l": "menu::SelectFirst",
+      "ctrl-shift-h": "menu::SelectLast",
+    },
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "r": "project_panel::RevealInFileManager",
+      "n": "project_panel::NewFile",
+      "f": "project_panel::NewFile",
+      "cmd-shift-j": "workspace::ActivatePaneRight",
+    },
+  },
+  {
+    "context": "GitPanel && ChangesList && !GitBranchSelector",
+    "bindings": {
+      "alt-j": "git_panel::NextEntry",
+      "alt-k": "git_panel::PreviousEntry",
+    },
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-shift-j": "editor::ToggleFocus",
+      "cmd-j": "pane::ActivateNextItem",
+      "cmd-k": "pane::ActivatePreviousItem",
+      "cmd-h": "workspace::ActivatePaneLeft",
+      "cmd-l": "workspace::ActivatePaneRight",
+      "cmd-w": ["pane::CloseActiveItem", { "close_pinned": false }],
+      "cmd-]": "pane::SplitRight",
+      "cmd-n": "workspace::NewTerminal",
+    },
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-s": "vim::PushAddSurrounds",
+    },
+  },
+  {
+    "bindings": {
+      "cmd-g g": "git_graph::Open"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-j": "menu::SelectNext"
+    }
+  },
+  {
+    "unbind": {
+      "ctrl-n": "menu::SelectNext"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-alt-j": "menu::SelectLast"
+    }
+  },
+  {
+    "unbind": {
+      "cmd-down": "menu::SelectLast"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-k": "menu::SelectPrevious"
+    }
+  },
+  {
+    "unbind": {
+      "up": "menu::SelectPrevious"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-alt-k": "menu::SelectFirst"
+    }
+  },
+  {
+    "unbind": {
+      "cmd-up": "menu::SelectFirst"
+    }
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "alt-cmd-t": [
+        "pane::CloseOtherItems",
+        {
+          "close_pinned": false
+        }
+      ]
+    }
+  },
+  {
+    "unbind": {
+      "cmd-shift-w": "workspace::CloseWindow"
+    }
+  }
+]

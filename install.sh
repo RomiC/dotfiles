@@ -65,6 +65,10 @@ ln -sf $DOTFILES_DIR/.gitattributes $HOME/.gitattributes
 echo '-> Ghostty'
 ln -sf $DOTFILES_DIR/ghostty $HOME/.config/ghostty
 
+echo '-> lazygit'
+mkdir -p $HOME/.config/lazygit
+ln -sfn $DOTFILES_DIR/lazygit/config.yml $HOME/.config/lazygit/config.yml
+
 echo '-> neovim'
 ln -sf $DOTFILES_DIR/nvim $HOME/.config/nvim
 curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -98,6 +102,16 @@ ln -sf $DOTFILES_DIR/1Password/ssh/agent.toml $HOME/.config/1Password/ssh/agent.
 
 echo '-> frpc'
 ln -sf $DOTFILES_DIR/frpc $HOME/.config/frpc
+
+echo '-> Zed'
+mkdir -p $HOME/.config/zed
+ln -sf $DOTFILES_DIR/zed/settings.json $HOME/.config/zed/settings.json
+ln -sf $DOTFILES_DIR/zed/keymap.json $HOME/.config/zed/keymap.json
+
+if [[ -e $HOME/.config/zed/themes && ! -L $HOME/.config/zed/themes ]]; then
+  rm -rf $HOME/.config/zed/themes
+fi
+ln -sfn $DOTFILES_DIR/zed/themes $HOME/.config/zed/themes
 
 echo '=[ Installing fonts ]='
 FONTS_DIR="$HOME/Library/Fonts"

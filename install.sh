@@ -34,18 +34,13 @@ fi
 
 $BREW_BIN update
 
+echo '-> mas'
+$BREW_BIN install mas
+
 echo '-> brew bundle'
 ln -sf $DOTFILES_DIR/.Brewfile $HOME/.Brewfile
 $BREW_BIN bundle --global
 $BREW_BIN cleanup
-
-echo '-> im-select'  # necessary for VSCode
-if [[ -e /usr/local/bin/im-select ]]; then
-    rm -f /usr/local/bin/im-select
-fi
-curl -Ls -o /usr/local/bin/im-select https://github.com/daipeihust/im-select/raw/master/macOS/out/intel/im-select
-chmod +x /usr/local/bin/im-select
-
 
 echo '=[ Configuring ]='
 

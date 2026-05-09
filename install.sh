@@ -34,6 +34,9 @@ fi
 
 $BREW_BIN update
 
+echo '-> mas'
+$BREW_BIN install mas
+
 echo '-> brew bundle'
 ln -sf $DOTFILES_DIR/.Brewfile $HOME/.Brewfile
 $BREW_BIN bundle --global

@@ -36,7 +36,7 @@ $BREW_BIN update
 
 echo '-> brew bundle'
 ln -sf $DOTFILES_DIR/.Brewfile $HOME/.Brewfile
-$BREW_BIN bundle
+$BREW_BIN bundle --global
 $BREW_BIN cleanup
 
 echo '-> im-select'  # necessary for VSCode

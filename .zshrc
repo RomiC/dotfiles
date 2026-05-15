@@ -44,7 +44,7 @@ zinit ice wait"1" lucid
 zinit light unixorn/fzf-zsh-plugin
 zinit ice wait"1" lucid
 zinit light zsh-users/zsh-autosuggestions
-zinit ice wait"1" lucid atload"autoload -Uz compinit; compinit; setup_git_completions"
+zinit ice wait"1" lucid atload"autoload -Uz compinit; compinit -i; setup_git_completions"
 zinit light Aloxaf/fzf-tab
 
 # Add Docker completions to fpath before compinit

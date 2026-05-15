@@ -60,7 +60,7 @@
   "git_panel": {
     "show_count_badge": true,
     "file_icons": true,
-    "tree_view": true,
+    "tree_view": false,
     "sort_by_path": true,
     "status_style": "icon",
     "dock": "left",
@@ -162,7 +162,7 @@
       "effort": "high",
       "enable_thinking": true,
       "provider": "copilot_chat",
-      "model": "gpt-5.3-codex",
+      "model": "claude-sonnet-4.6",
     },
     "enabled": true,
     "button": false,

@@ -252,6 +252,12 @@ alias gateway='gw'
 alias cwd='pwd | pbcopy'
 # - Lazygit
 alias lg='lazygit'
+# - Brew
+#   - Update and upgrade packages
+alias buu='brew update && brew upgrade && brew cleanup'
+# - 1Password
+#   - Copy password for the item
+alias opp='op item list | fzf | awk "{print \$1;}" | xargs -I @ op item get --reveal --fields label=password @ | pbcopy'
 
 # bun completions
 [ -s "/Users/roman.charugin/.bun/_bun" ] && source "/Users/roman.charugin/.bun/_bun"

@@ -1,0 +1,6 @@
+# Load the Afterglow flavor as the base theme.
+# Any overrides placed here take precedence over the flavor.
+
+[flavor]
+dark  = "afterglow"
+light = "afterglow"

@@ -98,6 +98,9 @@ ln -sf $DOTFILES_DIR/1Password/ssh/agent.toml $HOME/.config/1Password/ssh/agent.
 echo '-> frpc'
 ln -sf $DOTFILES_DIR/frpc $HOME/.config/frpc
 
+echo '-> yazi'
+ln -sf $DOTFILES_DIR/yazi $HOME/.config/yazi
+
 echo '-> Zed'
 mkdir -p $HOME/.config/zed
 ln -sf $DOTFILES_DIR/zed/settings.json $HOME/.config/zed/settings.json

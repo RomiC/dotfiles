@@ -262,3 +262,12 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # go
 export PATH="/usr/local/go/bin:$PATH"
+
+# Yazi helper - to keep current opened Yazi folder back to terminal
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	command rm -f -- "$tmp"
+}

@@ -1,0 +1,14 @@
+# Yazi keymap configuration
+# Extends the default keymap with bookmark shortcuts
+
+[mgr]
+prepend_keymap = [
+  # ── Git ──────────────────────────────────────────────────────────────────
+  { on = ["<C-g>"], run = "shell --block '~/.config/yazi/scripts/lazygit-popup.sh'", desc = "Open lazygit in tmux popup" },
+
+  # ── Bookmarks ─────────────────────────────────────────────────────────────
+  { on = ["g", "h"], run = "cd ~",             desc = "Bookmark: Home" },
+  { on = ["g", "w"], run = "cd ~/work",         desc = "Bookmark: Work" },
+  { on = ["g", "d"], run = "cd ~/Downloads",    desc = "Bookmark: Downloads" },
+  { on = ["g", "s"], run = "cd ~/Screenshots",  desc = "Bookmark: Screenshots" },
+]

@@ -1,0 +1,305 @@
+# Afterglow Remastered flavor for Yazi
+# Source: https://github.com/marvinhagemeister/vscode-theme-afterglow-remastered
+#
+# Color palette and semantic mapping:
+#
+#   Role          Hex       VS Code role
+#   ─────────────────────────────────────────────────────
+#   bg            #2e2e2e   editor.background
+#   bg_dark       #292929   surface.background
+#   bg_light      #343434   element.background
+#   border        #444444
+#   border_focus  #5a647e   border.selected
+#   fg            #d6d6d6   text
+#   fg_dim        #979797   text.muted
+#   fg_dark       #5a5a5a   terminal.ansi.bright_black
+#
+#   blue    #6c99bb   constant / type / accent / info
+#   red     #c45837   error / deleted
+#   green   #b4c973   string / success / added
+#   yellow  #ffc66d   function / warning / search-highlight
+#   magenta #a1617a   hint / special / string-escape
+#   cyan    #7fb9cf   link / image
+#   orange  #ffc66d   keyword / attribute
+#   orange2 #ffc66d   preproc / modified
+
+
+# : App {{{
+
+[app]
+overall = {}
+
+# : }}}
+
+
+# : Manager {{{
+
+[mgr]
+cwd = { fg = "#6c99bb", bold = true }
+
+# Find — keyword colors: search term = warning yellow, position = hint magenta
+find_keyword  = { fg = "#ffc66d", bold = true, italic = true, underline = true }
+find_position = { fg = "#a1617a", bg = "reset", bold = true, italic = true }
+
+# Symlink — link cyan
+symlink_target = { fg = "#7fb9cf", italic = true }
+
+# Markers — mapped to version_control semantics from the theme
+marker_copied   = { fg = "#b4c973", bg = "#b4c973" }   # added   → green
+marker_cut      = { fg = "#c45837", bg = "#c45837" }   # deleted → red
+marker_marked   = { fg = "#ffc66d", bg = "#ffc66d" }   # warning → yellow
+marker_selected = { fg = "#6c99bb", bg = "#6c99bb" }   # info    → blue
+marker_symbol   = "│"
+
+# Count badges
+count_copied   = { fg = "#2e2e2e", bg = "#b4c973" }
+count_cut      = { fg = "#2e2e2e", bg = "#c45837" }
+count_selected = { fg = "#2e2e2e", bg = "#6c99bb" }
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "#444444" }
+
+# Syntax highlighting in preview (set to a .tmtheme path to enable)
+syntect_theme = ""
+
+# : }}}
+
+
+# : Tabs {{{
+
+[tabs]
+active   = { fg = "#ffc66d", bg = "#444444", bold = true }
+inactive = { fg = "#5a5a5a", bg = "#292929" }
+
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
+
+# : }}}
+
+
+# : Mode {{{
+
+[mode]
+normal_main = { fg = "#2e2e2e", bg = "#6c99bb", bold = true }   # accent blue
+normal_alt  = { fg = "#6c99bb", bg = "#3b3b3b" }
+
+select_main = { fg = "#2e2e2e", bg = "#b4c973", bold = true }   # success green
+select_alt  = { fg = "#b4c973", bg = "#3b3b3b" }
+
+unset_main  = { fg = "#2e2e2e", bg = "#a1617a", bold = true }   # hint magenta
+unset_alt   = { fg = "#a1617a", bg = "#3b3b3b" }
+
+# : }}}
+
+
+# : Indicator of hovered file {{{
+
+[indicator]
+parent  = { reversed = true }
+current = { fg = "#2e2e2e", bg = "#ffc66d" }   # keyword orange — consistent with dirs
+preview = { underline = true }
+padding = { open = " ", close = " " }
+
+# : }}}
+
+
+# : Status bar {{{
+
+[status]
+overall   = {}
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+
+# Permissions — mapped to theme semantic roles
+perm_sep   = { fg = "#444444" }
+perm_type  = { fg = "#b4c973" }   # success green   (readable = good)
+perm_read  = { fg = "#ffc66d" }   # warning yellow  (read access)
+perm_write = { fg = "#c45837" }   # error red       (write = caution)
+perm_exec  = { fg = "#7fb9cf" }   # link cyan       (executable = runnable link)
+
+# Progress
+progress_label  = { bold = true }
+progress_normal = { fg = "#6c99bb", bg = "#2e2e2e" }
+progress_error  = { fg = "#ffc66d", bg = "#c45837" }
+
+# : }}}
+
+
+# : Which-key {{{
+
+[which]
+cols            = 3
+mask            = { bg = "#292929" }
+cand            = { fg = "#7fb9cf" }         # link cyan   — the "target" key
+rest            = { fg = "#5a5a5a" }         # dim
+desc            = { fg = "#a1617a" }         # hint magenta
+separator       = "  "
+separator_style = { fg = "#444444" }
+
+# : }}}
+
+
+# : Confirmation {{{
+
+[confirm]
+border     = { fg = "#5a647e" }              # border.selected
+title      = { fg = "#6c99bb", bold = true }
+body       = { fg = "#ffc66d" }
+list       = { fg = "#979797" }
+btn_yes    = { fg = "#2e2e2e", bg = "#b4c973", bold = true }
+btn_no     = { fg = "#979797" }
+btn_labels = ["  [Y]es  ", "  (N)o  "]
+
+# : }}}
+
+
+# : Spotter {{{
+
+[spot]
+border = { fg = "#5a647e" }
+title  = { fg = "#6c99bb", bold = true }
+
+tbl_col  = { fg = "#6c99bb" }
+tbl_cell = { fg = "#ffc66d", reversed = true }
+
+# : }}}
+
+
+# : Notification {{{
+
+[notify]
+title_info  = { fg = "#6c99bb" }   # info  blue
+title_warn  = { fg = "#ffc66d" }   # warn  yellow
+title_error = { fg = "#c45837" }   # error red
+
+icon_info  = "\uF05A"
+icon_warn  = "\uF071"
+icon_error = "\uF057"
+
+# : }}}
+
+
+# : Picker {{{
+
+[pick]
+border   = { fg = "#5a647e" }
+active   = { fg = "#ffc66d", bold = true }
+inactive = { fg = "#979797" }
+
+# : }}}
+
+
+# : Input {{{
+
+[input]
+border   = { fg = "#6c99bb" }
+title    = { fg = "#ffc66d", bold = true }
+value    = { fg = "#ffc66d" }
+selected = { fg = "#2e2e2e", bg = "#5a647e" }   # border.selected bg
+
+# : }}}
+
+
+# : Completion {{{
+
+[cmp]
+border   = { fg = "#5a647e" }
+active   = { fg = "#2e2e2e", bg = "#6c99bb" }
+inactive = { fg = "#979797" }
+
+icon_file    = "\uF15B"   # U+F15B 
+icon_folder  = "\uE5FF"   # U+E5FF 
+icon_command = "\uF489"   # U+F489 
+
+# : }}}
+
+
+# : Task manager {{{
+
+[tasks]
+border  = { fg = "#5a647e" }
+title   = { fg = "#ffc66d", bold = true }
+hovered = { fg = "#ffc66d", bold = true }
+
+# : }}}
+
+
+# : Help menu {{{
+
+[help]
+on      = { fg = "#7fb9cf" }    # link cyan   — key binding
+run     = { fg = "#b4c973" }    # string green — the command
+desc    = { fg = "#979797" }    # muted
+hovered = { fg = "#2e2e2e", bg = "#5a647e" }
+footer  = { fg = "#2e2e2e", bg = "#5a5a5a" }
+
+# : }}}
+
+
+# : File-specific styles {{{
+#
+# Semantic mapping (VS Code role → file category):
+#   keyword  orange #ffc66d → dirs, archives
+#   function yellow #ffc66d → (reserved for future use)
+#   constant blue   #6c99bb → structured data (JSON, XML, YAML)
+#   string   green  #b4c973 → text, markup, code
+#   hint     magenta#a1617a → audio, video
+#   link     cyan   #7fb9cf → images
+#   error    red    #c45837 → documents, orphans
+#   text     white  #ffc66d → fallback
+
+[filetype]
+rules = [
+  # Broken symlinks
+  { url = "*", is = "orphan", fg = "#c45837", underline = true },
+
+  # Hidden / dot-files ── muted text
+  { url = "*", is = "hidden", fg = "#979797" },
+
+  # Directories ── accent
+  { url = "*/", fg = "#ffc66d", bold = true },
+
+  # Everything else ── primary text
+  { url = "*", fg = "#d6d6d6" },
+]
+
+# : }}}
+
+
+# : Icons {{{
+
+[icon]
+prepend_dirs = [
+  # Version control
+  { name = ".git",         text = "\uE5FB", fg = "#ffc66d" },
+  # Config / dotfiles
+  { name = ".config",      text = "\uE5FC", fg = "#ffc66d" },
+  { name = ".ssh",         text = "\uF023", fg = "#ffc66d" },
+  { name = ".local",       text = "\uE5FF", fg = "#ffc66d" },
+  { name = ".cache",       text = "\uE5FF", fg = "#ffc66d" },
+  # Dev
+  { name = "node_modules", text = "\uE718", fg = "#ffc66d" },
+  { name = ".github",      text = "\uE5FD", fg = "#ffc66d" },
+  { name = "src",          text = "\uE5FF", fg = "#ffc66d" },
+  { name = "dist",         text = "\uE5FF", fg = "#ffc66d" },
+  { name = "build",        text = "\uE63A", fg = "#ffc66d" },
+  { name = "target",       text = "\uE5FF", fg = "#ffc66d" },
+  # Common dirs
+  { name = "Downloads",    text = "\uF498", fg = "#ffc66d" },
+  { name = "Desktop",      text = "\uF108", fg = "#ffc66d" },
+  { name = "Documents",    text = "\uF401", fg = "#ffc66d" },
+  { name = "Pictures",     text = "\uE244", fg = "#ffc66d" },
+  { name = "Screenshots",  text = "\uE244", fg = "#ffc66d" },
+  { name = "Music",        text = "\uF025", fg = "#ffc66d" },
+  { name = "Videos",       text = "\uF447", fg = "#ffc66d" },
+  { name = "Public",       text = "\uF42B", fg = "#ffc66d" },
+]
+
+prepend_conds = [
+  { if = "dir & hovered", text = "\uE5FF", fg = "#ffc66d" },
+  { if = "dir",           text = "\uE5FF", fg = "#ffc66d" },
+  { if = "exec",          text = "\uF489", fg = "#b4c973" },
+]
+
+# : }}}

@@ -2,7 +2,7 @@
 # Docs: https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 
 gui:
-  border: hidden
+  border: rounded
   showRandomTip: false
   showCommandLog: false
   commandLogSize: 0
@@ -19,6 +19,6 @@ gui:
     optionsTextColor:
       - "#f0c674"
     selectedLineBgColor:
-      - "#202322"
+      - "#4a3a18"
     defaultFgColor:
-      - "#606367"
+      - "#c0c4c8"

@@ -12,7 +12,7 @@ if !exists('g:vscode')
   nnoremap  <silent>  ge  :Vifm<CR>
 endif
 " - Windows navigation
-. " - Split vertically
+" - Split vertically
 nnoremap  <silent>  <leader>]   :vsplit<CR>
   " - Focus on window above
 tnoremap  <silent>  <C-w>k      <C-\><C-N><C-w>k
@@ -89,7 +89,7 @@ inoremap  <silent>  <C-space>  <C-^>
 nnoremap  <silent>  gs  :80vsplit term://zsh<CR>
   " - Open terminal in a new pane below
 nnoremap  <silent>  gS  :25split term://zsh<CR>
-. " - Exit terminal mode
+" - Exit terminal mode
 "tnoremap  <silent>  <Esc>  <C-\><C-n>
 " - Miscellaneous
   " - Reload config

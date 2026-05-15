@@ -50,7 +50,7 @@ au InsertLeave * highlight User1 guifg=#afd787 guibg=#4d5057
 set laststatus=2
 
 function! s:ApplyStatusline() abort
-  let l:stl = '%1* %{toupper(g:currentmode[mode()])}%* %w %f%2*%{&modified?'' *'':''}%*%=%l:%c/%L %y '
+  let l:stl = '%1* %{toupper(g:currentmode[mode()])}%* %w %f%2*%{&modified?'' *'':''''}%*%=%l:%c/%L %y '
   let &g:statusline = l:stl
   let &l:statusline = l:stl
 endfunction

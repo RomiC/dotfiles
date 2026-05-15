@@ -179,6 +179,11 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 # Disable “natural” (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
+# Three fingers guesture
+# - Expose Application
+defaults write com.apple.dock showAppExposeGestureEnabled -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 2
+
 # Increase sound quality for Bluetooth headphones/headsets
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
@@ -276,5 +281,20 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 
 # Use plain text mode for new TextEdit documents
 defaults write com.apple.TextEdit RichText -int 0
+
+# Keybindings
+# - Turning off ctrl+space and ctrl+alt+space not to mess up w/ tmux
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 60 "{ enabled = 0; value = { parameters = (32, 49, 262144); type = standard; }; }"
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 61 "{ enabled = 0; value = { parameters = (32, 49, 786432); type = standard; }; }"
+# - Switch languages via CapsLock
+defaults write NSGlobalDomain TISRomanSwitchState -int 1
+# - Turning off Spotlight keybinding
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "{ enabled = 0; value = { parameters = (65535, 49, 1048576); type = standard; }; }"
+
+# Sounds
+# - No beeping
+defaults write NSGlobalDomain com.apple.sound.beep.volume -int 0
+# - Mute UI Sounds
+defaults write NSGlobalDomain com.apple.sound.uiaudio.enabled -bool false
 
 killall SystemUIServer

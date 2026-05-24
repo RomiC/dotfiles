@@ -1,0 +1,32 @@
+{
+  "plugins": {
+    "fzf": {
+      "rev": "3953d1c649f51b129adac1f065c431320f3db467",
+      "src": "https://github.com/junegunn/fzf"
+    },
+    "fzf.vim": {
+      "rev": "b9b98ac5741afd2d0aa1e09f24b1614d4c91f15a",
+      "src": "https://github.com/junegunn/fzf.vim"
+    },
+    "vifm.vim": {
+      "rev": "3742c5f90635650de12859aa880c7a763766cf85",
+      "src": "https://github.com/vifm/vifm.vim"
+    },
+    "vim-afterglow": {
+      "rev": "fe3a0c4d2acf13ed6f7f0f1fede0a2570f13b06e",
+      "src": "https://github.com/danilo-augusto/vim-afterglow"
+    },
+    "vim-jinja": {
+      "rev": "7c54e2320c5f676636cdd8697480782eebfb2bf2",
+      "src": "https://github.com/lepture/vim-jinja"
+    },
+    "vim-surround": {
+      "rev": "3d188ed2113431cf8dac77be61b842acb64433d9",
+      "src": "https://github.com/tpope/vim-surround"
+    },
+    "vim-visual-multi": {
+      "rev": "a6975e7c1ee157615bbc80fc25e4392f71c344d4",
+      "src": "https://github.com/mg979/vim-visual-multi"
+    }
+  }
+}

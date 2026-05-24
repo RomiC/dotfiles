@@ -95,7 +95,7 @@ PURE_PROMPT_SYMBOL="➜"
 
 # - fzf-tab completion
 #  - fzf theme inspired by vim-afterglow
-export FZF_DEFAULT_OPTS="--cycle --color 'fg:#E6E1CF,fg+:#ddeeff,bg:#1A1A1A,bg+:#393939,pointer:#FF8400,header:#717879'"
+export FZF_DEFAULT_OPTS="--cycle --layout=reverse --height=12 --color 'fg:#E6E1CF,fg+:#ddeeff,bg:#1A1A1A,bg+:#393939,pointer:#FF8400,header:#717879'"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'  # Follow links, exclude hiddens and node_modules
 #  - fzf-tab completion plugin config
 zstyle ':completion:*' menu select

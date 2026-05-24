@@ -85,8 +85,15 @@
   {
     "context": "BufferSearchBar",
     "bindings": {
-      "ctrl-j": "search::SelectNextMatch",
-      "ctrl-k": "search::SelectPreviousMatch",
+      "alt-j": "search::SelectNextMatch",
+      "alt-k": "search::SelectPreviousMatch",
+    },
+  },
+  {
+    "context": "ProjectSearchView",
+    "bindings": {
+      "alt-j": "search::SelectNextMatch",
+      "alt-k": "search::SelectPreviousMatch",
     },
   },
   {
@@ -192,6 +199,18 @@
   {
     "unbind": {
       "cmd-shift-w": "workspace::CloseWindow"
+    }
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "cmd-g": "search::SelectNextMatch"
+    }
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "cmd-shift-g": "search::SelectPreviousMatch"
     }
   }
 ]

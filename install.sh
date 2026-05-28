@@ -88,6 +88,7 @@ git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/p
 # zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
+ln -sf $DOTFILES_DIR/.zshenv $HOME/.zshenv
 ln -sf $DOTFILES_DIR/.zshrc $HOME/.zshrc
 
 echo '-> 1Password CLI'

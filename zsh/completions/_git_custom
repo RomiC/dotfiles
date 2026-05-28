@@ -1,0 +1,31 @@
+#compdef gswup gsw gco
+
+# Completes branches sorted by most recent commit date
+_git_recent_branches() {
+  local -a branches
+  branches=(${(f)"$(git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads/ 2>/dev/null)"})
+  _describe -t branches 'recent branches' branches
+}
+
+# Completes branches for switch/checkout; falls back to files after -- or a valid ref
+_git_simple() {
+  if (( ${words[(I)--]} )); then
+    _files
+  else
+    local prev_word="${words[-1]}"
+    if [[ "$prev_word" != "switch" && "$prev_word" != "checkout" ]] && git rev-parse --verify "$prev_word" &>/dev/null 2>&1; then
+      _files
+    else
+      _git_recent_branches
+    fi
+  fi
+}
+
+# Override git subcommands
+_git-checkout() { _git_simple }
+_git-switch()   { _git_simple }
+
+# Completion for gswup / gsw / gco aliases
+_gswup() { _git_recent_branches }
+
+compdef _gswup gswup gsw gco

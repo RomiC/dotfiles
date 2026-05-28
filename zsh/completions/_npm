@@ -1,0 +1,15 @@
+#compdef npm
+
+# Wraps npm's built-in completion in a native zsh function.
+# Placed first in fpath to override /usr/share/zsh/5.9/functions/_npm,
+# which uses eval+bashcompinit and silently fails in zsh.
+
+_npm() {
+  compadd -- $(COMP_CWORD=$((CURRENT - 1)) \
+               COMP_LINE=$BUFFER \
+               COMP_POINT=$CURSOR \
+               npm completion -- "${words[@]}" \
+               2>/dev/null)
+}
+
+_npm "$@"

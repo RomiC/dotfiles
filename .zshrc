@@ -44,11 +44,11 @@ zinit ice wait"1" lucid
 zinit light unixorn/fzf-zsh-plugin
 zinit ice wait"1" lucid
 zinit light zsh-users/zsh-autosuggestions
-zinit ice wait"1" lucid atload"autoload -Uz compinit; compinit -i; setup_git_completions"
+zinit ice wait"1" lucid atload"autoload -Uz compinit; compinit -i"
 zinit light Aloxaf/fzf-tab
 
-# Add Docker completions to fpath before compinit
-fpath=(/Users/roman.charugin/.docker/completions $fpath)
+# Add completions to fpath before compinit
+fpath=($DOTFILES_DIR/zsh/completions $HOME/.docker/completions $fpath)
 
 # - Pure-theme (load immediately to avoid default prompt flash)
 zinit ice pick"async.zsh" src"pure.zsh" # with zsh-async library that's bundled with it.
@@ -146,43 +146,6 @@ zstyle ':completion:complete:gswup:*' sort false
 # Disable DWIM (Do What I Mean) for git checkout/switch to only show local branches
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 
-# Custom completion for gswup alias and git aliases
-_gswup() {
-  local -a branches
-  branches=(${(f)"$(git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads/ 2>/dev/null)"})
-  _describe -t branches 'recent branches' branches
-}
-
-# Register git completions LAST to override plugin completions
-setup_git_completions() {
-  compdef _gswup gswup
-  for git_alias in gsw gco gswup; do
-    compdef _gswup $git_alias
-  done
-}
-
-# Custom git completion for switch/checkout with proper branch sorting
-_git_simple() {
-  # Check if we're after -- (file completion context)
-  if (( ${words[(I)--]} )); then
-    _files
-  else
-    # Check if previous word is a valid ref (for file completion after branch name)
-    local prev_word="${words[-1]}"
-    if [[ "$prev_word" != "switch" && "$prev_word" != "checkout" ]] && git rev-parse --verify "$prev_word" &>/dev/null 2>&1; then
-      _files
-    else
-      # Complete branches sorted by commit date (most recent first)
-      local -a branches
-      branches=(${(f)"$(git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads/ 2>/dev/null)"})
-      _describe -t branches 'branches' branches
-    fi
-  fi
-}
-
-# Override only switch and checkout subcommands, keep native _git for everything else
-_git-checkout() { _git_simple }
-_git-switch() { _git_simple }
 
 
 # - FNM (node manager)

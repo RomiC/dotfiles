@@ -124,6 +124,7 @@
   {
     "context": "Terminal",
     "bindings": {
+      "ctrl-o": null,
       "cmd-shift-j": "editor::ToggleFocus",
       "cmd-j": "pane::ActivateNextItem",
       "cmd-k": "pane::ActivatePreviousItem",

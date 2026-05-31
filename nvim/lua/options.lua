@@ -11,10 +11,12 @@ opt.expandtab   = true
 opt.smarttab    = false
 
 -- ── Files ─────────────────────────────────────────────────────────────────────
-opt.swapfile = false
-opt.autoread = true
+opt.swapfile   = false
+opt.autoread   = true
+opt.updatetime = 1000  -- ms idle before CursorHold fires (used for auto-reload)
 
 -- ── UI ────────────────────────────────────────────────────────────────────────
+opt.number         = true
 opt.relativenumber = true
 opt.cursorline     = true   -- highlight current line (required for CursorLineNr)
 opt.mouse          = 'a'

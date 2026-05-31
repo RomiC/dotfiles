@@ -31,7 +31,7 @@ map('n', '<leader>n', '<cmd>tabnew<CR>',  { silent = true, desc = 'New tab' })
 map('n', '<leader>L', '<cmd>tabn<CR>',    { silent = true, desc = 'Next tab' })
 map('n', '<leader>H', '<cmd>tabp<CR>',    { silent = true, desc = 'Prev tab' })
 map('n', '<leader>W', '<C-w>q',           { silent = true, desc = 'Close window' })
-map('n', '<leader>w', '<cmd>bdelete<CR>', { silent = true, desc = 'Delete buffer' })
+map('n', '<leader>w', '<cmd>confirm bdelete<CR>', { silent = true, desc = 'Close buffer' })
 
 -- ── Quickfix ──────────────────────────────────────────────────────────────────
 map('n', '<leader><leader>j', '<cmd>cnext<CR>', { silent = true, desc = 'Quickfix next' })

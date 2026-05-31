@@ -77,6 +77,11 @@ git clone https://github.com/tmux-plugins/tmux-resurrect $HOME/.config/tmux/plug
 git clone https://github.com/nhdaly/tmux-better-mouse-mode $HOME/.config/tmux/plugins/tmux-better-mouse-mode
 git clone https://github.com/tmux-plugins/tmux-open $HOME/.config/tmux/plugins/tmux-open
 
+echo '-> pi coding agent'
+mkdir -p $HOME/.pi/agent/extensions
+ln -sf $DOTFILES_DIR/pi/agent/AGENTS.md $HOME/.pi/agent/AGENTS.md
+ln -sf $DOTFILES_DIR/pi/agent/extensions/guardrails.json $HOME/.pi/agent/extensions/guardrails.json
+
 echo '-> zsh'
 
 echo '-> oh-my-zsh'

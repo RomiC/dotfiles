@@ -1,0 +1,223 @@
+{
+  "$schema": "https://unpkg.com/@aliou/pi-guardrails@0.13.1/schema.json",
+  "applyBuiltinDefaults": true,
+  "version": "0.9.0-20260327",
+  "onboarding": {
+    "completed": true,
+    "completedAt": "2026-05-31T12:02:37.048Z",
+    "version": "0.9.0-20260327"
+  },
+  "features": {
+    "pathAccess": true
+  },
+  "pathAccess": {
+    "mode": "ask"
+  },
+  "policies": {
+    "rules": [
+      {
+        "id": "example-secret-env-files",
+        "name": "Secret env files",
+        "description": "Block .env files and variants",
+        "patterns": [
+          {
+            "pattern": ".env"
+          },
+          {
+            "pattern": ".env.*"
+          }
+        ],
+        "allowedPatterns": [
+          {
+            "pattern": ".env.example"
+          },
+          {
+            "pattern": "*.sample.env"
+          }
+        ],
+        "protection": "noAccess",
+        "onlyIfExists": true,
+        "enabled": true
+      },
+      {
+        "id": "example-log-files",
+        "name": "Log files",
+        "description": "Treat log files as read-only",
+        "patterns": [
+          {
+            "pattern": "*.log"
+          },
+          {
+            "pattern": "*.out"
+          }
+        ],
+        "protection": "readOnly",
+        "onlyIfExists": true,
+        "enabled": true
+      },
+      {
+        "id": "example-regex-env",
+        "name": "Regex env files",
+        "description": "Regex example for env files",
+        "patterns": [
+          {
+            "pattern": "^\\.env(\\..+)?$",
+            "regex": true
+          }
+        ],
+        "allowedPatterns": [
+          {
+            "pattern": "^\\.env\\.example$",
+            "regex": true
+          }
+        ],
+        "protection": "noAccess",
+        "onlyIfExists": true,
+        "enabled": true
+      },
+      {
+        "id": "example-ssh-keys",
+        "name": "SSH keys",
+        "description": "Block SSH private key files",
+        "patterns": [
+          {
+            "pattern": "*.pem"
+          },
+          {
+            "pattern": "*_rsa"
+          },
+          {
+            "pattern": "*_ed25519"
+          }
+        ],
+        "allowedPatterns": [
+          {
+            "pattern": "*.pub"
+          }
+        ],
+        "protection": "noAccess",
+        "onlyIfExists": true,
+        "enabled": true
+      },
+      {
+        "id": "example-aws-credentials",
+        "name": "AWS credentials",
+        "description": "Block AWS credentials and config files",
+        "patterns": [
+          {
+            "pattern": ".aws/credentials"
+          },
+          {
+            "pattern": ".aws/config"
+          }
+        ],
+        "protection": "noAccess",
+        "onlyIfExists": true,
+        "enabled": true
+      },
+      {
+        "id": "example-database-files",
+        "name": "Database files",
+        "description": "Protect database files from modification",
+        "patterns": [
+          {
+            "pattern": "*.db"
+          },
+          {
+            "pattern": "*.sqlite"
+          },
+          {
+            "pattern": "*.sqlite3"
+          }
+        ],
+        "protection": "readOnly",
+        "onlyIfExists": true,
+        "enabled": true
+      }
+    ]
+  },
+  "permissionGate": {
+    "patterns": [
+      {
+        "pattern": "brew",
+        "description": "Homebrew package manager"
+      },
+      {
+        "pattern": "git commit",
+        "description": "Git commit"
+      },
+      {
+        "pattern": "git push",
+        "description": "Git push (includes force push)"
+      },
+      {
+        "pattern": "git tag",
+        "description": "Git tag"
+      },
+      {
+        "pattern": "gh pr",
+        "description": "GitHub PR actions (create, merge, close, etc.)"
+      },
+      {
+        "pattern": "gh issue comment",
+        "description": "GitHub issue comment"
+      },
+      {
+        "pattern": "gh release",
+        "description": "GitHub release actions (create, publish, etc.)"
+      },
+      {
+        "pattern": "npm publish",
+        "description": "NPM package publishing"
+      },
+      {
+        "pattern": "yarn publish",
+        "description": "Yarn package publishing"
+      },
+      {
+        "pattern": "pnpm publish",
+        "description": "PNPM package publishing"
+      },
+      {
+        "pattern": "cargo publish",
+        "description": "Cargo (Rust) package publishing"
+      },
+      {
+        "pattern": "docker push",
+        "description": "Docker image push"
+      },
+      {
+        "pattern": "kubectl apply",
+        "description": "Kubernetes resource apply"
+      },
+      {
+        "pattern": "terraform apply",
+        "description": "Terraform infrastructure apply"
+      },
+      {
+        "pattern": "DROP DATABASE",
+        "description": "SQL database drop"
+      },
+      {
+        "pattern": "DROP TABLE",
+        "description": "SQL table drop"
+      },
+      {
+        "pattern": "dbt run",
+        "description": "dbt model execution"
+      },
+      {
+        "pattern": "dbt seed",
+        "description": "dbt seed data loading"
+      },
+      {
+        "pattern": "docker rm",
+        "description": "Docker container removal"
+      },
+      {
+        "pattern": "docker rmi",
+        "description": "Docker image removal"
+      }
+    ]
+  }
+}

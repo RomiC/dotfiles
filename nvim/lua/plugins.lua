@@ -21,7 +21,7 @@ vim.pack.add({
   gh('lepture/vim-jinja'),         -- Nunjucks / Jinja2
 
   -- ── Editing helpers ────────────────────────────────────────────────
-  gh('mg979/vim-visual-multi'),    -- multi-cursor  (<C-n>)
+  gh('mg979/vim-visual-multi'),    -- multi-cursor  (<C-n> / <C-S-n>)
   gh('tpope/vim-surround'),        -- surround motions (cs, ds, ys)
 
   -- ── REMOVED (built-in replacements) ────────────────────────────────

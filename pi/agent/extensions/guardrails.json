@@ -155,8 +155,28 @@
         "description": "Git tag"
       },
       {
-        "pattern": "gh pr",
-        "description": "GitHub PR actions (create, merge, close, etc.)"
+        "pattern": "gh pr create",
+        "description": "GitHub PR creation"
+      },
+      {
+        "pattern": "gh pr merge",
+        "description": "GitHub PR merge"
+      },
+      {
+        "pattern": "gh pr close",
+        "description": "GitHub PR close"
+      },
+      {
+        "pattern": "gh pr edit",
+        "description": "GitHub PR edit"
+      },
+      {
+        "pattern": "gh pr review",
+        "description": "GitHub PR review submission"
+      },
+      {
+        "pattern": "gh pr comment",
+        "description": "GitHub PR comment"
       },
       {
         "pattern": "gh issue comment",

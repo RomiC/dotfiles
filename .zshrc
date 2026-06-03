@@ -71,6 +71,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' fzf-search-display true
 
 # - ZSH-Autosuggestion
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#797979'  # matches afterglow comment colour
 bindkey '^[[Z' autosuggest-accept
 
 # - History

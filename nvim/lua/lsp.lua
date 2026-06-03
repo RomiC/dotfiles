@@ -31,6 +31,17 @@ vim.lsp.config('ts_ls', {
   cmd        = { 'typescript-language-server', '--stdio' },
   filetypes  = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
   root_markers = { 'package.json', 'tsconfig.json', '.git' },
+  init_options = {
+    hostInfo = 'neovim',
+    preferences = {
+      -- tell tsserver to treat .cjs/.mjs as JS modules
+      allowJs = true,
+    },
+  },
+  settings = {
+    typescript = { preferences = { allowJs = true } },
+    javascript = { preferences = { allowJs = true } },
+  },
 })
 vim.lsp.enable('ts_ls')
 

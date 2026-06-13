@@ -205,6 +205,12 @@ alias doc=docker
 alias lsa='ls -lhA' ll='ls -lh' lsn='ls -1A'
 # - FNM (Node manager)
 alias nu='fnm use' nls='fnm list' nlsr='fnm list-remote'
+#   Run a command with a specific Node version: ne 26 npm run test
+ne() {
+  local version=$1
+  shift
+  fnm exec --using="$version" -- "$@"
+}
 # - Node
 alias nv='node -v'
 # - Clear console
@@ -218,7 +224,7 @@ alias cwd='pwd | pbcopy'
 alias lg='lazygit'
 # - Brew
 #   - Update and upgrade packages
-alias buu='brew update && brew upgrade && brew cleanup'
+alias buu='brew update && brew upgrade -y && brew cleanup'
 # - 1Password
 #   - Copy password for the item
 alias opp='op item list | fzf | awk "{print \$1}" | xargs -I @ zsh -c '\''op item get --reveal --fields label=password "@" 2>/dev/null || op item get --reveal --fields label=credential "@"'\'' | pbcopy'
@@ -231,6 +237,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # go
 export PATH="/usr/local/go/bin:$PATH"
+
+# local bin
+export PATH="$HOME/.local/bin:$PATH"
 
 # Yazi helper - to keep current opened Yazi folder back to terminal
 function y() {

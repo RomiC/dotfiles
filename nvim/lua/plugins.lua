@@ -10,7 +10,11 @@ vim.pack.add({
   gh('danilo-augusto/vim-afterglow'),
 
   -- ── File browser ───────────────────────────────────────────────────
-  gh('vifm/vifm.vim'),
+  gh('nvim-neo-tree/neo-tree.nvim'),
+  gh('MunifTanjim/nui.nvim'),
+  gh('nvim-lua/plenary.nvim'),
+  gh('nvim-tree/nvim-web-devicons'),
+  gh('lewis6991/gitsigns.nvim'),
 
   -- ── Fuzzy finder ───────────────────────────────────────────────────
   -- NOTE: fzf binary must also be present: `brew install fzf`

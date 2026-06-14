@@ -6,4 +6,5 @@ require('options')     -- vim.opt settings
 require('autocmds')    -- autocommands
 require('statusline')  -- custom statusline
 require('lsp')         -- built-in LSP + completion
+require('explorer')    -- sidebar file explorer
 require('keymaps')     -- keybindings (last — plugins are loaded by now)

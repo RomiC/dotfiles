@@ -48,7 +48,7 @@ opt.foldenable = false
 -- Required for built-in LSP completion popup
 opt.completeopt = { 'menuone', 'noinsert', 'popup', 'fuzzy' }
 
--- ── Disable built-in file manager (using vifm instead) ───────────────────────
+-- ── Disable built-in file manager (using neo-tree instead) ────────────────────
 vim.g.loaded_netrwPlugin = 1
 
 -- ── Colorscheme ───────────────────────────────────────────────────────────────

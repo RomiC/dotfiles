@@ -10,10 +10,11 @@ map('n', 'ZS',          '<cmd>wa<CR>',   { silent = true, desc = 'Save all' })
 map('n', '<leader>s',   '<cmd>wa<CR>',   { silent = true, desc = 'Save all' })
 map('i', '<C-s>',  '<Esc><cmd>wa<CR>',   { silent = true, desc = 'Save all' })
 
--- ── File explorer (Vifm) ──────────────────────────────────────────────────────
-if not vim.g.vscode then
-  map('n', 'ge', '<cmd>Vifm<CR>', { silent = true, desc = 'Open Vifm' })
-end
+-- ── neo-tree sidebar ──────────────────────────────────────────────────────────
+-- Toggle: <space>e
+map('n', '<leader>e', '<cmd>Neotree toggle<CR>', { silent = true, desc = 'Toggle neo-tree' })
+-- Focus / reveal current file: <space>g<space>r
+map('n', '<leader>g<leader>r', '<cmd>Neotree reveal<CR>', { silent = true, desc = 'Reveal current file in neo-tree' })
 
 -- ── Window splits ─────────────────────────────────────────────────────────────
 map('n', '<leader>]', '<cmd>vsplit<CR>', { silent = true, desc = 'Split vertical' })
@@ -107,7 +108,8 @@ map('n', '<leader>u', function()
   for mod, _ in pairs(package.loaded) do
     -- remove every module that lives under the nvim config dir
     if mod:match('^plugins') or mod:match('^options') or mod:match('^autocmds')
-      or mod:match('^statusline') or mod:match('^lsp') or mod:match('^keymaps') then
+      or mod:match('^statusline') or mod:match('^lsp') or mod:match('^keymaps')
+      or mod:match('^explorer') then
       package.loaded[mod] = nil
     end
   end

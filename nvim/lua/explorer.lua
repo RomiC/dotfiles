@@ -67,7 +67,7 @@ require("neo-tree").setup({
       never_show = { ".DS_Store" },
     },
     follow_current_file = {
-      enabled = true,
+      enabled = false,    -- don't track buffer changes / change root
     },
     use_libuv_file_watcher = true,
     -- open files in the last-focused window (not inside neo-tree)
@@ -83,4 +83,31 @@ require("neo-tree").setup({
       position = "left",
     },
   },
+})
+
+-- Open neo-tree on startup only when invoked with no arguments or a directory
+vim.api.nvim_create_autocmd("VimEnter", {
+  desc = "Open neo-tree on startup when no file argument is passed",
+  nested = true,
+  callback = function()
+    -- Don't open neo-tree if any argument is a file path
+    for _, arg in ipairs(vim.fn.argv()) do
+      -- Skip special directory cases
+      if arg == "." or arg == ".." then
+        -- continue (these are directories)
+      elseif vim.fn.isdirectory(arg) == 1 then
+        -- continue (existing directory)
+      elseif vim.fn.filereadable(arg) == 1 then
+        -- Existing file — don't open neo-tree
+        return
+      elseif arg:match("%.[a-zA-Z0-9]+$") then
+        -- Has a file extension (like .md, .lua, .go) — assume it's a file, don't open
+        return
+      end
+    end
+    -- Defer to let the UI finish rendering first
+    vim.defer_fn(function()
+      require("neo-tree.command").execute({ toggle = false, source = "filesystem" })
+    end, 10)
+  end,
 })

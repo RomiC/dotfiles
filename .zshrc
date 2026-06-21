@@ -1,6 +1,9 @@
 # Auto update brew every 2 days
 export HOMEBREW_AUTO_UPDATE_SECS="172800"
 
+# NeoVim as default editor
+export EDITOR=nvim
+
 # Keep non-interactive shells clean (important for editor env capture)
 [[ $- != *i* ]] && return
 

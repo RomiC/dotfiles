@@ -7,4 +7,5 @@ require('autocmds')    -- autocommands
 require('statusline')  -- custom statusline
 require('lsp')         -- built-in LSP + completion
 require('explorer')    -- sidebar file explorer
+require('fuzzy')       -- fzf-lua fuzzy finder
 require('keymaps')     -- keybindings (last — plugins are loaded by now)

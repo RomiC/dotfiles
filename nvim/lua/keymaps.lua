@@ -39,21 +39,13 @@ map('n', '<leader><leader>j', '<cmd>cnext<CR>', { silent = true, desc = 'Quickfi
 map('n', '<leader><leader>k', '<cmd>cprev<CR>', { silent = true, desc = 'Quickfix prev' })
 -- NOTE: original had <leader><leader>j mapped twice (both to cnext) — fixed above.
 
--- ── FZF: buffers / windows / files / search ──────────────────────────────────
-map('n', '<C-b>',      '<cmd>Buffers<CR>', { silent = true, desc = 'FZF buffers' })
-map('t', '<C-b>',   '<C-\\><C-N><cmd>Buffers<CR>', { silent = true })
-map('n', '<leader>b',  '<cmd>Buffers<CR>', { silent = true, desc = 'FZF buffers' })
-map('n', '<leader>r',  '<cmd>Windows<CR>', { silent = true, desc = 'FZF windows' })
-map('n', '<C-p>',      '<cmd>Files<CR>',   { silent = true, desc = 'FZF files' })
-map('n', '<leader>p',  '<cmd>Files<CR>',   { silent = true, desc = 'FZF files' })
-map('n', '<leader>f',  '<cmd>Rg<CR>',      { silent = true, desc = 'FZF ripgrep' })
-
--- FZF split actions
-vim.g.fzf_action = {
-  ['ctrl-t'] = 'tab split',
-  ['ctrl-_'] = 'split',
-  ['ctrl-]'] = 'vsplit',
-}
+-- ── fzf-lua: fuzzy search everything ───────────────────────────────────────
+map('n', '<C-p>',      '<cmd>lua require("fzf-lua").files()<CR>',       { silent = true, desc = 'Find files' })
+map('n', '<leader>p',  '<cmd>lua require("fzf-lua").files()<CR>',       { silent = true, desc = 'Find files' })
+map('n', '<leader>f',  '<cmd>lua require("fzf-lua").live_grep()<CR>',   { silent = true, desc = 'Live grep (search contents)' })
+map('n', '<leader>F',  '<cmd>lua require("fzf-lua").grep()<CR>',        { silent = true, desc = 'Grep (prompt for query)' })
+map('n', '<leader>b',  '<cmd>lua require("fzf-lua").buffers()<CR>',     { silent = true, desc = 'Find buffers' })
+map('n', '<leader>r',  '<cmd>lua require("fzf-lua").builtin()<CR>',     { silent = true, desc = 'fzf-lua builtin pickers' })
 
 -- ── Indentation ───────────────────────────────────────────────────────────────
 map('n', '<Tab>',   '>>',  { silent = true, desc = 'Indent +' })
@@ -109,7 +101,7 @@ map('n', '<leader>u', function()
     -- remove every module that lives under the nvim config dir
     if mod:match('^plugins') or mod:match('^options') or mod:match('^autocmds')
       or mod:match('^statusline') or mod:match('^lsp') or mod:match('^keymaps')
-      or mod:match('^explorer') then
+      or mod:match('^explorer') or mod:match('^fuzzy') then
       package.loaded[mod] = nil
     end
   end

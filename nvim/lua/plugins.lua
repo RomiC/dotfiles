@@ -18,11 +18,7 @@ vim.pack.add({
 
   -- ── Fuzzy finder ───────────────────────────────────────────────────
   -- NOTE: fzf binary must also be present: `brew install fzf`
-  gh('junegunn/fzf'),
-  gh('junegunn/fzf.vim'),
-
-  -- ── Syntax ─────────────────────────────────────────────────────────
-  gh('lepture/vim-jinja'),         -- Nunjucks / Jinja2
+  gh('ibhagwan/fzf-lua'),
 
   -- ── Editing helpers ────────────────────────────────────────────────
   gh('mg979/vim-visual-multi'),    -- multi-cursor  (<C-n> / <C-S-n>)

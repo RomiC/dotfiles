@@ -1,0 +1,11 @@
+{
+  "$schema": "https://unpkg.com/@aliou/pi-guardrails@0.13.3/schema.json",
+  "pathAccess": {
+    "allowedPaths": [
+      "/dev/",
+      "/opt/",
+      "~/.pi/agent/npm/node_modules/@aliou/pi-guardrails/extensions/"
+    ]
+  },
+  "version": "0.9.0-20260327"
+}

@@ -11,4 +11,12 @@ prepend_keymap = [
   { on = ["g", "w"], run = "cd ~/work",         desc = "Bookmark: Work" },
   { on = ["g", "d"], run = "cd ~/Downloads",    desc = "Bookmark: Downloads" },
   { on = ["g", "s"], run = "cd ~/Screenshots",  desc = "Bookmark: Screenshots" },
+
+  # ── Archive creation ──────────────────────────────────────────────────────
+  { on = ["a", "z"], run = '''
+    shell 'printf "Archive name: " > /dev/tty; read name; ~/.config/yazi/scripts/create-archive.sh zip "$name" "$@"' --block --confirm
+  ''', desc = "Create zip archive from selected" },
+  { on = ["a", "g"], run = '''
+    shell 'printf "Archive name: " > /dev/tty; read name; ~/.config/yazi/scripts/create-archive.sh tar "$name" "$@"' --block --confirm
+  ''', desc = "Create tar.gz archive from selected" },
 ]

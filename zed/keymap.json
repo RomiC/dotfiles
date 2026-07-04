@@ -83,6 +83,12 @@
     },
   },
   {
+    "context": "Editor",
+    "bindings": {
+      "shift-tab": "editor::Outdent"
+    }
+  },
+  {
     "context": "BufferSearchBar",
     "bindings": {
       "alt-j": "search::SelectNextMatch",

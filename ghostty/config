@@ -23,3 +23,8 @@ auto-update=download
 auto-update-channel=stable
 
 confirm-close-surface=false
+
+# URL handling
+click-strategy=block
+# Underline URLs on hover for better visibility
+underline-links=true

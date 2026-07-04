@@ -45,7 +45,7 @@ zinit ice wait"1" lucid
 zinit light zsh-users/zsh-completions
 zinit ice wait"1" lucid
 zinit light unixorn/fzf-zsh-plugin
-zinit ice wait"1" lucid
+zinit ice lucid
 zinit light zsh-users/zsh-autosuggestions
 zinit ice wait"1" lucid atload"autoload -Uz compinit; compinit -i"
 zinit light Aloxaf/fzf-tab
@@ -243,6 +243,7 @@ export PATH="/usr/local/go/bin:$PATH"
 
 # local bin
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 
 # Yazi helper - to keep current opened Yazi folder back to terminal
 function y() {

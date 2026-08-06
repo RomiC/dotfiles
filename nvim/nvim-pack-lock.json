@@ -8,6 +8,10 @@
       "rev": "25050e4ed39e628282831d4cbecb1850454ce915",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "hotreload.nvim": {
+      "rev": "76f1c8bd1afaa13a22756c736478144fa38f75f8",
+      "src": "https://github.com/diogo464/hotreload.nvim"
+    },
     "neo-tree.nvim": {
       "rev": "1b4c40051f2623d0a7dcf19d5b74b997b97b0a9a",
       "src": "https://github.com/nvim-neo-tree/neo-tree.nvim"

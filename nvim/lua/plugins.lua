@@ -20,6 +20,9 @@ vim.pack.add({
   -- NOTE: fzf binary must also be present: `brew install fzf`
   gh('ibhagwan/fzf-lua'),
 
+  -- ── Auto-reload buffers on file change ─────────────────────────────
+  gh('diogo464/hotreload.nvim'),
+
   -- ── Editing helpers ────────────────────────────────────────────────
   gh('mg979/vim-visual-multi'),    -- multi-cursor  (<C-n> / <C-S-n>)
   gh('tpope/vim-surround'),        -- surround motions (cs, ds, ys)

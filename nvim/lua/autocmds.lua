@@ -2,15 +2,10 @@
 local augroup  = vim.api.nvim_create_augroup
 local autocmd  = vim.api.nvim_create_autocmd
 
--- ── Auto-reload buffers when file changes on disk ──────────────────────────
--- `autoread` alone does nothing in terminal Neovim — it needs an explicit
--- `checktime` call. Trigger on focus, buffer switch, and cursor idle.
-autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI' }, {
-  group    = augroup('auto_reload', { clear = true }),
-  pattern  = '*',
-  callback = function()
-    if vim.fn.mode() ~= 'c' then vim.cmd('checktime') end
-  end,
+-- ── Auto-reload buffers on disk change (hotreload.nvim) ─────────────────────
+-- Uses native file system watchers (FSEvents) instead of CursorHold polling
+require('hotreload').setup({
+  silent = true,   -- no notifications on reload
 })
 
 -- ── Terminal ──────────────────────────────────────────────────────────────────

@@ -83,10 +83,11 @@
     },
   },
   {
-    "context": "Editor",
+    "context": "Editor && vim_mode != insert",
     "bindings": {
-      "shift-tab": "editor::Outdent"
-    }
+      "shift-tab": "editor::Outdent",
+      "tab": "editor::Indent",
+    },
   },
   {
     "context": "BufferSearchBar",
@@ -149,48 +150,48 @@
   },
   {
     "bindings": {
-      "cmd-g g": "git_graph::Open"
-    }
+      "cmd-g g": "git_graph::Open",
+    },
   },
   {
     "bindings": {
-      "ctrl-j": "menu::SelectNext"
-    }
+      "ctrl-j": "menu::SelectNext",
+    },
   },
   {
     "unbind": {
-      "ctrl-n": "menu::SelectNext"
-    }
+      "ctrl-n": "menu::SelectNext",
+    },
   },
   {
     "bindings": {
-      "ctrl-alt-j": "menu::SelectLast"
-    }
+      "ctrl-alt-j": "menu::SelectLast",
+    },
   },
   {
     "unbind": {
-      "cmd-down": "menu::SelectLast"
-    }
+      "cmd-down": "menu::SelectLast",
+    },
   },
   {
     "bindings": {
-      "ctrl-k": "menu::SelectPrevious"
-    }
+      "ctrl-k": "menu::SelectPrevious",
+    },
   },
   {
     "unbind": {
-      "up": "menu::SelectPrevious"
-    }
+      "up": "menu::SelectPrevious",
+    },
   },
   {
     "bindings": {
-      "ctrl-alt-k": "menu::SelectFirst"
-    }
+      "ctrl-alt-k": "menu::SelectFirst",
+    },
   },
   {
     "unbind": {
-      "cmd-up": "menu::SelectFirst"
-    }
+      "cmd-up": "menu::SelectFirst",
+    },
   },
   {
     "context": "Pane",
@@ -198,26 +199,26 @@
       "alt-cmd-t": [
         "pane::CloseOtherItems",
         {
-          "close_pinned": false
-        }
-      ]
-    }
+          "close_pinned": false,
+        },
+      ],
+    },
   },
   {
     "unbind": {
-      "cmd-shift-w": "workspace::CloseWindow"
-    }
-  },
-  {
-    "context": "Pane",
-    "unbind": {
-      "cmd-g": "search::SelectNextMatch"
-    }
+      "cmd-shift-w": "workspace::CloseWindow",
+    },
   },
   {
     "context": "Pane",
     "unbind": {
-      "cmd-shift-g": "search::SelectPreviousMatch"
-    }
-  }
+      "cmd-g": "search::SelectNextMatch",
+    },
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "cmd-shift-g": "search::SelectPreviousMatch",
+    },
+  },
 ]

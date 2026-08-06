@@ -1,3 +1,6 @@
+# Set config directory
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Auto update brew every 2 days
 export HOMEBREW_AUTO_UPDATE_SECS="172800"
 
@@ -252,4 +255,28 @@ function y() {
 	IFS= read -r -d '' cwd < "$tmp"
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	command rm -f -- "$tmp"
+}
+
+# Tmux-resurrect session switcher - pick a saved session with fzf, link it as "last"
+function tms() {
+	local dir="$HOME/.local/share/tmux/resurrect"
+	local selected
+	selected=$(ls -t "$dir"/tmux_resurrect_*.txt 2>/dev/null | while read -r f; do
+		local name="${f:t}"
+		local ts="${name#tmux_resurrect_}"
+		ts="${ts%.txt}"
+		local d=$(date -j -f "%Y%m%dT%H%M%S" "$ts" "+%Y-%m-%d %H:%M" 2>/dev/null)
+		local size=$(ls -lh "$f" | awk '{print $5}')
+		print -r -- "$d	$size	$name"
+	done | fzf --reverse --prompt="Pick session > ")
+
+	if [[ -z "$selected" ]]; then
+		echo "No session selected"
+		return 1
+	fi
+
+	local filename="$(echo "$selected" | cut -f3-)"
+	ln -sf "$dir/$filename" "$dir/last"
+	echo "Switched to: $filename"
+	echo "Restore it with: tmux prefix + R"
 }

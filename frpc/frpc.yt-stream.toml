@@ -1,0 +1,23 @@
+# frpc — expose the local yt-stream instance via the Ubuntu frp server.
+# Run on the Mac:  frpc -c frpc.toml
+# Requires frpc (v0.71.0): https://github.com/fatedier/frp/releases
+
+serverAddr = "yt-stream.charugin.me"
+serverPort = 7000
+auth.token = ""
+
+# yt-stream API (stream-service) — http://<server>:8870
+[[proxies]]
+name = "yt-stream-api"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 8870
+remotePort = 8870
+
+# yt-stream Icecast audio mount — http://<server>:8871/stream
+[[proxies]]
+name = "yt-stream-icecast"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 8871
+remotePort = 8871

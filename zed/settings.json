@@ -221,7 +221,7 @@
   "show_edit_predictions": true,
   "soft_wrap": "editor_width",
   "tab_size": 2,
-  "format_on_save": "modifications_if_available",
+  "format_on_save": "on",
   "colorize_brackets": true,
   "preferred_line_length": 120,
   "inlay_hints": {

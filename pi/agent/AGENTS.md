@@ -16,6 +16,12 @@
 - **Never publish packages** (`npm publish`, `yarn publish`, `pnpm publish`, `cargo publish`)
   without explicit approval.
 
+## Code Comments
+
+- Comment ONLY non-trivial code — parts that might confuse or that have research and decisions behind them.
+- Comments MUST NOT exceed 2 lines — longer comments are garbage left for stupid AI agents.
+- Instead of commenting code, check and update the related design documents.
+
 ## General Workflow
 
 - When preparing a commit, first stage changes, then show `git diff --staged`, then propose a

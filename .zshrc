@@ -66,7 +66,12 @@ zinit snippet OMZP::git
 
 # Configuration
 # - Navigation
+# zsh links the main keymap to viins when env EDITOR/VISUAL contains "vi" (decided before .zshrc exports run),
+# so emacs-style motion must be bound explicitly, not left to the keymap default.
+bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
+bindkey '^[b' backward-word
+bindkey '^[f' forward-word
 # Unbind ctrl+space to allow tmux prefix to work
 bindkey -r '^@'
 # - Completion

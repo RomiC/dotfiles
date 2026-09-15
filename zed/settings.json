@@ -7,7 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "diff_view_style": "split",
+  "diff_view_style": "unified",
   "unnecessary_code_fade": 0.0,
   "lsp": {
     "vtsls": {
@@ -80,10 +80,10 @@
     "button": false,
   },
   "git_panel": {
-    "group_by": "staging",
+    "group_by": "none",
     "show_count_badge": true,
     "file_icons": true,
-    "tree_view": false,
+    "tree_view": true,
     "sort_by_path": true,
     "status_style": "icon",
     "dock": "left",

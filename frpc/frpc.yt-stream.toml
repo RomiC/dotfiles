@@ -4,20 +4,18 @@
 
 serverAddr = "yt-stream.charugin.me"
 serverPort = 7000
-auth.token = ""
 
 # yt-stream API (stream-service) — http://<server>:8870
 [[proxies]]
-name = "yt-stream-api"
-type = "tcp"
-localIP = "127.0.0.1"
-localPort = 8870
-remotePort = 8870
+name = "yts"
+type = "https"
+customDomains = ["yts.charugin.me"]
 
-# yt-stream Icecast audio mount — http://<server>:8871/stream
-[[proxies]]
-name = "yt-stream-icecast"
-type = "tcp"
-localIP = "127.0.0.1"
-localPort = 8871
-remotePort = 8871
+[proxies.plugin]
+type = "https2http"
+localAddr = "yts.localhost"
+crtPath = "/Users/roman.charugin/.config/certs/yts.charugin.me/fullchain.pem"
+keyPath = "/Users/roman.charugin/.config/certs/yts.charugin.me/privkey.pem"
+hostHeaderRewrite = "yts.localhost"
+requestHeaders.set.x-from-where = "frp"
+

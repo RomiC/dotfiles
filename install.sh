@@ -117,6 +117,13 @@ if [[ -e $HOME/.config/zed/themes && ! -L $HOME/.config/zed/themes ]]; then
 fi
 ln -sfn $DOTFILES_DIR/zed/themes $HOME/.config/zed/themes
 
+echo '-> VSCode'
+VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
+mkdir -p "$VSCODE_USER_DIR"
+ln -sf $DOTFILES_DIR/vscode/settings.json "$VSCODE_USER_DIR/settings.json"
+ln -sf $DOTFILES_DIR/vscode/keybindings.json "$VSCODE_USER_DIR/keybindings.json"
+xargs -n1 code --install-extension < $DOTFILES_DIR/vscode/extensions.txt
+
 echo '=[ Installing fonts ]='
 FONTS_DIR="$HOME/Library/Fonts"
 

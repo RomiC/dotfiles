@@ -1,53 +1,64 @@
 -- ~/.config/nvim/lua/explorer.lua
 -- neo-tree.nvim — sidebar file explorer
 
+-- Palette aligned with the Yazi Afterglow flavor (yazi/flavors/afterglow.yazi/flavor.toml).
+-- neo-tree no longer reads a `highlights` setup option; it uses `highlight default`,
+-- so groups defined here before setup() are respected.
+local palette = {
+  NeoTreeNormal            = { bg = "NONE", fg = "#d6d6d6" },
+  NeoTreeNormalNC          = { bg = "NONE", fg = "#d6d6d6" },
+  NeoTreeCursorLine        = { bg = "#343434" },
+  NeoTreeSignColumn        = { bg = "NONE" },
+  NeoTreeWinSeparator      = { bg = "NONE", fg = "#444444" },
+  NeoTreeIndentMarker      = { fg = "#444444" },
+  NeoTreeExpander          = { fg = "#444444" },
+  NeoTreeRootName          = { fg = "#6c99bb", bold = true },
+  NeoTreeTitleBar          = { bg = "#444444", fg = "#ffc66d" },
+  -- Folder marked by orange icon only; name stays neutral like regular files
+  NeoTreeDirectoryName     = { fg = "#d6d6d6" },
+  NeoTreeDirectoryIcon     = { fg = "#ffc66d" },
+  NeoTreeFileName          = { fg = "#d6d6d6" },
+  NeoTreeFileNameOpened    = { fg = "#d6d6d6", bold = true },
+  NeoTreeFileIcon          = { fg = "#d6d6d6" },
+  NeoTreeDotfile           = { fg = "#979797" },
+  NeoTreeHiddenByName      = { fg = "#979797" },
+  NeoTreeIgnored           = { fg = "#979797" },
+  NeoTreeDimText           = { fg = "#5a5a5a" },
+  NeoTreeFadeText1         = { fg = "#5a5a5a" },
+  NeoTreeFadeText2         = { fg = "#444444" },
+  NeoTreeMessage           = { fg = "#979797", italic = true },
+  NeoTreeSymbolicLinkTarget = { fg = "#7fb9cf", italic = true },
+  NeoTreeModified          = { fg = "#ffc66d" },
+  NeoTreeFilterTerm        = { fg = "#ffc66d", bold = true },
+  NeoTreeSelected          = { bg = "#5a647e" },
+  NeoTreeGitAdded          = { fg = "#b4c973" },
+  NeoTreeGitDeleted        = { fg = "#c45837" },
+  NeoTreeGitModified       = { fg = "#ffc66d" },
+  NeoTreeGitStaged         = { fg = "#b4c973" },
+  NeoTreeGitUntracked      = { fg = "#979797", italic = true },
+  NeoTreeGitConflict       = { fg = "#c45837", bold = true },
+  NeoTreeGitIgnored        = { fg = "#979797" },
+  NeoTreeGitRenamed        = { fg = "#ffc66d" },
+  NeoTreeGitUnstaged       = { fg = "#ffc66d", bold = true },
+  NeoTreeStatusLine        = { bg = "#444444", fg = "#ffc66d", reverse = true },
+  NeoTreeStatusLineNC      = { bg = "#444444", fg = "#979797", reverse = true },
+  NeoTreeFloatTitle        = { bg = "#444444", fg = "#ffc66d" },
+  NeoTreeFloatBorder       = { fg = "#5a647e" },
+  NeoTreeFloatNormal       = { bg = "NONE" },
+}
+local apply_palette = function()
+  for group, spec in pairs(palette) do
+    vim.api.nvim_set_hl(0, group, spec)
+  end
+end
+apply_palette()
+-- Re-apply after any colorscheme switch (:colorscheme wipes custom groups)
+vim.api.nvim_create_autocmd("ColorScheme", { callback = apply_palette })
+
 require("neo-tree").setup({
   close_if_last_window = true,
   default_source = "filesystem",
   sources = { "filesystem", "git_status", "buffers" },
-
-  -- Highlight groups matching the Afterglow (Monokai) colorscheme
-  highlights = {
-    ["NeoTreeNormal"] = { bg = "NONE", fg = "#d6d6d6" },
-    ["NeoTreeNormalNC"] = { bg = "NONE", fg = "#d6d6d6" },
-    ["NeoTreeCursorLine"] = { bg = "#393939" },
-    ["NeoTreeSignColumn"] = { bg = "NONE" },
-    ["NeoTreeWinSeparator"] = { bg = "NONE", fg = "#4d5057" },
-    ["NeoTreeIndentMarker"] = { fg = "#4d5057" },
-    ["NeoTreeExpander"] = { fg = "#4d5057" },
-    ["NeoTreeRootName"] = { fg = "#e5b567", bold = true },
-    ["NeoTreeTitleBar"] = { bg = "#4d5057", fg = "#e5b567" },
-    ["NeoTreeDirectoryName"] = { fg = "#6c99bb" },
-    ["NeoTreeDirectoryIcon"] = { fg = "#6c99bb" },
-    ["NeoTreeFileName"] = { fg = "#d6d6d6" },
-    ["NeoTreeFileNameOpened"] = { fg = "#d6d6d6", bold = true },
-    ["NeoTreeFileIcon"] = { fg = "#d6d6d6" },
-    ["NeoTreeDotfile"] = { fg = "#797979" },
-    ["NeoTreeHiddenByName"] = { fg = "#797979" },
-    ["NeoTreeIgnored"] = { fg = "#797979" },
-    ["NeoTreeDimText"] = { fg = "#606367" },
-    ["NeoTreeFadeText1"] = { fg = "#606367" },
-    ["NeoTreeFadeText2"] = { fg = "#4d5057" },
-    ["NeoTreeMessage"] = { fg = "#797979", italic = true },
-    ["NeoTreeSymbolicLinkTarget"] = { fg = "#9e86c8" },
-    ["NeoTreeModified"] = { fg = "#e87d3e" },
-    ["NeoTreeFilterTerm"] = { fg = "#e5b567", bold = true },
-    ["NeoTreeSelected"] = { bg = "#5a647e" },
-    ["NeoTreeGitAdded"] = { fg = "#b4c973" },
-    ["NeoTreeGitDeleted"] = { fg = "#ac4142" },
-    ["NeoTreeGitModified"] = { fg = "#e5b567" },
-    ["NeoTreeGitStaged"] = { fg = "#b4c973" },
-    ["NeoTreeGitUntracked"] = { fg = "#797979", italic = true },
-    ["NeoTreeGitConflict"] = { fg = "#e87d3e", bold = true },
-    ["NeoTreeGitIgnored"] = { fg = "#797979" },
-    ["NeoTreeGitRenamed"] = { fg = "#e5b567" },
-    ["NeoTreeGitUnstaged"] = { fg = "#e87d3e", bold = true },
-    ["NeoTreeStatusLine"] = { bg = "#4d5057", fg = "#e5b567", reverse = true },
-    ["NeoTreeStatusLineNC"] = { bg = "#4d5057", fg = "#797979", reverse = true },
-    ["NeoTreeFloatTitle"] = { bg = "#4d5057", fg = "#e5b567" },
-    ["NeoTreeFloatBorder"] = { fg = "#4d5057" },
-    ["NeoTreeFloatNormal"] = { bg = "NONE" },
-  },
 
   window = {
     position = "left",       -- sidebar on the left

@@ -5,7 +5,7 @@
 serverAddr = "yt-stream.charugin.me"
 serverPort = 7000
 
-# yt-stream API (stream-service) — http://<server>:8870
+# yt-stream API (stream-service) — http://yts.localhost/
 [[proxies]]
 name = "yts"
 type = "https"

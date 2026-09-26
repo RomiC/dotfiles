@@ -22,5 +22,4 @@ cask "ghostty"
 cask "raycast"
 cask "spotify"
 cask "telegram"
-cask "zed"
 mas "Pixelmator Pro", id: 1289583905

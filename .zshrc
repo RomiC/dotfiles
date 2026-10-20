@@ -231,7 +231,7 @@ alias c='clear'
 alias gw='traceroute -m 3 google.com 2>/dev/null | tail -n 1 | cut -d " " -f 4'
 alias gateway='gw'
 # - Copy current folder to clipboard
-alias cwd='pwd | pbcopy'
+alias cwd='pwd | tr -d "\n" | pbcopy'
 # - Lazygit
 alias lg='lazygit'
 # - Brew

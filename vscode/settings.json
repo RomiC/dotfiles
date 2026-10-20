@@ -488,4 +488,8 @@
   "chat.editor.fontSize": 13,
   "task.allowAutomaticTasks": "on",
   "workbench.browser.showInTitleBar": false,
+  "image-diff.viewer.minScaleOne": true,
+  "image-diff.viewer.showDiffByDefault": true,
+  "scm.repositories.selectionMode": "single",
+  "claudeCode.preferredLocation": "panel",
 }

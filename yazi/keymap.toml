@@ -6,6 +6,9 @@ prepend_keymap = [
   # ── Git ──────────────────────────────────────────────────────────────────
   { on = ["<C-g>"], run = "shell --block '~/.config/yazi/scripts/lazygit-popup.sh'", desc = "Open lazygit in tmux popup" },
 
+  # ── Quick Look (macOS Finder-style preview) ───────────────────────────────
+  { on = ["g", "p"], run = "shell --orphan '~/.config/yazi/scripts/quicklook.sh %s'", desc = "Quick Look the selected/hovered files" },
+
   # ── Bookmarks ─────────────────────────────────────────────────────────────
   { on = ["g", "h"], run = "cd ~",             desc = "Bookmark: Home" },
   { on = ["g", "w"], run = "cd ~/work",         desc = "Bookmark: Work" },

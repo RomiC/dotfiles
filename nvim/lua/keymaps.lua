@@ -39,7 +39,11 @@ map('n', '<leader><leader>j', '<cmd>cnext<CR>', { silent = true, desc = 'Quickfi
 map('n', '<leader><leader>k', '<cmd>cprev<CR>', { silent = true, desc = 'Quickfix prev' })
 -- NOTE: original had <leader><leader>j mapped twice (both to cnext) — fixed above.
 
--- ── fzf-lua: fuzzy search everything ───────────────────────────────────────
+-- ── Search ──────────────────────────────────────────────────────────────────
+-- Esc clears search highlighting (no-op when nothing is highlighted)
+map('n', '<Esc>', '<cmd>nohlsearch<CR>', { silent = true, desc = 'Clear search highlights' })
+
+-- ── fzf-lua: fuzzy search everything ─────────────────────────────────────────
 map('n', '<C-p>',      '<cmd>lua require("fzf-lua").files()<CR>',       { silent = true, desc = 'Find files' })
 map('n', '<leader>p',  '<cmd>lua require("fzf-lua").files()<CR>',       { silent = true, desc = 'Find files' })
 map('n', '<leader>f',  '<cmd>lua require("fzf-lua").live_grep()<CR>',   { silent = true, desc = 'Live grep (search contents)' })

@@ -3,3 +3,6 @@ text eol=lf
 *.jpeg diff=image
 *.jpg diff=image
 *.png diff=image
+*.bmp diff=image
+*.heic diff=image
+*.svg diff=image

@@ -22,6 +22,16 @@
 - Comments MUST NOT exceed 2 lines — longer comments are garbage left for stupid AI agents.
 - Instead of commenting code, check and update the related design documents.
 
+## Bash Command Execution
+
+- Execute at most 3 shell commands per bash tool call. Count each pipeline stage separately toward this limit.
+- Start every command on a separate line; never join commands with `;`.
+- Preserve failure handling: use `&&` where subsequent commands depend on earlier commands succeeding.
+- Keep shell lines within 120 characters whenever practical.
+- Wrap long argument lists using backslash continuations, with one argument or option/value pair per line and 2-space indentation.
+- Format pipelines with one stage per line, leaving `|` at the end of the preceding line and indenting subsequent stages by 2 spaces.
+- Do not bypass the command limit using subshells, `bash -c`, or scripts.
+
 ## General Workflow
 
 - When preparing a commit, first stage changes, then show `git diff --staged`, then propose a

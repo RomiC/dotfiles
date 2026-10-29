@@ -220,7 +220,7 @@ alias lg='lazygit'
 alias buu='brew update && brew upgrade -y && brew cleanup'
 # - 1Password
 #   - Copy password for the item
-alias opp='op item list | fzf | awk "{print \$1}" | xargs -I @ zsh -c '\''op item get --reveal --fields label=password "@" 2>/dev/null || op item get --reveal --fields label=credential "@"'\'' | pbcopy'
+alias opp='op item list | fzf | awk "{print \$1}" | xargs -I @ zsh -c '\''op item get --reveal --fields label=password "@" 2>/dev/null || op item get --reveal --fields label=credential "@"'\'' | tr -d "\n" | pbcopy'
 # bun completions
 [ -s "/Users/roman.charugin/.bun/_bun" ] && source "/Users/roman.charugin/.bun/_bun"
 

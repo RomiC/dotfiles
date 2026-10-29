@@ -166,25 +166,6 @@ eval "$(fnm env --use-on-cd)"
 # - Docker
 export NGINX_PROXY_HOST="docker.for.mac.localhost"
 
-# - Bitwarden CLI Session (cached to avoid slow security call every shell start)
-BW_SESSION_CACHE="$HOME/.cache/bw_session"
-BW_SESSION_TTL=$((60 * 60 * 24 * 2)) # 2 days
-
-bw_session_update() {
-  export BW_SESSION="$(security find-generic-password -a 'roman.charugin@acronis.com' -s 'Bitwarden Session' -w 2>/dev/null)"
-  [[ -n "$BW_SESSION" ]] && print -r -- "$BW_SESSION" >| "$BW_SESSION_CACHE"
-}
-
-if [[ -f "$BW_SESSION_CACHE" ]]; then
-  export BW_SESSION="$(<"$BW_SESSION_CACHE")"
-  bw_cache_mtime=$(stat -f %m "$BW_SESSION_CACHE" 2>/dev/null)
-  if [[ -n "$bw_cache_mtime" ]] && (( $(date +%s) - bw_cache_mtime > BW_SESSION_TTL )); then
-    bw_session_update
-  fi
-else
-  bw_session_update
-fi
-
 # Aliases
 # - Git
 function gswup() {

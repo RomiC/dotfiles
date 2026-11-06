@@ -52,7 +52,10 @@
   // - Gitlens
   "gitlens.blame.heatmap.enabled": false,
   "gitlens.codeLens.authors.enabled": false,
-  "gitlens.gitCommands.skipConfirmations": ["fetch:command", "switch:command"],
+  "gitlens.gitCommands.skipConfirmations": [
+    "fetch:command",
+    "switch:command"
+  ],
   "gitlens.hovers.enabled": false,
   "gitlens.currentLine.enabled": false,
   "gitlens.views.repositories.files.layout": "list",
@@ -87,54 +90,108 @@
   "vim.normalModeKeyBindingsNonRecursive": [
     // - Find in files
     {
-      "before": ["g", "f"],
-      "after": ["v", "i", "w"],
-      "commands": ["workbench.action.findInFiles"],
+      "before": [
+        "g",
+        "f"
+      ],
+      "after": [
+        "v",
+        "i",
+        "w"
+      ],
+      "commands": [
+        "workbench.action.findInFiles"
+      ],
     },
     // - Formatting current line
     {
-      "before": ["=", "="],
-      "after": ["V"],
-      "commands": ["editor.action.formatSelection"],
+      "before": [
+        "=",
+        "="
+      ],
+      "after": [
+        "V"
+      ],
+      "commands": [
+        "editor.action.formatSelection"
+      ],
     },
     // - Change indent using tab
     {
-      "before": ["<tab>"],
-      "commands": ["editor.action.indentLines"],
+      "before": [
+        "<tab>"
+      ],
+      "commands": [
+        "editor.action.indentLines"
+      ],
     },
     {
-      "before": ["<S-tab>"],
-      "commands": ["editor.action.outdentLines"],
+      "before": [
+        "<S-tab>"
+      ],
+      "commands": [
+        "editor.action.outdentLines"
+      ],
     },
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
     // - Find in files (selection)
     {
-      "before": ["g", "f"],
-      "commands": ["workbench.action.findInFiles"],
+      "before": [
+        "g",
+        "f"
+      ],
+      "commands": [
+        "workbench.action.findInFiles"
+      ],
     },
     // - Formatting current line
     {
-      "before": ["=", "="],
-      "commands": ["editor.action.formatSelection"],
+      "before": [
+        "=",
+        "="
+      ],
+      "commands": [
+        "editor.action.formatSelection"
+      ],
     },
     // - Change indent using tab
     {
-      "before": ["<tab>"],
-      "commands": ["editor.action.indentLines"],
+      "before": [
+        "<tab>"
+      ],
+      "commands": [
+        "editor.action.indentLines"
+      ],
     },
     {
-      "before": ["<S-tab>"],
-      "commands": ["editor.action.outdentLines"],
+      "before": [
+        "<S-tab>"
+      ],
+      "commands": [
+        "editor.action.outdentLines"
+      ],
     },
   ],
   // - Statusbar
   "vim.statusBarColorControl": false,
   "vim.statusBarColors.normal": "#3c3c3c",
-  "vim.statusBarColors.insert": ["#cc6953", "#f5f5f5"],
-  "vim.statusBarColors.visual": ["#7e8e50", "#f5f5f5"],
-  "vim.statusBarColors.visualline": ["#7e8e50", "#f5f5f5"],
-  "vim.statusBarColors.visualblock": ["#7e8e50", "#f5f5f5"],
+  "vim.statusBarColors.insert": [
+    "#cc6953",
+    "#f5f5f5"
+  ],
+  "vim.statusBarColors.visual": [
+    "#7e8e50",
+    "#f5f5f5"
+  ],
+  "vim.statusBarColors.visualline": [
+    "#7e8e50",
+    "#f5f5f5"
+  ],
+  "vim.statusBarColors.visualblock": [
+    "#7e8e50",
+    "#f5f5f5"
+  ],
   "vim.statusBarColors.searchinprogressmode": "#e5b567",
   // Debug
   "debug.toolBarLocation": "docked",
@@ -183,7 +240,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "oxc.oxc-vscode",
   },
   // - Vue
   "[vue]": {
@@ -267,7 +324,9 @@
       },
       "icon": "terminal-bash",
       "path": "/bin/zsh",
-      "args": ["-l"],
+      "args": [
+        "-l"
+      ],
     },
     "tmux": {
       "icon": "terminal-tmux",
@@ -355,10 +414,10 @@
   },
   "scm.inputFontSize": 12,
   "github.copilot.enable": {
-    "*": true,
+    "*": false,
     "plaintext": false,
     "markdown": false,
-    "scminput": false,
+    "scminput": false
   },
   "window.newWindowDimensions": "inherit",
   "yaml.schemas": {
@@ -450,4 +509,14 @@
   "image-diff.viewer.showDiffByDefault": true,
   "scm.repositories.selectionMode": "single",
   "claudeCode.preferredLocation": "panel",
+  "workbench.diffEditorAssociations": {
+    "*.{jpg,jpe,jpeg,png,bmp,gif,ico,webp,avif,svg}": "imgdiff.image"
+  },
+  "pgsql.serverGroups": [
+    {
+      "name": "Servers",
+      "id": "1AAFDF5B-AEEB-469D-93EF-CDC3D5B3568C",
+      "isDefault": true
+    }
+  ],
 }

@@ -666,6 +666,13 @@
     "key": "cmd+r",
     "command": "workbench.action.tasks.runTask"
   },
+  // - Three-way diff of an image vs its committed version (workspace task, .vscode/image-diff.sh)
+  {
+    "key": "ctrl+alt+d",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Image: three-way diff vs committed",
+    "when": "resourceExtname =~ /\\.(png|jpe?g|gif|webp|bmp|tiff)$/"
+  },
   {
     "key": "cmd+shift+r",
     "command": "workbench.action.tasks.restartTask"

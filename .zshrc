@@ -230,6 +230,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # go
 export PATH="/usr/local/go/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 
 # local bin
 export PATH="$HOME/.local/bin:$PATH"

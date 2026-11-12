@@ -25,14 +25,32 @@ git clone https://github.com/RomiC/dotfiles.git $DOTFILES_DIR
 echo '=[ Installing Software ]='
 
 echo '-> brew'
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-BREW_BIN=$(which brew)
-if [[ "$BREW_BIN" == *"not found"* ]]; then
-	echo "ERROR: brew is missing"
-	exit 1
+find_brew() {
+  BREW_BIN=$(command -v brew)
+  if [[ -n "$BREW_BIN" && -x "$BREW_BIN" ]]; then
+    return 0
+  fi
+
+  for BREW_BIN in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+    [[ -x "$BREW_BIN" ]] && return 0
+  done
+  return 1
+}
+
+if ! find_brew; then
+  printf 'Brew not found! Press any key to install brew...'
+  read -rsn1 || exit 1
+  printf '\n'
+  BREW_INSTALL_SCRIPT=$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh) || exit 1
+  /bin/bash -c "$BREW_INSTALL_SCRIPT" || exit 1
 fi
 
-$BREW_BIN update
+if ! find_brew || ! "$BREW_BIN" --version >/dev/null 2>&1; then
+  echo "ERROR: brew is missing or cannot run"
+  exit 1
+fi
+
+"$BREW_BIN" update
 
 echo '-> mas'
 $BREW_BIN install mas

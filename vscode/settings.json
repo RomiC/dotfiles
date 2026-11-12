@@ -507,7 +507,6 @@
   "workbench.browser.showInTitleBar": false,
   "image-diff.viewer.minScaleOne": true,
   "image-diff.viewer.showDiffByDefault": true,
-  "scm.repositories.selectionMode": "single",
   "claudeCode.preferredLocation": "panel",
   "workbench.diffEditorAssociations": {
     "*.{jpg,jpe,jpeg,png,bmp,gif,ico,webp,avif,svg}": "imgdiff.image"

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://unpkg.com/@aliou/pi-guardrails@0.21.0/schema.json",
+  "$schema": "https://unpkg.com/@aliou/pi-guardrails@0.22.0/schema.json",
   "pathAccess": {
     "allowedPaths": [
       {
@@ -29,6 +29,10 @@
       {
         "kind": "directory",
         "path": "~/Screenshots"
+      },
+      {
+        "kind": "directory",
+        "path": "/tmp"
       }
     ]
   },

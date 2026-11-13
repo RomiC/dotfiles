@@ -1,7 +1,5 @@
 alexkrechik.cucumberautocomplete
 augustocdias.tasks-shell-input
-betterthantomorrow.calva
-david-rickard.git-diff-and-merge-tool
 dbaeumer.vscode-eslint
 docker.docker
 esbenp.prettier-vscode
@@ -26,5 +24,4 @@ vitest.explorer
 vscodevim.vim
 vue.volar
 wayou.vscode-todo-highlight
-william-voyek.vscode-nginx
 xabikos.javascriptsnippets

@@ -500,7 +500,6 @@
     },
   },
   "chat.titleBar.openInAgentsWindow.enabled": false,
-  "chat.viewSessions.orientation": "stacked",
   "workbench.colorTheme": "Afterglow Remastered",
   "chat.editor.fontSize": 13,
   "task.allowAutomaticTasks": "on",
@@ -518,4 +517,7 @@
       "isDefault": true
     }
   ],
+  "chat.viewSessions.orientation": "stacked",
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "chat.disableAIFeatures": true,
 }
